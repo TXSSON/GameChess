@@ -42,6 +42,12 @@ public class Bishop extends Piece {
                         }
                 }
 
+                //Check if the move let king in checked
+                for (Move move : legalMoves) {
+                        if (move.isInCheckedAfterMove(board)) {
+                                legalMoves.remove(move);
+                        }
+                }
                 return legalMoves;
         }
 }

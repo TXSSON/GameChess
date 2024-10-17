@@ -29,6 +29,13 @@ public class Pawn extends Piece {
                 //TODO: En passant
 
                 //TODO: Promotion
+                
+                //Check if the move let king in checked
+                for (Move move : legalMoves) {
+                        if (move.isInCheckedAfterMove(board)) {
+                                legalMoves.remove(move);
+                        }
+                }
                 return legalMoves;
         }
 }

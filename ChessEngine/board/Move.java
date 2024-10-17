@@ -1,5 +1,6 @@
 package ChessEngine.board;
 
+import java.util.*;
 import ChessEngine.ChessColor;
 import ChessEngine.piece.*;
 
@@ -26,5 +27,32 @@ public class Move {
                 //Finally move the piece
                 tileTo.setPiece(piece);
                 tileFrom.clearTile();
+        }
+
+        public boolean isInCheckedAfterMove(Board board) {
+                //Check if the moves let king in checked
+                Piece thisPiece = tileFrom.getPiece();
+                this.make(board);
+                King kingPiece = new King(0, 0, thisPiece.color);
+                ArrayList<Piece> friendlyPieces;
+                if (thisPiece.color == ChessColor.white) {
+                        friendlyPieces = board.whitePieces;
+                } else {
+                        friendlyPieces = board.blackPieces;
+                }
+                for (Piece piece : friendlyPieces) {
+                        if (piece instanceof King) {
+                                kingPiece = (King)piece;
+                        }
+                }
+                if (kingPiece.isChecked(board)) {
+                        return true;
+                }
+                this.undo(board);
+                return false;
+        }
+
+        public void undo(Board board) {
+
         }
 }

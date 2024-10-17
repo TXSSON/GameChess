@@ -48,6 +48,14 @@ public class King extends Piece {
                 }
 
                 //TODO: Castling move
+
+                //Check if the move let king in checked
+                for (Move move : legalMoves) {
+                        if (move.isInCheckedAfterMove(board)) {
+                                legalMoves.remove(move);
+                        }
+                }
+
                 return legalMoves;
         }
 
@@ -59,11 +67,128 @@ public class King extends Piece {
                         opponentPieces = board.whitePieces;
                 }
 
-                //Is checked by knight
                 for (Piece piece : opponentPieces) {
+                        int deltaRow = piece.row - this.row, deltaCol = piece.col - this.col;
 
+                        //Is checked by pawn
+                        if (piece instanceof Pawn) {
+                                if (deltaCol == 1 || deltaCol == -1) {
+                                        if ((this.color == ChessColor.white && deltaRow == 1)
+                                                || (this.color == ChessColor.black && deltaRow == -1)) {
+                                                        return true;
+                                                }
+                                }
+                        }
+                        //Is checked by bishop
+                        if (piece instanceof Bishop) {
+                                if (deltaRow / deltaCol == 1 || deltaRow / deltaCol == -1) {
+                                        //Check if there is a piece between them
+                                        int absDelta = (deltaRow > 0) ? deltaRow : (0-deltaRow);
+                                        int[] direction = {deltaRow/absDelta, deltaCol/absDelta};
+
+                                        int rowPieceBetween = this.row, colPieceBetween = this.col;
+                                        while (true) {
+                                                rowPieceBetween += direction[0];
+                                                colPieceBetween += direction[1];
+                                                if (rowPieceBetween == piece.row) {
+                                                        return true;
+                                                }
+
+                                                if (board.tiles[rowPieceBetween][colPieceBetween].isOccupied()) {
+                                                        break;
+                                                }
+                                        }
+                                }
+                        }
+
+                        //Is checked by knight
+                        if (piece instanceof Knight) {
+                                if ((deltaRow == 2 && deltaCol == 1)
+                                        || (deltaRow == 2 && deltaCol == -1)
+                                        || (deltaRow == 1 && deltaCol == 2)
+                                        || (deltaRow == 1 && deltaCol == -2)
+                                        || (deltaRow == -2 && deltaCol == 1)
+                                        || (deltaRow == -2 && deltaCol == -1)
+                                        || (deltaRow == -1 && deltaCol == 2)
+                                        || (deltaRow == -1 && deltaCol == -2)) {
+                                                return true;
+                                        }
+                        }
+
+                        //Is checked by rook
+                        if (piece instanceof Rook) {
+                                if (deltaRow == 0 || deltaCol == 0) {
+                                        int absDelta = deltaRow + deltaCol;
+                                        if (absDelta < 0) {
+                                                absDelta = 0 - absDelta;
+                                        }
+
+                                        int[] direction = {deltaRow/absDelta, deltaCol/absDelta};
+                                        int rowPieceBetween = this.row, colPieceBetween = this.col;
+                                        while (true) {
+                                                rowPieceBetween += direction[0];
+                                                colPieceBetween += direction[1];
+
+                                                if (rowPieceBetween == piece.row) {
+                                                        return true;
+                                                }
+
+                                                if (board.tiles[rowPieceBetween][colPieceBetween].isOccupied()) {
+                                                        break;
+                                                }
+                                        }
+                                }
+                        }
+
+                        //Is checked by queen
+                        if (piece instanceof Queen) {
+                                //By straight line
+                                        if (deltaRow == 0 || deltaCol == 0) {
+                                        int absDelta = deltaRow + deltaCol;
+                                        if (absDelta < 0) {
+                                                absDelta = 0 - absDelta;
+                                        }
+
+                                        int[] direction = {deltaRow/absDelta, deltaCol/absDelta};
+                                        int rowPieceBetween = this.row, colPieceBetween = this.col;
+                                        while (true) {
+                                                rowPieceBetween += direction[0];
+                                                colPieceBetween += direction[1];
+
+                                                if (rowPieceBetween == piece.row) {
+                                                        return true;
+                                                }
+
+                                                if (board.tiles[rowPieceBetween][colPieceBetween].isOccupied()) {
+                                                        break;
+                                                }
+                                        }
+                                }
+
+                                //By diagonal
+                                if (deltaRow == 0 || deltaCol == 0) {
+                                        int absDelta = deltaRow + deltaCol;
+                                        if (absDelta < 0) {
+                                                absDelta = 0 - absDelta;
+                                        }
+
+                                        int[] direction = {deltaRow/absDelta, deltaCol/absDelta};
+                                        int rowPieceBetween = this.row, colPieceBetween = this.col;
+                                        while (true) {
+                                                rowPieceBetween += direction[0];
+                                                colPieceBetween += direction[1];
+
+                                                if (rowPieceBetween == piece.row) {
+                                                        return true;
+                                                }
+
+                                                if (board.tiles[rowPieceBetween][colPieceBetween].isOccupied()) {
+                                                        break;
+                                                }
+                                        }
+                                }
+                        }
                 }
                 return false;
         }
 }
-

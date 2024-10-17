@@ -42,6 +42,13 @@ public class Queen extends Piece {
                                 legalMoves.add(new Move(tileFrom, tileTo));
                         }
                 }
+
+                //Check if the move let king in checked
+                for (Move move : legalMoves) {
+                        if (move.isInCheckedAfterMove(board)) {
+                                legalMoves.remove(move);
+                        }
+                }
                 return legalMoves;
         }
 }

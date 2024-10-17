@@ -21,6 +21,7 @@ public class Knight extends Piece {
                 final Tile tileFrom = board.tiles[row][col];
                 final int[][] possibleDirections = {{2, 1}, {2, -1}, {-2, 1}, {-2, -1},
                                                         {1, 2}, {1, -2}, {-1, 2}, {-1, -2}};
+                //Calculate possible moves
                 for (int[] direction: possibleDirections) {
                         while (true) {
                                 int rowTo = row + direction[0], colTo = col + direction[1];
@@ -37,6 +38,13 @@ public class Knight extends Piece {
                                 }
 
                                 legalMoves.add(new Move(tileFrom, tileTo));
+                        }
+                }
+
+                //Check if the move let king in checked
+                for (Move move : legalMoves) {
+                        if (move.isInCheckedAfterMove(board)) {
+                                legalMoves.remove(move);
                         }
                 }
 
