@@ -60,7 +60,7 @@ public class Board {
                 tiles[7][6].setPiece(new Knight(7, 6, ChessColor.black));
                 tiles[7][7].setPiece(new Rook(7, 7, ChessColor.black));
 
-                //Starting position
+                //Starting pieces
                 for (int col = 0; col < 8; col++) {
                         whitePieces.add(tiles[0][col].getPiece());
                         whitePieces.add(tiles[1][col].getPiece());

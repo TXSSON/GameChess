@@ -25,9 +25,10 @@ public class Rook extends Piece {
                 final int[][] possibleDirections = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
                 for (int[] direction: possibleDirections) {
-                        int n = 1;
+                        int rowTo = row, colTo = col;
                         while (true) {
-                                int rowTo = row + n*direction[0], colTo = col + n*direction[1];
+                                rowTo += direction[0];
+                                colTo += direction[1];
                                 if (rowTo < 0 || rowTo >= 8 || colTo < 0 || colTo >= 8) {
                                         break;
                                 }
@@ -41,7 +42,6 @@ public class Rook extends Piece {
                                 }
 
                                 legalMoves.add(new Move(tileFrom, tileTo));
-                                n++;
                         }
                 }
 

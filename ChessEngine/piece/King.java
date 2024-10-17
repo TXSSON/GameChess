@@ -52,22 +52,16 @@ public class King extends Piece {
         }
 
         public boolean isChecked(Board board) {
-                ArrayList<Piece> pieces = (this.color == ChessColor.white) ? board.blackPieces : board.whitePieces;
-                for (Piece piece : board.pieces) {
-                        Class pieceClass = piece.getClass();
-                        //Case: Checked by knights
-                        if (pieceClass == Knight.class) {
-                        }
-                        //Case: Checked by pawns
-                        if (pieceClass == Pawn.class) {
-                                if (this.color == ChessColor.white
-                                        && piece.row == this.row + 1 && (piece.col == this.col - 1 || piece.col == this.col + 1)) {
-                                                return true;
-                                } else if (this.color == ChessColor.black
-                                        && piece.row == this.row - 1 && (piece.col == this.col - 1 || piece.col == this.col + 1)) {
-                                                return true;
-                                }
-                        }
+                ArrayList<Piece> opponentPieces;
+                if (this.color == ChessColor.white) {
+                        opponentPieces = board.blackPieces;
+                } else {
+                        opponentPieces = board.whitePieces;
+                }
+
+                //Is checked by knight
+                for (Piece piece : opponentPieces) {
+
                 }
                 return false;
         }
