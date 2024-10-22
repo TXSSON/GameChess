@@ -12,9 +12,9 @@ public class Pawn extends Piece {
                 this.isJustMoved = false;
 
                 if (color == ChessColor.white) {
-                        image = getImage("/piece-image/pawn-w");
+                        imagePath = "piece-image/pawn-w.png";
                 } else {
-                        image = getImage("/piece-image/pawn-b");
+                        imagePath = "piece-image/pawn-b.png";
                 }
         }
         

@@ -32,27 +32,28 @@ public class Move {
         public boolean isInCheckedAfterMove(Board board) {
                 //Check if the moves let king in checked
                 Piece thisPiece = tileFrom.getPiece();
-                this.make(board);
-                King kingPiece = new King(0, 0, thisPiece.color);
-                ArrayList<Piece> friendlyPieces;
-                if (thisPiece.color == ChessColor.white) {
-                        friendlyPieces = board.whitePieces;
-                } else {
-                        friendlyPieces = board.blackPieces;
-                }
-                for (Piece piece : friendlyPieces) {
-                        if (piece instanceof King) {
-                                kingPiece = (King)piece;
+                try {
+                        Board simulationBoard = (Board) board.clone();
+                        this.make(simulationBoard);
+                        King kingPiece = new King(0, 0, thisPiece.color);
+                        ArrayList<Piece> friendlyPieces;
+                        if (thisPiece.color == ChessColor.white) {
+                                friendlyPieces = board.whitePieces;
+                        } else {
+                                friendlyPieces = board.blackPieces;
                         }
+                        for (Piece piece : friendlyPieces) {
+                                if (piece instanceof King) {
+                                        kingPiece = (King)piece;
+                                }
+                        }
+                        if (kingPiece.isChecked(simulationBoard)) {
+                                return true;
+                        }
+                } catch (CloneNotSupportedException e) {
+                        e.printStackTrace();
                 }
-                if (kingPiece.isChecked(board)) {
-                        return true;
-                }
-                this.undo(board);
                 return false;
         }
 
-        public void undo(Board board) {
-
-        }
 }

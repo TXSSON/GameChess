@@ -1,17 +1,13 @@
 package ChessEngine.piece;
 
 import java.util.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-
 import ChessEngine.ChessColor;
 import ChessEngine.board.*;
 
 public abstract class Piece {
         public int row, col; //Coordinates
         public final ChessColor color;
-        public BufferedImage image;
+        protected String imagePath;
 
         public ArrayList<Move> legalMoves;
 
@@ -21,15 +17,8 @@ public abstract class Piece {
                 this.color = color;
         }
 
-        public BufferedImage getImage(String imagePath) {
-                BufferedImage image = null;
-
-                try {
-                        image = ImageIO.read(getClass().getResourceAsStream("/piece" + imagePath + ".png"));
-                } catch (IOException e) {
-                        e.printStackTrace();
-                }
-                return image;
+        public String getImagePath() {
+                return imagePath;
         }
 
         public abstract ArrayList<Move> calculateLegalMoves(Board board);

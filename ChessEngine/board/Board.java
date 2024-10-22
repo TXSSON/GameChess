@@ -5,7 +5,7 @@ import java.util.*;
 import ChessEngine.ChessColor;
 import ChessEngine.piece.*;
 
-public class Board {
+public class Board implements Cloneable {
         public static final int MAX_ROW = 8;
         public static final int MAX_COL = 8;
         public final int SQUARE_SIZE;
@@ -67,5 +67,10 @@ public class Board {
                         blackPieces.add(tiles[6][col].getPiece());
                         blackPieces.add(tiles[7][col].getPiece());
                 }
+        }
+
+        @Override
+        public Object clone() throws CloneNotSupportedException {
+                return super.clone();
         }
 }

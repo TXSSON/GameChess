@@ -10,9 +10,9 @@ public class Bishop extends Piece {
                 super(row, col, color);
 
                 if (color == ChessColor.white) {
-                        image = getImage("/piece-image/bishop-w");
+                        imagePath = "piece-image/bishop-w.png";
                 } else {
-                        image = getImage("/piece-image/bishop-b");
+                        imagePath = "piece-image/bishop-b.png";
                 }
         }
         
