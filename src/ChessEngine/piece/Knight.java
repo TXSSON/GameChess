@@ -16,15 +16,16 @@ public class Knight extends Piece {
                 }
         }
         
-        @Override public ArrayList<Move> calculateLegalMoves(Board board) {
+        @Override public ArrayList<Move> calculateLegalMoves(final Board board) {
                 ArrayList<Move> legalMoves = new ArrayList<>();
-                final Tile tileFrom = board.tiles[row][col];
+                Tile tileFrom = board.tiles[this.row][this.col];
                 final int[][] possibleDirections = {{2, 1}, {2, -1}, {-2, 1}, {-2, -1},
                                                         {1, 2}, {1, -2}, {-1, 2}, {-1, -2}};
+                final int pieceRow = tileFrom.row, pieceCol = tileFrom.col;
                 //Calculate possible moves
                 for (int[] direction: possibleDirections) {
                         while (true) {
-                                int rowTo = row + direction[0], colTo = col + direction[1];
+                                int rowTo = pieceRow + direction[0], colTo = pieceCol + direction[1];
                                 if (rowTo < 0 || rowTo >= 8 || colTo < 0 || colTo >= 8) {
                                         break;
                                 }
@@ -32,22 +33,20 @@ public class Knight extends Piece {
                                 Tile tileTo = board.tiles[rowTo][colTo];
                                 if (tileTo.isOccupied()) {
                                         if (tileTo.getPiece().color != this.color) {
-                                                legalMoves.add(new Move(tileFrom, tileTo));
+                                                Move newMove = new Move(tileFrom, tileTo);
+                                                if (newMove.isInCheckedAfterMove(board) == false) {
+                                                        legalMoves.add(newMove);
+                                                }
                                         }
                                         break;
                                 }
 
-                                legalMoves.add(new Move(tileFrom, tileTo));
+                                Move newMove = new Move(tileFrom, tileTo);
+                                if (newMove.isInCheckedAfterMove(board) == false) {
+                                        legalMoves.add(newMove);
+                                }
                         }
                 }
-
-                //Check if the move let king in checked
-                for (Move move : legalMoves) {
-                        if (move.isInCheckedAfterMove(board)) {
-                                legalMoves.remove(move);
-                        }
-                }
-
-                return legalMoves;
+               return legalMoves;
         }
 }

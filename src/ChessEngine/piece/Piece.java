@@ -5,7 +5,7 @@ import ChessEngine.ChessColor;
 import ChessEngine.board.*;
 
 public abstract class Piece {
-        public int row, col; //Coordinates
+        public int row, col;
         public final ChessColor color;
         protected String imagePath;
 
@@ -21,5 +21,5 @@ public abstract class Piece {
                 return imagePath;
         }
 
-        public abstract ArrayList<Move> calculateLegalMoves(Board board);
+        public abstract ArrayList<Move> calculateLegalMoves(final Board board);
 }

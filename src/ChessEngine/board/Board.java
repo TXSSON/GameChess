@@ -12,7 +12,7 @@ public class Board implements Cloneable {
         public final int HALF_SQUARE_SIZE;
         public final ChessColor side; //Point of view from white side or black side
 
-        public static Tile[][] tiles = new Tile[8][8];
+        public Tile[][] tiles = new Tile[8][8];
         public ArrayList<Piece> whitePieces = new ArrayList<>();
         public ArrayList<Piece> blackPieces = new ArrayList<>();
 
@@ -21,14 +21,15 @@ public class Board implements Cloneable {
                 this.HALF_SQUARE_SIZE = SQUARE_SIZE / 2;
                 this.side = side;
 
-		ChessColor color = ChessColor.black;
+                ChessColor color = ChessColor.black;
                 for (int row = 0; row < 8; row++) {
                         for (int col = 0; col < 8; col++) {
-                        	tiles[row][col] = new Tile(row, col, null, color);
-                        	color = ChessColor.opposite(color);
+                                        tiles[row][col] = new Tile(row, col, null, color);
+                                        color = ChessColor.opposite(color);
                         }
                         color = ChessColor.opposite(color);
                 }
+
                 this.resetPieces();
         }
 

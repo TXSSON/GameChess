@@ -18,9 +18,8 @@ public class Pawn extends Piece {
                 }
         }
         
-        @Override public ArrayList<Move> calculateLegalMoves(Board board) {
+        @Override public ArrayList<Move> calculateLegalMoves(final Board board) {
                 ArrayList<Move> legalMoves = new ArrayList<>();
-                final Tile tileFrom = board.tiles[row][col];
                 
                 //TODO: Move forward
 
@@ -30,12 +29,6 @@ public class Pawn extends Piece {
 
                 //TODO: Promotion
                 
-                //Check if the move let king in checked
-                for (Move move : legalMoves) {
-                        if (move.isInCheckedAfterMove(board)) {
-                                legalMoves.remove(move);
-                        }
-                }
                 return legalMoves;
         }
 }

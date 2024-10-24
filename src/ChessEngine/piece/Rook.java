@@ -13,19 +13,19 @@ public class Rook extends Piece {
                 this.hasMoved = false;
 
                 if (color == ChessColor.white) {
-                        imagePath = "ChessEngine/piece/piece-image/rook-w.png";
+                        imagePath = "piece-image/rook-w.png";
                 } else {
                         imagePath = "piece-image/rook-b.png";
                 }
         }
         
-        @Override public ArrayList<Move> calculateLegalMoves(Board board) {
+        @Override public ArrayList<Move> calculateLegalMoves(final Board board) {
                 ArrayList<Move> legalMoves = new ArrayList<>();
-                final Tile tileFrom = board.tiles[row][col];               
+                Tile tileFrom = board.tiles[this.row][this.col];
                 final int[][] possibleDirections = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
                 for (int[] direction: possibleDirections) {
-                        int rowTo = row, colTo = col;
+                        int rowTo = this.row, colTo = this.col;
                         while (true) {
                                 rowTo += direction[0];
                                 colTo += direction[1];
@@ -36,19 +36,18 @@ public class Rook extends Piece {
                                 Tile tileTo = board.tiles[rowTo][colTo];
                                 if (tileTo.isOccupied()) {
                                         if (tileTo.getPiece().color != this.color) {
-                                                legalMoves.add(new Move(tileFrom, tileTo));
+                                                Move newMove = new Move(tileFrom, tileTo);
+                                                if (newMove.isInCheckedAfterMove(board) == false) {
+                                                        legalMoves.add(newMove);
+                                                }
                                         }
                                         break;
                                 }
 
-                                legalMoves.add(new Move(tileFrom, tileTo));
-                        }
-                }
-
-                //Check if the move let king in checked
-                for (Move move : legalMoves) {
-                        if (move.isInCheckedAfterMove(board)) {
-                                legalMoves.remove(move);
+                                Move newMove = new Move(tileFrom, tileTo);
+                                if (newMove.isInCheckedAfterMove(board) == false) {
+                                        legalMoves.add(newMove);
+                                }
                         }
                 }
                 return legalMoves;
