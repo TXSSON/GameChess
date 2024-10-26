@@ -5,7 +5,7 @@ import java.util.*;
 import ChessEngine.ChessColor;
 
 public class Gameplay {
-        Board board;
+        public Board board;
         Stack<Board> gameStates = new Stack<>();
 
         //TODO: Implement gameplay
