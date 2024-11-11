@@ -3,6 +3,7 @@ package ChessEngine.piece;
 import java.util.*;
 import ChessEngine.ChessColor;
 import ChessEngine.board.*;
+import ChessEngine.board.move.Move;
 
 public abstract class Piece {
         public int row, col;

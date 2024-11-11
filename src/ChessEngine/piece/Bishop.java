@@ -4,6 +4,7 @@ import java.util.*;
 
 import ChessEngine.ChessColor;
 import ChessEngine.board.*;
+import ChessEngine.board.move.*;
 
 public class Bishop extends Piece {
         public Bishop(int row, int col, ChessColor color) {

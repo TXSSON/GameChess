@@ -4,12 +4,11 @@ import java.util.*;
 
 import ChessEngine.ChessColor;
 import ChessEngine.board.*;
+import ChessEngine.board.move.Move;
 
 public class Pawn extends Piece {
-        public boolean isJustMoved;
         public Pawn(int row, int col, ChessColor color) {
                 super(row, col, color);
-                this.isJustMoved = false;
 
                 if (color == ChessColor.white) {
                         imagePath = "piece-image/pawn-w.png";

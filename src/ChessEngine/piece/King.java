@@ -4,6 +4,8 @@ import java.util.*;
 
 import ChessEngine.ChessColor;
 import ChessEngine.board.*;
+import ChessEngine.board.move.CastlingMove;
+import ChessEngine.board.move.Move;
 
 public class King extends Piece {
         public boolean isChecked;
@@ -60,14 +62,14 @@ public class King extends Piece {
                         //Castling king-side
                         if (tiles[this.row][7].isOccupied()) {
                                 Piece pieceAtTile = tiles[this.row][7].getPiece();
-                                if (pieceAtTile instanceof Rook) {
+                                if (pieceAtTile instanceof Rook && pieceAtTile.color == this.color) {
                                         if (((Rook)pieceAtTile).hasMoved == false) {
-                                                //Check if there are no pieces in between the king and the rook
+                                                //Check if there are no pieces between the king and the rook
                                                 if (tiles[this.row][5].isOccupied() == false && tiles[this.row][6].isOccupied() == false) {
                                                         //Check if king is in checked when move along the way
-                                                        Move newMove = new Move(tileFrom, tiles[this.row][5]);
+                                                        CastlingMove newMove = new CastlingMove(tileFrom, tiles[this.row][5]);
                                                         if (newMove.isInCheckedAfterMove(board) == false) {
-                                                                newMove = new Move(tileFrom, tiles[this.row][6]);
+                                                                newMove = new CastlingMove(tileFrom, tiles[this.row][6]);
                                                                 if (newMove.isInCheckedAfterMove(board) == false) {
                                                                         legalMoves.add(newMove);
                                                                 }
@@ -81,14 +83,14 @@ public class King extends Piece {
                         //Castling queen-side
                         if (tiles[this.row][0].isOccupied()) {
                                 Piece pieceAtTile = tiles[this.row][0].getPiece();
-                                if (pieceAtTile instanceof Rook) {
+                                if (pieceAtTile instanceof Rook && pieceAtTile.color == this.color) {
                                         if (((Rook)pieceAtTile).hasMoved == false) {
-                                                //Check if there are no pieces in between the king and the rook
+                                                //Check if there are no pieces between the king and the rook
                                                 if (tiles[this.row][3].isOccupied() == false && tiles[this.row][2].isOccupied() == false) {
                                                         //Check if king is in checked when move along the way
-                                                        Move newMove = new Move(tileFrom, tiles[this.row][3]);
+                                                        CastlingMove newMove = new CastlingMove(tileFrom, tiles[this.row][3]);
                                                         if (newMove.isInCheckedAfterMove(board) == false) {
-                                                                newMove = new Move(tileFrom, tiles[this.row][2]);
+                                                                newMove = new CastlingMove(tileFrom, tiles[this.row][2]);
                                                                 if (newMove.isInCheckedAfterMove(board) == false) {
                                                                         legalMoves.add(newMove);
                                                                 }

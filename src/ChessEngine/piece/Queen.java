@@ -4,6 +4,7 @@ import java.util.*;
 
 import ChessEngine.ChessColor;
 import ChessEngine.board.*;
+import ChessEngine.board.move.Move;
 
 public class Queen extends Piece {
         public Queen(int row, int col, ChessColor color) {
