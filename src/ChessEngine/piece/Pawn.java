@@ -4,12 +4,11 @@ import java.util.*;
 
 import ChessEngine.ChessColor;
 import ChessEngine.board.*;
+import ChessEngine.board.move.Move;
 
 public class Pawn extends Piece {
-        public boolean isJustMoved;
         public Pawn(int row, int col, ChessColor color) {
                 super(row, col, color);
-                this.isJustMoved = false;
 
                 if (color == ChessColor.white) {
                         imagePath = "src/Main/Resources/piece-image2/wp.png";
@@ -18,9 +17,8 @@ public class Pawn extends Piece {
                 }
         }
         
-        @Override public ArrayList<Move> calculateLegalMoves(Board board) {
+        @Override public ArrayList<Move> calculateLegalMoves(final Board board) {
                 ArrayList<Move> legalMoves = new ArrayList<>();
-                final Tile tileFrom = board.tiles[row][col];
                 
                 //TODO: Move forward
 
@@ -30,12 +28,6 @@ public class Pawn extends Piece {
 
                 //TODO: Promotion
                 
-                //Check if the move let king in checked
-                for (Move move : legalMoves) {
-                        if (move.isInCheckedAfterMove(board)) {
-                                legalMoves.remove(move);
-                        }
-                }
                 return legalMoves;
         }
 }

@@ -1,7 +1,9 @@
-package ChessEngine.board;
+package ChessEngine.board.move;
 
 import java.util.*;
 import ChessEngine.ChessColor;
+import ChessEngine.board.Board;
+import ChessEngine.board.Tile;
 import ChessEngine.piece.*;
 
 public class Move {
@@ -16,7 +18,7 @@ public class Move {
 
         public void make(Board board) {
                 Piece piece = tileFrom.getPiece();
-                //Capture
+                //Remove the piece at tileTo
                 if (tileTo.isOccupied()) {
                         if (tileTo.getPiece().color == ChessColor.white) {
                                 board.whitePieces.remove(tileTo.getPiece());
@@ -24,20 +26,28 @@ public class Move {
                                 board.blackPieces.remove(tileTo.getPiece());
                         }
                 }
-                //En passant
-                //Castle
+
                 //Finally move the piece
                 tileTo.setPiece(piece);
                 tileFrom.clearTile();
+
+                //Change the state of the king and rook if needed
+                if (piece instanceof King) {
+                        ((King)piece).hasMoved = true;
+                } else if (piece instanceof Rook) {
+                        ((Rook)piece).hasMoved = true;
+                } 
         }
 
         public boolean isInCheckedAfterMove(Board board) {
-                //Check if the moves let king in checked
+                //Check if the move lets king in checked
                 Piece thisPiece = tileFrom.getPiece();
                 try {
+                        //Make a clone board and simulate the move
                         Board simulationBoard = (Board) board.clone();
                         this.make(simulationBoard);
-                        King kingPiece = new King(0, 0, thisPiece.color);
+
+                        //Find the king in the simulation board
                         ArrayList<Piece> friendlyPieces;
                         if (thisPiece.color == ChessColor.white) {
                                 friendlyPieces = board.whitePieces;
@@ -46,11 +56,10 @@ public class Move {
                         }
                         for (Piece piece : friendlyPieces) {
                                 if (piece instanceof King) {
-                                        kingPiece = (King)piece;
+                                        if (((King)piece).isChecked(simulationBoard)) {
+                                                return true;
+                                        }
                                 }
-                        }
-                        if (kingPiece.isChecked(simulationBoard)) {
-                                return true;
                         }
                 } catch (CloneNotSupportedException e) {
                         e.printStackTrace();
