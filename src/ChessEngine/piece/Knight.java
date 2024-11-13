@@ -10,9 +10,9 @@ public class Knight extends Piece {
                 super(row, col, color);
 
                 if (color == ChessColor.white) {
-                        imagePath = "piece-image/knight-w.png";
+                        imagePath = "src/Main/Resources/piece-image2/wn.png";
                 } else {
-                        imagePath = "piece-image/knight-b.png";
+                        imagePath = "src/Main/Resources/piece-image2/bn.png";
                 }
         }
         

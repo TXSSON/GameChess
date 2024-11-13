@@ -6,7 +6,9 @@ import ChessEngine.piece.*;
 
 public class Move {
         public final Tile tileFrom, tileTo;
-
+        
+        
+        
         public Move(Tile tileFrom, Tile tileTo) {
                 this.tileFrom = tileFrom;
                 this.tileTo = tileTo;

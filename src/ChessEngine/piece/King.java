@@ -14,9 +14,9 @@ public class King extends Piece {
                 this.hasMoved = false;
 
                 if (color == ChessColor.white) {
-                        imagePath = "piece-image/king-w.png";
+                        imagePath = "src/Main/Resources/piece-image2/wk.png";
                 } else {
-                        imagePath = "piece-image/king-b.png";
+                        imagePath = "src/Main/Resources/piece-image2/bk.png";
                 }
         }
         

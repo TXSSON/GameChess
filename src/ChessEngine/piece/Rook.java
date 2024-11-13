@@ -13,9 +13,9 @@ public class Rook extends Piece {
                 this.hasMoved = false;
 
                 if (color == ChessColor.white) {
-                        imagePath = "ChessEngine/piece/piece-image/rook-w.png";
+                        imagePath = "src/Main/Resources/piece-image2/wr.png";
                 } else {
-                        imagePath = "piece-image/rook-b.png";
+                        imagePath = "src/Main/Resources/piece-image2/br.png";
                 }
         }
         

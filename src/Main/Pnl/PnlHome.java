@@ -2,8 +2,8 @@ package Main.Pnl;
 
 import javax.swing.*;
 
-import Main.Controller;
 import Main.Frame.GameFrame;
+import Main.Utils.ButtonWithIcon;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,34 +11,31 @@ import java.awt.event.ActionListener;
 
 public class PnlHome extends JPanel {
 
-	public JButton newGameButton;
+	public JButton BtnNewGame;
 	public JButton tutorialGameButton;
 	public JButton exitButton;
 
 	public CardLayout cardLayout;
 	public JPanel cardPanel;
+	public PnlBoardChess pnlBoardChess;
+	public PnlTutorial pnlTutorial;
 
-	public PnlHome() {
+	private static volatile PnlHome pnlHome;
+
+	private PnlHome() {
 		// Khởi tạo kích thước cho panel
-		this.setPreferredSize(new Dimension(GameFrame.width, GameFrame.height));
+        this.setPreferredSize(new Dimension(GameFrame.width * 3 / 4, GameFrame.height)); // Chia diện tích hợp lý
 		this.setBackground(Color.DARK_GRAY);
-		this.setLayout(new BorderLayout()); // Sử dụng BorderLayout
+		this.setLayout(new BorderLayout());
 
 		cardLayout = new CardLayout();
 		cardPanel = new JPanel(cardLayout);
 
-		// Tạo menu
-		JPanel menu = createMenuPanel(); // Gọi phương thức tạo menu
+		JPanel menu = createMenuPanel();
+		cardPanel.add(menu, "menu");
 
+		this.add(cardPanel, BorderLayout.CENTER);
 		
-		PnlTutorial pnlTutorial = new PnlTutorial();
-
-		// Thêm menu và PnlNewGame vào cardPanel
-		cardPanel.add(menu, "Menu"); // Thêm menu vào cardPanel
-		cardPanel.add(pnlTutorial, "PnlTutorial");
-
-		// Thêm cardPanel vào PnlHome
-		this.add(cardPanel, BorderLayout.CENTER); // Thêm cardPanel vào giữa PnlHome
 	}
 
 	private JPanel createMenuPanel() {
@@ -47,16 +44,16 @@ public class PnlHome extends JPanel {
 		menu.setLayout(new GridLayout(3, 1, 0, 0));
 
 		// Sử dụng các nút đã khai báo
-		newGameButton = new JButton("New Game");
+		BtnNewGame = new JButton("BtnNewGame");
 		tutorialGameButton = new JButton("Tutorial Game");
 		exitButton = new JButton("Exit");
 
 		Dimension buttonSize = new Dimension(700, 250);
-		newGameButton.setPreferredSize(buttonSize);
+//		BtnNewGame.setPreferredSize(buttonSize);
 		tutorialGameButton.setPreferredSize(buttonSize);
 		exitButton.setPreferredSize(buttonSize);
 
-		menu.add(newGameButton);
+		menu.add(BtnNewGame);
 		menu.add(tutorialGameButton);
 		menu.add(exitButton);
 
@@ -66,4 +63,27 @@ public class PnlHome extends JPanel {
 
 		return centeredMenu;
 	}
+
+	public void setPnlTutorial(PnlTutorial pnlTutorial) {
+		this.pnlTutorial = pnlTutorial;
+		cardPanel.add(this.pnlTutorial, "pnlTutorial");
+	}
+
+	public void setPnlNewGame(PnlBoardChess pnlBoardChess) {
+		this.pnlBoardChess = pnlBoardChess;
+		cardPanel.add(this.pnlBoardChess, "pnlBoardChess");
+	}
+
+	public static PnlHome getPnlHomeInstance() {
+
+		if (pnlHome == null) {
+			synchronized (PnlHome.class) {
+				if (pnlHome == null) {
+					pnlHome = new PnlHome();
+				}
+			}
+		}
+		return pnlHome;
+	}
+
 }
