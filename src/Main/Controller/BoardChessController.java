@@ -144,7 +144,7 @@ public class BoardChessController {
 
 	private boolean isValidMove(Piece selectedPiece2, Tile clickedTile) {
 		// TODO Auto-generated method stub
-		  List<Move> availableMoves = selectedPiece2.calculateLegalMoves(mainController.gameplay.board);
+		  List<Move> availableMoves = selectedPiece2.calculateLegalMoves(mainController.gameplay);
 	        for (Move move : availableMoves) {
 	            if (move.tileTo.equals(clickedTile)) {
 	                return true;
@@ -156,7 +156,7 @@ public class BoardChessController {
 	private void highlightAvailableMoves(Piece selectedPiece2) {
 		// TODO Auto-generated method stub
 		try {
-			availableMoves = selectedPiece2.calculateLegalMoves(mainController.gameplay.board);
+			availableMoves = selectedPiece2.calculateLegalMoves(mainController.gameplay);
 			SwingUtilities.invokeLater(() -> pnlBoardChess.highlightTiles(availableMoves));
 		} catch (Exception e) {
 			// TODO: handle exception
