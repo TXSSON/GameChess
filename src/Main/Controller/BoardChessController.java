@@ -14,8 +14,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import javax.swing.SwingUtilities;
 
 import ChessEngine.ChessColor;
+import ChessEngine.ChessEnding;
 import ChessEngine.board.Tile;
 import ChessEngine.board.move.Move;
+import ChessEngine.piece.King;
 import ChessEngine.piece.Piece;
 import Main.Pnl.PnlBoardChess;
 
@@ -26,6 +28,8 @@ public class BoardChessController {
 	private Piece selectedPiece;
 	private Tile selectedTile;
 	private List<Move> availableMoves;
+
+
 
 	private final AtomicBoolean isProcessing = new AtomicBoolean(false);
 
@@ -40,6 +44,7 @@ public class BoardChessController {
 		this.mainController = mainController;
 		this.executorService = Executors.newSingleThreadExecutor();
 		this.logExecutor = Executors.newSingleThreadExecutor();
+
 		addEvenHandlers();
 	}
 
@@ -52,6 +57,7 @@ public class BoardChessController {
 				int y = e.getY();
 				System.out.println("bắt sự kiện chuột thành công");
 				handleTileClick(x, y);
+				
 			}
 		});
 	}
@@ -171,6 +177,9 @@ public class BoardChessController {
 					System.out.println("Cập nhật giao diện hoàn tất.");
 
 					resetSelection();
+
+					
+
 				});
 
 				break;
@@ -192,7 +201,7 @@ public class BoardChessController {
 		try {
 			availableMoves = selectedPiece2.calculateLegalMoves(mainController.gameplay);
 			if (availableMoves != null && !availableMoves.isEmpty()) {
-				 System.out.println("Số nước đi hợp lệ à: " + availableMoves.size());
+				System.out.println("Số nước đi hợp lệ à: " + availableMoves.size());
 				SwingUtilities.invokeLater(() -> pnlBoardChess.highlightTiles(availableMoves));
 			} else {
 				System.out.println("Không có nước đi hợp lệ.");
