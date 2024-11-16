@@ -37,7 +37,7 @@ public class Knight extends Piece {
                 //Calculate possible moves
                 for (int[] direction: possibleDirections) {
                 	System.out.println("Hướng con mã: " + direction[0] + ", " + direction[1] );
-                        while (true) {
+                        //while (true) {
                                 int rowTo = pieceRow + direction[0], colTo = pieceCol + direction[1];
                                 System.out.println("hàng và cột đang xét: " +rowTo + ", " + colTo);
                                 if (rowTo < 0 || rowTo >= 8 || colTo < 0 || colTo >= 8) {
@@ -59,7 +59,7 @@ public class Knight extends Piece {
                                 if (newMove.isInCheckedAfterMove(board) == false) {
                                         legalMoves.add(newMove);
                                 }
-                        }
+                        //}
                 }
                return legalMoves;
         }

@@ -55,7 +55,7 @@ public class Pawn extends Piece {
                 Board board = game.board;
                 Stack<Board> gameStates = game.gameStates;
                 ArrayList<Move> legalMoves = new ArrayList<>();
-                Tile tileFrom = board.tiles[row][col];
+                final Tile tileFrom = board.tiles[this.row][this.col];
                 
                 if (color == ChessColor.white) {
                         //Move forward and capture normally

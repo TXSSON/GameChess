@@ -10,6 +10,6 @@ public class Gameplay {
 
         //TODO: Implement gameplay
         public Gameplay(int SQUARE_SIZE, ChessColor side) {
-                board = new Board(SQUARE_SIZE, side);
+                this.board = new Board(SQUARE_SIZE, side);
         }
 }
