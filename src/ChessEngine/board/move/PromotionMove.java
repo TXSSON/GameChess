@@ -16,6 +16,12 @@ public class PromotionMove extends Move {
                 piecePromoteTo = piece;
         }
 
+        @Override public void make(Gameplay game) {
+                Board newBoard = new Board(game.board);
+                this.make(newBoard);
+                game.gameStates.push(newBoard);
+        }
+
         @Override
         protected void make(Board board) {
                 //Remove the piece on tileTo

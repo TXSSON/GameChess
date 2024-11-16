@@ -7,6 +7,12 @@ public class EnPassantMove extends Move{
                 super(tileFrom, tileTo);
         }
 
+        @Override public void make(Gameplay game) {
+                Board newBoard = new Board(game.board);
+                this.make(newBoard);
+                game.gameStates.push(newBoard);
+        }
+
         @Override
         protected void make(Board board) {
                 //White pawn
