@@ -11,9 +11,9 @@ public class Queen extends Piece {
                 super(row, col, color);
 
                 if (color == ChessColor.white) {
-                        imagePath = "piece-image/queen-w.png";
+                        imagePath = "src/Main/Resources/piece-image2/wq.png";
                 } else {
-                        imagePath = "piece-image/queen-b.png";
+                        imagePath = "src/Main/Resources/piece-image2/bq.png";
                 }
         }
 

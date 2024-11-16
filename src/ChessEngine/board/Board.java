@@ -40,16 +40,16 @@ public class Board {
 
                 for (int row = 0; row < 8; row++) {
                         for (int col = 0; col < 8; col++) {
-                                this.tiles[row][col] = new Tile(tiles[row][col]);
+                                this.tiles[row][col] = new Tile(board.tiles[row][col]);
+                                if (this.tiles[row][col].isOccupied()) {
+                                        Piece thisPiece = this.tiles[row][col].getPiece();
+                                        if (thisPiece.color == ChessColor.white) {
+                                                this.whitePieces.add(thisPiece);
+                                        } else {
+                                                this.blackPieces.add(thisPiece);
+                                        }
+                                } 
                         }
-                }
-
-                for (Piece piece : board.whitePieces) {
-                        this.whitePieces.add(piece.clone());
-                }
-
-                for (Piece piece : board.blackPieces) {
-                        this.blackPieces.add(piece.clone());
                 }
         }
 

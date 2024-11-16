@@ -11,9 +11,9 @@ public class Pawn extends Piece {
                 super(row, col, color);
 
                 if (color == ChessColor.white) {
-                        imagePath = "piece-image/pawn-w.png";
+                        imagePath = "src/Main/Resources/piece-image2/wp.png";
                 } else {
-                        imagePath = "piece-image/pawn-b.png";
+                        imagePath = "src/Main/Resources/piece-image2/bp.png";
                 }
         }
 
@@ -55,7 +55,7 @@ public class Pawn extends Piece {
                 Board board = game.board;
                 Stack<Board> gameStates = game.gameStates;
                 ArrayList<Move> legalMoves = new ArrayList<>();
-                Tile tileFrom = board.tiles[row][col];
+                final Tile tileFrom = board.tiles[this.row][this.col];
                 
                 if (color == ChessColor.white) {
                         //Move forward and capture normally

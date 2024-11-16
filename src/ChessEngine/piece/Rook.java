@@ -8,15 +8,16 @@ import ChessEngine.board.move.*;
 
 public class Rook extends Piece {
         public boolean hasMoved;
-        
+
         public Rook(int row, int col, ChessColor color) {
                 super(row, col, color);
                 this.hasMoved = false;
 
                 if (color == ChessColor.white) {
-                        imagePath = "piece-image/rook-w.png";
+
+                        imagePath = "src/Main/Resources/piece-image2/wr.png";           
                 } else {
-                        imagePath = "piece-image/rook-b.png";
+                        imagePath = "src/Main/Resources/piece-image2/br.png";
                 }
         }
 
@@ -31,12 +32,12 @@ public class Rook extends Piece {
         }
         
         @Override public ArrayList<Move> calculateLegalMoves(Gameplay game) {
-                Board board = game.board;
+        		Board board = game.board;
                 ArrayList<Move> legalMoves = new ArrayList<>();
                 Tile tileFrom = board.tiles[this.row][this.col];
-                final int[][] possibleDirections = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+                final int[][] possibleDirections = { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
 
-                for (int[] direction: possibleDirections) {
+                for (int[] direction : possibleDirections) {
                         int rowTo = this.row, colTo = this.col;
                         while (true) {
                                 rowTo += direction[0];

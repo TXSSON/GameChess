@@ -11,9 +11,9 @@ public class Knight extends Piece {
                 super(row, col, color);
 
                 if (color == ChessColor.white) {
-                        imagePath = "piece-image/knight-w.png";
+                        imagePath = "src/Main/Resources/piece-image2/wn.png";
                 } else {
-                        imagePath = "piece-image/knight-b.png";
+                        imagePath = "src/Main/Resources/piece-image2/bn.png";
                 }
         }
 
@@ -36,8 +36,10 @@ public class Knight extends Piece {
                 final int pieceRow = tileFrom.row, pieceCol = tileFrom.col;
                 //Calculate possible moves
                 for (int[] direction: possibleDirections) {
-                        while (true) {
+                	System.out.println("Hướng con mã: " + direction[0] + ", " + direction[1] );
+                        //while (true) {
                                 int rowTo = pieceRow + direction[0], colTo = pieceCol + direction[1];
+                                System.out.println("hàng và cột đang xét: " +rowTo + ", " + colTo);
                                 if (rowTo < 0 || rowTo >= 8 || colTo < 0 || colTo >= 8) {
                                         break;
                                 }
@@ -57,7 +59,7 @@ public class Knight extends Piece {
                                 if (newMove.isInCheckedAfterMove(board) == false) {
                                         legalMoves.add(newMove);
                                 }
-                        }
+                        //}
                 }
                return legalMoves;
         }

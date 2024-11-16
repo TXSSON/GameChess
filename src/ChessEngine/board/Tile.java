@@ -18,11 +18,12 @@ public class Tile {
         public Tile(Tile tile) {
                 this.row = tile.row;
                 this.col = tile.col;
-                this.piece = tile.piece;
                 this.color = tile.color;
 
                 if (tile.piece != null) {
                         this.piece = tile.piece.clone();
+                } else {
+                        this.piece = null;
                 }
         }
 
