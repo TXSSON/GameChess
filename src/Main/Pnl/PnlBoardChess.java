@@ -14,8 +14,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import ChessEngine.board.Move;
+
 import ChessEngine.board.Tile;
+import ChessEngine.board.move.Move;
 import ChessEngine.piece.Piece;
 import Main.Frame.GameFrame;
 import Main.Utils.ColorOption;

@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 
 import ChessEngine.board.Board;
 import ChessEngine.board.Gameplay;
-import ChessEngine.board.Move;
 import ChessEngine.board.Tile;
 import ChessEngine.piece.Piece;
 import Main.Frame.GameFrame;

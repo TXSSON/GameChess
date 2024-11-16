@@ -9,8 +9,6 @@ import ChessEngine.piece.*;
 public class Move {
         public final Tile tileFrom, tileTo;
         
-        
-        
         public Move(Tile tileFrom, Tile tileTo) {
                 this.tileFrom = tileFrom;
                 this.tileTo = tileTo;
@@ -42,6 +40,9 @@ public class Move {
         public boolean isInCheckedAfterMove(Board board) {
                 //Check if the move lets king in checked
                 Piece thisPiece = tileFrom.getPiece();
+                System.out.println("địa chỉ của tileFrom: " + tileFrom);
+                System.out.println(thisPiece);
+
                 try {
                         //Make a clone board and simulate the move
                         Board simulationBoard = (Board) board.clone();
@@ -49,6 +50,14 @@ public class Move {
 
                         //Find the king in the simulation board
                         ArrayList<Piece> friendlyPieces;
+                        
+                        // in ra màn hình để debug
+                        if (thisPiece == null) {
+                        	System.out.println(" thisPiece đang null ");
+                        }else {
+                        	System.out.println(" thisPiece không null lệ ");
+                        }
+                        
                         if (thisPiece.color == ChessColor.white) {
                                 friendlyPieces = board.whitePieces;
                         } else {
