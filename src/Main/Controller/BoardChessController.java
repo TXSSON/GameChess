@@ -16,7 +16,10 @@ import javax.swing.SwingUtilities;
 import ChessEngine.ChessColor;
 import ChessEngine.ChessEnding;
 import ChessEngine.board.Tile;
+import ChessEngine.board.move.CastlingMove;
+import ChessEngine.board.move.EnPassantMove;
 import ChessEngine.board.move.Move;
+import ChessEngine.board.move.PromotionMove;
 import ChessEngine.piece.King;
 import ChessEngine.piece.Piece;
 import Main.Pnl.PnlBoardChess;
@@ -28,8 +31,6 @@ public class BoardChessController {
 	private Piece selectedPiece;
 	private Tile selectedTile;
 	private List<Move> availableMoves;
-
-
 
 	private final AtomicBoolean isProcessing = new AtomicBoolean(false);
 
@@ -57,7 +58,7 @@ public class BoardChessController {
 				int y = e.getY();
 				System.out.println("bắt sự kiện chuột thành công");
 				handleTileClick(x, y);
-				
+
 			}
 		});
 	}
@@ -159,7 +160,7 @@ public class BoardChessController {
 	}
 
 	private void executeMove(Piece selectedPiece2, Tile clickedTile) {
-
+		
 		for (Move move : availableMoves) {
 			if (move.tileTo == clickedTile) {
 				SwingUtilities.invokeLater(() -> {
@@ -170,28 +171,54 @@ public class BoardChessController {
 					} else {
 						System.out.println("SelectedTile null");
 					}
-
-					move.make(mainController.gameplay);
+					
+					if (move instanceof CastlingMove) {
+						((CastlingMove)move).make(mainController.gameplay);
+					} else if (move instanceof EnPassantMove) {
+						((EnPassantMove)move).make(mainController.gameplay);
+					} else if (move instanceof PromotionMove) {
+						((PromotionMove)move).make(mainController.gameplay);
+					}  else {
+						move.make(mainController.gameplay);
+					}
+					
 
 					pnlBoardChess.addPieceToPanel(selectedPiece2.getImagePath(), clickedTile.row, clickedTile.col);
 					System.out.println("Cập nhật giao diện hoàn tất.");
 
 					resetSelection();
 
-					
+					if (isTurnWhite) {
+						if (((King) mainController.gameplay.board.blackPieces.get(0))
+								.isEnded(mainController.gameplay) == ChessEnding.whiteWin) {
+							System.out.println("Quân trắng thắng");
+						} else if (((King) mainController.gameplay.board.blackPieces.get(0))
+								.isEnded(mainController.gameplay) == ChessEnding.stalemate)
+							System.out.println("Hoà cờ");
+					} else {
+						if (((King) mainController.gameplay.board.blackPieces.get(0))
+								.isEnded(mainController.gameplay) == ChessEnding.blackWin) {
+							System.out.println("Quân đen thắng");
+						} else if (((King) mainController.gameplay.board.blackPieces.get(0))
+								.isEnded(mainController.gameplay) == ChessEnding.stalemate)
+							System.out.println("Hoà cờ");
+					}
 
 				});
 
 				break;
 			}
 		}
+
 	}
 
 	private boolean isValidMove(Piece selectedPiece2, Tile clickedTile) {
 		// TODO Auto-generated method stub
-		for (Move move : availableMoves) {
-			if (move.tileTo.equals(clickedTile)) {
-				return true;
+		if (availableMoves != null) {
+			for (Move move : availableMoves) {
+				if (move.tileTo.equals(clickedTile)) {
+					return true;
+				}
 			}
 		}
 		return false;
