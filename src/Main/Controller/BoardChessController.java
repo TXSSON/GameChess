@@ -138,6 +138,7 @@ public class BoardChessController {
 				executeMove(selectedPiece, clickedTile);
 				isTurnWhite = !isTurnWhite; // Đổi lượt sau nước đi hợp lệ
 			} else {
+				System.out.println("Nước đi không hợp lệ");
 				return;
 			}
 		}
