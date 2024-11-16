@@ -217,7 +217,7 @@ public class King extends Piece {
 
                                 //By diagonal
                                 if (deltaRow == deltaCol || deltaCol == -deltaCol) {
-                                        int absDelta = abs(deltaCol);
+                                        int absDelta = (deltaRow == 0) ? abs(deltaCol) : abs(deltaRow);
                                         int[] direction = {deltaRow/absDelta, deltaCol/absDelta};
                                         int rowBetween = this.row, colBetween = this.col;
                                         while (true) {

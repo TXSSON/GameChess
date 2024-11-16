@@ -81,11 +81,38 @@ public class Board {
                 tiles[7][7].setPiece(new Rook(7, 7, ChessColor.black));
 
                 //Starting pieces
+
+                //for (int col = 0; col < 8; col++) {
+                //        whitePieces.add(tiles[0][col].getPiece());
+                //        whitePieces.add(tiles[1][col].getPiece());
+                //        blackPieces.add(tiles[6][col].getPiece());
+                //        blackPieces.add(tiles[7][col].getPiece());
+                //}
+
+                //Add two kings first
+                whitePieces.add(tiles[0][4].getPiece());
+                blackPieces.add(tiles[7][4].getPiece());
+
+                //Add other pieces
+                whitePieces.add(tiles[0][0].getPiece());
+                whitePieces.add(tiles[0][1].getPiece());
+                whitePieces.add(tiles[0][2].getPiece());
+                whitePieces.add(tiles[0][3].getPiece());
+                whitePieces.add(tiles[0][5].getPiece());
+                whitePieces.add(tiles[0][6].getPiece());
+                whitePieces.add(tiles[0][7].getPiece());
+
+                blackPieces.add(tiles[7][0].getPiece());
+                blackPieces.add(tiles[7][1].getPiece());
+                blackPieces.add(tiles[7][2].getPiece());
+                blackPieces.add(tiles[7][3].getPiece());
+                blackPieces.add(tiles[7][5].getPiece());
+                blackPieces.add(tiles[7][6].getPiece());
+                blackPieces.add(tiles[7][7].getPiece());
+
                 for (int col = 0; col < 8; col++) {
-                        whitePieces.add(tiles[0][col].getPiece());
                         whitePieces.add(tiles[1][col].getPiece());
                         blackPieces.add(tiles[6][col].getPiece());
-                        blackPieces.add(tiles[7][col].getPiece());
                 }
         }
 }
