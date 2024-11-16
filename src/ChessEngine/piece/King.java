@@ -2,7 +2,7 @@ package ChessEngine.piece;
 
 import java.util.*;
 
-import ChessEngine.ChessColor;
+import ChessEngine.*;
 import ChessEngine.board.*;
 import ChessEngine.board.move.*;
 
@@ -26,10 +26,23 @@ public class King extends Piece {
 		this.imagePath = piece.imagePath;
 	}
 
+<<<<<<< HEAD
 	@Override
 	public King clone() {
 		return new King(this);
 	}
+=======
+        @Override public King clone() {
+                return new King(this);
+        }
+
+        @Override public ArrayList<Move> calculateLegalMoves(Gameplay game) {
+                Board board = game.board;
+                
+                ArrayList<Move> legalMoves = new ArrayList<>();
+                final Tile tileFrom = board.tiles[this.row][this.col];
+                Tile tiles[][] = board.tiles;
+>>>>>>> 87b333a7ef63b3ab661e3d2aa54e564fc627990f
 
 	@Override
 	public ArrayList<Move> calculateLegalMoves(Gameplay game) {
@@ -104,15 +117,30 @@ public class King extends Piece {
 								}
 							}
 
+<<<<<<< HEAD
 						}
 					}
 				}
 			}
+=======
+        private int abs(int val) {
+                return (val > 0) ? val : (0-val);
+        }
+
+        public boolean isChecked(Board board) {
+                ArrayList<Piece> opponentPieces;
+                if (this.color == ChessColor.white) {
+                        opponentPieces = board.blackPieces;
+                } else {
+                        opponentPieces = board.whitePieces;
+                }
+>>>>>>> 87b333a7ef63b3ab661e3d2aa54e564fc627990f
 
 		}
 		return legalMoves;
 	}
 
+<<<<<<< HEAD
 	public boolean isChecked(Board board) {
 		ArrayList<Piece> opponentPieces;
 		if (this.color == ChessColor.white) {
@@ -120,6 +148,23 @@ public class King extends Piece {
 		} else {
 			opponentPieces = board.whitePieces;
 		}
+=======
+                        //Is checked by pawn
+                        if (piece instanceof Pawn) {
+                                if (deltaCol == 1 || deltaCol == -1) {
+                                        if ((this.color == ChessColor.white && deltaRow == 1)
+                                                || (this.color == ChessColor.black && deltaRow == -1)) {
+                                                        return true;
+                                                }
+                                }
+                        }
+                        //Is checked by bishop
+                        if (piece instanceof Bishop) {
+                                if (deltaRow == deltaCol || deltaRow == -deltaCol) {
+                                        //Check if there is a piece between them
+                                        int absDelta = (deltaRow == 0) ? abs(deltaCol) : abs(deltaRow);
+                                        int[] direction = {deltaRow/absDelta, deltaCol/absDelta};
+>>>>>>> 87b333a7ef63b3ab661e3d2aa54e564fc627990f
 
 		for (Piece piece : opponentPieces) {
 			int deltaRow = piece.row - this.row, deltaCol = piece.col - this.col;
@@ -148,12 +193,19 @@ public class King extends Piece {
 							return true;
 						}
 
+<<<<<<< HEAD
 						if (board.tiles[rowBetween][colBetween].isOccupied()) {
 							break;
 						}
 					}
 				}
 			}
+=======
+                        //Is checked by rook
+                        if (piece instanceof Rook) {
+                                if (deltaRow == 0 || deltaCol == 0) {
+                                        int absDelta = (deltaRow == 0) ? abs(deltaCol) : abs(deltaRow);
+>>>>>>> 87b333a7ef63b3ab661e3d2aa54e564fc627990f
 
 			// Is checked by knight
 			if (piece instanceof Knight) {
@@ -179,9 +231,17 @@ public class King extends Piece {
 						rowBetween += direction[0];
 						colBetween += direction[1];
 
+<<<<<<< HEAD
 						if (rowBetween == piece.row) {
 							return true;
 						}
+=======
+                        //Is checked by queen
+                        if (piece instanceof Queen) {
+                                //By straight line
+                                if (deltaRow == 0 || deltaCol == 0) {
+                                        int absDelta = (deltaRow == 0) ? abs(deltaCol) : abs(deltaRow);
+>>>>>>> 87b333a7ef63b3ab661e3d2aa54e564fc627990f
 
 						if (board.tiles[rowBetween][colBetween].isOccupied()) {
 							break;
@@ -205,6 +265,7 @@ public class King extends Piece {
 						rowBetween += direction[0];
 						colBetween += direction[1];
 
+<<<<<<< HEAD
 						if (rowBetween == piece.row) {
 							return true;
 						}
@@ -214,6 +275,16 @@ public class King extends Piece {
 						}
 					}
 				}
+=======
+                                //By diagonal
+                                if (deltaRow == deltaCol || deltaCol == -deltaCol) {
+                                        int absDelta = abs(deltaCol);
+                                        int[] direction = {deltaRow/absDelta, deltaCol/absDelta};
+                                        int rowBetween = this.row, colBetween = this.col;
+                                        while (true) {
+                                                rowBetween += direction[0];
+                                                colBetween += direction[1];
+>>>>>>> 87b333a7ef63b3ab661e3d2aa54e564fc627990f
 
 				// By diagonal
 				if (deltaRow == 0 || deltaCol == 0) {
@@ -222,6 +293,7 @@ public class King extends Piece {
 						absDelta = 0 - absDelta;
 					}
 
+<<<<<<< HEAD
 					int[] direction = { deltaRow / absDelta, deltaCol / absDelta };
 					int rowBetween = this.row, colBetween = this.col;
 					while (true) {
@@ -241,4 +313,37 @@ public class King extends Piece {
 		}
 		return false;
 	}
+=======
+                                                if (board.tiles[rowBetween][colBetween].isOccupied()) {
+                                                        break;
+                                                }
+                                        }
+                                }
+                        }
+                }
+                return false;
+        }
+
+        public ChessEnding isEnded(Gameplay game) {
+                Board board = game.board;
+                ArrayList<Piece> friendlyPieces = new ArrayList<>();
+                if (this.color == ChessColor.white) {
+                        friendlyPieces = board.whitePieces;
+                } else {
+                        friendlyPieces = board.blackPieces;
+                }
+                for (Piece piece : friendlyPieces) {
+                        ArrayList<Move> legalMoves = piece.calculateLegalMoves(game);
+                        if (legalMoves.size() != 0) {
+                                return ChessEnding.ongoing;
+                        }
+                }
+                
+                if (this.isChecked(board)) {
+                        return (this.color == ChessColor.white) ? ChessEnding.blackWin : ChessEnding.whiteWin;
+                } else {
+                        return ChessEnding.stalemate;
+                }
+        }
+>>>>>>> 87b333a7ef63b3ab661e3d2aa54e564fc627990f
 }
