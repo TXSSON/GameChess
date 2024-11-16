@@ -2,7 +2,7 @@ package ChessEngine.piece;
 
 import java.util.*;
 
-import ChessEngine.ChessColor;
+import ChessEngine.*;
 import ChessEngine.board.*;
 import ChessEngine.board.move.*;
 
@@ -29,7 +29,7 @@ public class King extends Piece {
         @Override public King clone() {
                 return new King(this);
         }
-        
+
         @Override public ArrayList<Move> calculateLegalMoves(Gameplay game) {
                 Board board = game.board;
                 
@@ -111,6 +111,10 @@ public class King extends Piece {
                 return legalMoves;
         }
 
+        private int abs(int val) {
+                return (val > 0) ? val : (0-val);
+        }
+
         public boolean isChecked(Board board) {
                 ArrayList<Piece> opponentPieces;
                 if (this.color == ChessColor.white) {
@@ -133,9 +137,9 @@ public class King extends Piece {
                         }
                         //Is checked by bishop
                         if (piece instanceof Bishop) {
-                                if (deltaRow / deltaCol == 1 || deltaRow / deltaCol == -1) {
+                                if (deltaRow == deltaCol || deltaRow == -deltaCol) {
                                         //Check if there is a piece between them
-                                        int absDelta = (deltaRow > 0) ? deltaRow : (0-deltaRow);
+                                        int absDelta = (deltaRow == 0) ? abs(deltaCol) : abs(deltaRow);
                                         int[] direction = {deltaRow/absDelta, deltaCol/absDelta};
 
                                         int rowBetween = this.row, colBetween = this.col;
@@ -170,10 +174,7 @@ public class King extends Piece {
                         //Is checked by rook
                         if (piece instanceof Rook) {
                                 if (deltaRow == 0 || deltaCol == 0) {
-                                        int absDelta = deltaRow + deltaCol;
-                                        if (absDelta < 0) {
-                                                absDelta = 0 - absDelta;
-                                        }
+                                        int absDelta = (deltaRow == 0) ? abs(deltaCol) : abs(deltaRow);
 
                                         int[] direction = {deltaRow/absDelta, deltaCol/absDelta};
                                         int rowBetween = this.row, colBetween = this.col;
@@ -195,11 +196,8 @@ public class King extends Piece {
                         //Is checked by queen
                         if (piece instanceof Queen) {
                                 //By straight line
-                                        if (deltaRow == 0 || deltaCol == 0) {
-                                        int absDelta = deltaRow + deltaCol;
-                                        if (absDelta < 0) {
-                                                absDelta = 0 - absDelta;
-                                        }
+                                if (deltaRow == 0 || deltaCol == 0) {
+                                        int absDelta = (deltaRow == 0) ? abs(deltaCol) : abs(deltaRow);
 
                                         int[] direction = {deltaRow/absDelta, deltaCol/absDelta};
                                         int rowBetween = this.row, colBetween = this.col;
@@ -218,12 +216,8 @@ public class King extends Piece {
                                 }
 
                                 //By diagonal
-                                if (deltaRow == 0 || deltaCol == 0) {
-                                        int absDelta = deltaRow + deltaCol;
-                                        if (absDelta < 0) {
-                                                absDelta = 0 - absDelta;
-                                        }
-
+                                if (deltaRow == deltaCol || deltaCol == -deltaCol) {
+                                        int absDelta = abs(deltaCol);
                                         int[] direction = {deltaRow/absDelta, deltaCol/absDelta};
                                         int rowBetween = this.row, colBetween = this.col;
                                         while (true) {
@@ -242,5 +236,27 @@ public class King extends Piece {
                         }
                 }
                 return false;
+        }
+
+        public ChessEnding isEnded(Gameplay game) {
+                Board board = game.board;
+                ArrayList<Piece> friendlyPieces = new ArrayList<>();
+                if (this.color == ChessColor.white) {
+                        friendlyPieces = board.whitePieces;
+                } else {
+                        friendlyPieces = board.blackPieces;
+                }
+                for (Piece piece : friendlyPieces) {
+                        ArrayList<Move> legalMoves = piece.calculateLegalMoves(game);
+                        if (legalMoves.size() != 0) {
+                                return ChessEnding.ongoing;
+                        }
+                }
+                
+                if (this.isChecked(board)) {
+                        return (this.color == ChessColor.white) ? ChessEnding.blackWin : ChessEnding.whiteWin;
+                } else {
+                        return ChessEnding.stalemate;
+                }
         }
 }
