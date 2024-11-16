@@ -117,10 +117,6 @@ public class MainController {
             ex.printStackTrace(); // Ghi lại ngoại lệ
         }
 	}
-	
-
-	
-	
 
 }
 

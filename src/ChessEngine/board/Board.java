@@ -40,7 +40,7 @@ public class Board {
 
                 for (int row = 0; row < 8; row++) {
                         for (int col = 0; col < 8; col++) {
-                                this.tiles[row][col] = new Tile(tiles[row][col]);
+                                this.tiles[row][col] = new Tile(board.tiles[row][col]);
                         }
                 }
 
