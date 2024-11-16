@@ -2,8 +2,7 @@ package ChessEngine.board.move;
 
 import java.util.*;
 import ChessEngine.ChessColor;
-import ChessEngine.board.Board;
-import ChessEngine.board.Tile;
+import ChessEngine.board.*;
 import ChessEngine.piece.*;
 
 public class Move {
@@ -14,7 +13,13 @@ public class Move {
                 this.tileTo = tileTo;
         }
 
-        public void make(Board board) {
+        public void make(Gameplay game) {
+                Board newBoard = new Board(game.board);
+                this.make(newBoard);
+                game.gameStates.push(newBoard);
+        }
+
+        protected void make(Board board) {
                 Piece piece = tileFrom.getPiece();
                 //Remove the piece at tileTo
                 if (tileTo.isOccupied()) {
@@ -40,28 +45,24 @@ public class Move {
         public boolean isInCheckedAfterMove(Board board) {
                 //Check if the move lets king in checked
                 Piece thisPiece = tileFrom.getPiece();
-                try {
-                        //Make a clone board and simulate the move
-                        Board simulationBoard = (Board) board.clone();
-                        this.make(simulationBoard);
-
-                        //Find the king in the simulation board
-                        ArrayList<Piece> friendlyPieces;
-                        if (thisPiece.color == ChessColor.white) {
-                                friendlyPieces = board.whitePieces;
-                        } else {
-                                friendlyPieces = board.blackPieces;
-                        }
-                        for (Piece piece : friendlyPieces) {
-                                if (piece instanceof King) {
-                                        if (((King)piece).isChecked(simulationBoard)) {
-                                                return true;
-                                        }
+                //Make a clone board and simulate the move
+                Board simulationBoard = new Board(board);
+                this.make(simulationBoard);
+                //Find the king in the simulation board
+                ArrayList<Piece> friendlyPieces;
+                if (thisPiece.color == ChessColor.white) {
+                        friendlyPieces = simulationBoard.whitePieces;
+                } else {
+                        friendlyPieces = simulationBoard.blackPieces;
+                }
+                for (Piece piece : friendlyPieces) {
+                        if (piece instanceof King) {
+                                if (((King)piece).isChecked(simulationBoard)) {
+                                        return true;
                                 }
                         }
-                } catch (CloneNotSupportedException e) {
-                        e.printStackTrace();
                 }
+
                 return false;
         }
 

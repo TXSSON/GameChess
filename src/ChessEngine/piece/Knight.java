@@ -4,7 +4,7 @@ import java.util.*;
 
 import ChessEngine.ChessColor;
 import ChessEngine.board.*;
-import ChessEngine.board.move.Move;
+import ChessEngine.board.move.*;
 
 public class Knight extends Piece {
         public Knight(int row, int col, ChessColor color) {
@@ -16,8 +16,19 @@ public class Knight extends Piece {
                         imagePath = "piece-image/knight-b.png";
                 }
         }
+
+        public Knight(Knight piece) {
+                super(piece);
+                this.imagePath = piece.imagePath;
+        }
+
+        @Override public Knight clone() {
+                return new Knight(this);
+        }
         
-        @Override public ArrayList<Move> calculateLegalMoves(final Board board) {
+        @Override public ArrayList<Move> calculateLegalMoves(Gameplay game) {
+                Board board = game.board;
+                
                 ArrayList<Move> legalMoves = new ArrayList<>();
                 Tile tileFrom = board.tiles[this.row][this.col];
                 final int[][] possibleDirections = {{2, 1}, {2, -1}, {-2, 1}, {-2, -1},

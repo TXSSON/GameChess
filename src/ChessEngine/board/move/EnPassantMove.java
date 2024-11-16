@@ -1,7 +1,6 @@
 package ChessEngine.board.move;
 
-import ChessEngine.board.Board;
-import ChessEngine.board.Tile;
+import ChessEngine.board.*;
 
 public class EnPassantMove extends Move{
         public EnPassantMove(Tile tileFrom, Tile tileTo) {
@@ -9,7 +8,7 @@ public class EnPassantMove extends Move{
         }
 
         @Override
-        public void make(Board board) {
+        protected void make(Board board) {
                 //White pawn
                 if (tileFrom.row == 4) {
                         board.blackPieces.remove(board.tiles[4][tileTo.col].getPiece());

@@ -4,7 +4,7 @@ import java.util.*;
 
 import ChessEngine.ChessColor;
 import ChessEngine.board.*;
-import ChessEngine.board.move.Move;
+import ChessEngine.board.move.*;
 
 public class Rook extends Piece {
         public boolean hasMoved;
@@ -19,8 +19,19 @@ public class Rook extends Piece {
                         imagePath = "piece-image/rook-b.png";
                 }
         }
+
+        public Rook(Rook piece) {
+                super(piece);
+                this.imagePath = piece.imagePath;
+                this.hasMoved = piece.hasMoved;
+        }
+
+        @Override public Rook clone() {
+                return new Rook(this);
+        }
         
-        @Override public ArrayList<Move> calculateLegalMoves(final Board board) {
+        @Override public ArrayList<Move> calculateLegalMoves(Gameplay game) {
+                Board board = game.board;
                 ArrayList<Move> legalMoves = new ArrayList<>();
                 Tile tileFrom = board.tiles[this.row][this.col];
                 final int[][] possibleDirections = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
