@@ -16,8 +16,18 @@ public class Bishop extends Piece {
                         imagePath = "src/Main/Resources/piece-image2/bb.png";
                 }
         }
+
+        public Bishop(Bishop piece) {
+                super(piece);
+                this.imagePath = piece.imagePath;
+        }
+
+        @Override public Bishop clone() {
+                return new Bishop(this);
+        }
         
-        @Override public ArrayList<Move> calculateLegalMoves(final Board board) {
+        @Override public ArrayList<Move> calculateLegalMoves(Gameplay game) {
+                Board board = game.board;
                 ArrayList<Move> legalMoves = new ArrayList<>();
                 final Tile tileFrom = board.tiles[this.row][this.col];
                 final int[][] possibleDirections = {{1,1}, {1, -1}, {-1, 1}, {-1, -1}};

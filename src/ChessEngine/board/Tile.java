@@ -15,6 +15,17 @@ public class Tile {
                 this.color = color;
         }
 
+        public Tile(Tile tile) {
+                this.row = tile.row;
+                this.col = tile.col;
+                this.piece = tile.piece;
+                this.color = tile.color;
+
+                if (tile.piece != null) {
+                        this.piece = tile.piece.clone();
+                }
+        }
+
         public boolean isOccupied() {
                 if (piece == null) return false;
                 return true;

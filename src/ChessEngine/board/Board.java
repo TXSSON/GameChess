@@ -5,7 +5,7 @@ import java.util.*;
 import ChessEngine.ChessColor;
 import ChessEngine.piece.*;
 
-public class Board implements Cloneable {
+public class Board {
         public static final int MAX_ROW = 8;
         public static final int MAX_COL = 8;
         public final int SQUARE_SIZE;
@@ -31,6 +31,26 @@ public class Board implements Cloneable {
                 }
 
                 this.resetPieces();
+        }
+
+        public Board(Board board) {
+                this.SQUARE_SIZE = board.SQUARE_SIZE;
+                this.HALF_SQUARE_SIZE = board.HALF_SQUARE_SIZE;
+                this.side = board.side;
+
+                for (int row = 0; row < 8; row++) {
+                        for (int col = 0; col < 8; col++) {
+                                this.tiles[row][col] = new Tile(tiles[row][col]);
+                        }
+                }
+
+                for (Piece piece : board.whitePieces) {
+                        this.whitePieces.add(piece.clone());
+                }
+
+                for (Piece piece : board.blackPieces) {
+                        this.blackPieces.add(piece.clone());
+                }
         }
 
         public void resetPieces() {
@@ -67,10 +87,5 @@ public class Board implements Cloneable {
                         blackPieces.add(tiles[6][col].getPiece());
                         blackPieces.add(tiles[7][col].getPiece());
                 }
-        }
-
-        @Override
-        public Object clone() throws CloneNotSupportedException {
-                return super.clone();
         }
 }

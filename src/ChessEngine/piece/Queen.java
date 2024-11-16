@@ -4,7 +4,7 @@ import java.util.*;
 
 import ChessEngine.ChessColor;
 import ChessEngine.board.*;
-import ChessEngine.board.move.Move;
+import ChessEngine.board.move.*;
 
 public class Queen extends Piece {
         public Queen(int row, int col, ChessColor color) {
@@ -16,8 +16,18 @@ public class Queen extends Piece {
                         imagePath = "src/Main/Resources/piece-image2/bq.png";
                 }
         }
+
+        public Queen(Queen piece) {
+                super(piece);
+                this.imagePath = piece.imagePath;
+        }
+
+        @Override public Queen clone() {
+                return new Queen(this);
+        }
         
-        @Override public ArrayList<Move> calculateLegalMoves(final Board board) {
+        @Override public ArrayList<Move> calculateLegalMoves(Gameplay game) {
+                Board board = game.board;
                 ArrayList<Move> legalMoves = new ArrayList<>();
                 Tile tileFrom = board.tiles[this.row][this.col];
                 final int[][] possibleDirections = {{1, 0}, {-1, 0}, {0, 1}, {0, -1},

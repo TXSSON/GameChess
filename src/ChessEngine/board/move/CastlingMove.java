@@ -1,7 +1,6 @@
 package ChessEngine.board.move;
 
-import ChessEngine.board.Board;
-import ChessEngine.board.Tile;
+import ChessEngine.board.*;
 import ChessEngine.piece.*;
 
 public class CastlingMove extends Move {
@@ -10,7 +9,7 @@ public class CastlingMove extends Move {
         }
 
         @Override
-        public void make(Board board) {
+        protected void make(Board board) {
                 Piece piece = tileFrom.getPiece();
 
                 //Castling king-side

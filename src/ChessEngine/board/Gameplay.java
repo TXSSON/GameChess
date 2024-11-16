@@ -6,7 +6,7 @@ import ChessEngine.ChessColor;
 
 public class Gameplay {
         public Board board;
-        Stack<Board> gameStates = new Stack<>();
+        public Stack<Board> gameStates = new Stack<>();
 
         //TODO: Implement gameplay
         public Gameplay(int SQUARE_SIZE, ChessColor side) {

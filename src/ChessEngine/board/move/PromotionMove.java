@@ -1,15 +1,13 @@
 package ChessEngine.board.move;
 
 import ChessEngine.ChessColor;
-import ChessEngine.board.Board;
-import ChessEngine.board.Tile;
-import ChessEngine.piece.Piece;
-import ChessEngine.piece.Queen;
+import ChessEngine.board.*;
+import ChessEngine.piece.*;
 
 public class PromotionMove extends Move {
         private String piecePromoteTo; //"Queen", "Rook", "Knight", "Bishop"
 
-        PromotionMove(Tile tileFrom, Tile tileTo) {
+        public PromotionMove(Tile tileFrom, Tile tileTo) {
                 super(tileFrom, tileTo);
                 this.piecePromoteTo = "Queen"; //Default auto queen
         }
@@ -19,7 +17,7 @@ public class PromotionMove extends Move {
         }
 
         @Override
-        public void make(Board board) {
+        protected void make(Board board) {
                 //Remove the piece on tileTo
                 if (tileTo.isOccupied()) {
                         if (tileTo.getPiece().color == ChessColor.white) {
