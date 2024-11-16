@@ -38,7 +38,6 @@ public class PnlGameOptions extends JPanel{
 		// Tùy chọn chọn quân cờ
 		JLabel lblChoosePiece = new JLabel("Choose Piece:");
 		cbChoosePiece = new JComboBox<>(new PieceOption[] {
-			    new PieceOption("White", ChessColor.white),
 			    new PieceOption("Black", ChessColor.black)
 			});
 
