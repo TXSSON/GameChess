@@ -44,7 +44,7 @@ public class King extends Piece {
                 for (int[] direction: possibleDirections) {
                         int rowTo = this.row + direction[0], colTo = this.col + direction[1];
                         if (rowTo < 0 || rowTo >= 8 || colTo < 0 || colTo >= 8) {
-                                break;
+                                continue;
                         }
                         Tile tileTo = tiles[rowTo][colTo];
                         if (tileTo.isOccupied()) {
@@ -54,7 +54,7 @@ public class King extends Piece {
                                                 legalMoves.add(newMove);
                                         }
                                 }
-                                break;
+                                continue;
                         }
                         Move newMove = new Move(tileFrom, tileTo);
                         if (newMove.isInCheckedAfterMove(board) == false) {
