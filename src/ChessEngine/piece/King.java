@@ -42,27 +42,23 @@ public class King extends Piece {
                                                         {1, 1}, {-1, 1}, {1, -1}, {-1, -1}};
 
                 for (int[] direction: possibleDirections) {
-                        while (true) {
-                                int rowTo = this.row + direction[0], colTo = this.col + direction[1];
-                                if (rowTo < 0 || rowTo >= 8 || colTo < 0 || colTo >= 8) {
-                                        break;
-                                }
-
-                                Tile tileTo = tiles[rowTo][colTo];
-                                if (tileTo.isOccupied()) {
-                                        if (tileTo.getPiece().color != this.color) {
-                                                Move newMove = new Move(tileFrom, tileTo);
-                                                if (newMove.isInCheckedAfterMove(board) == false) {
-                                                        legalMoves.add(newMove);
-                                                }
+                        int rowTo = this.row + direction[0], colTo = this.col + direction[1];
+                        if (rowTo < 0 || rowTo >= 8 || colTo < 0 || colTo >= 8) {
+                                break;
+                        }
+                        Tile tileTo = tiles[rowTo][colTo];
+                        if (tileTo.isOccupied()) {
+                                if (tileTo.getPiece().color != this.color) {
+                                        Move newMove = new Move(tileFrom, tileTo);
+                                        if (newMove.isInCheckedAfterMove(board) == false) {
+                                                legalMoves.add(newMove);
                                         }
-                                        break;
                                 }
-
-                                Move newMove = new Move(tileFrom, tileTo);
-                                if (newMove.isInCheckedAfterMove(board) == false) {
-                                        legalMoves.add(newMove);
-                                }
+                                break;
+                        }
+                        Move newMove = new Move(tileFrom, tileTo);
+                        if (newMove.isInCheckedAfterMove(board) == false) {
+                                legalMoves.add(newMove);
                         }
                 }
 
