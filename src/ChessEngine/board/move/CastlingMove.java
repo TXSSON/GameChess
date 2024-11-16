@@ -11,24 +11,25 @@ public class CastlingMove extends Move {
         @Override
         protected void make(Board board) {
                 Piece piece = tileFrom.getPiece();
+                int row = piece.row;
 
                 //Castling king-side
                 if (tileTo.col == 6) {
                         Tile tiles[][] = board.tiles;
-                        Piece castlingRook = tiles[piece.row][7].getPiece();
+                        Piece castlingRook = tiles[row][7].getPiece();
 
-                        tiles[castlingRook.row][5].setPiece(castlingRook);
-                        tiles[piece.row][7].clearTile();
+                        tiles[row][5].setPiece(castlingRook);
+                        tiles[row][7].clearTile();
                         ((Rook)castlingRook).hasMoved = true;
                 }
 
                 //Castling queen-side
                 if (tileTo.col == 2) {
                         Tile tiles[][] = board.tiles;
-                        Piece castlingRook = tiles[piece.row][0].getPiece();
+                        Piece castlingRook = tiles[row][0].getPiece();
 
-                        tiles[castlingRook.row][3].setPiece(castlingRook);
-                        tiles[piece.row][0].clearTile();
+                        tiles[row][3].setPiece(castlingRook);
+                        tiles[row][0].clearTile();
                         ((Rook)castlingRook).hasMoved = true;
                 }
 

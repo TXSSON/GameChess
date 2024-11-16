@@ -58,15 +58,27 @@ public class Pawn extends Piece {
                 final Tile tileFrom = board.tiles[this.row][this.col];
                 
                 if (color == ChessColor.white) {
-                        //Move forward and capture normally
-                        if (row < 6) {
-                                if (board.tiles[row+1][col].isOccupied() == false) {
+                        //Move forward and capture and promotion
+                        if (board.tiles[row+1][col].isOccupied() == false) {
+                                if (row == 6) {
+                                        legalMoves.add(new PromotionMove(tileFrom, board.tiles[row+1][col]));
+                                } else {
                                         legalMoves.add(new Move(tileFrom, board.tiles[row+1][col]));
                                 }
-                                if (col < 7 && board.tiles[row+1][col+1].isOccupied()) {
+                        }
+
+                        if (col < 7 && board.tiles[row+1][col+1].isOccupied() && board.tiles[row+1][col+1].getPiece().color == ChessColor.white) {
+                                if (row == 6) {
+                                        legalMoves.add(new PromotionMove(tileFrom, board.tiles[row+1][col+1]));
+                                } else {
                                         legalMoves.add(new Move(tileFrom, board.tiles[row+1][col+1]));
                                 }
-                                if (col > 0 && board.tiles[row+1][col-1].isOccupied()) {
+                        }
+
+                        if (col > 0 && board.tiles[row+1][col-1].isOccupied() && board.tiles[row+1][col-1].getPiece().color == ChessColor.white) {
+                                if (row == 6) {
+                                        legalMoves.add(new PromotionMove(tileFrom, board.tiles[row+1][col-1]));
+                                } else {
                                         legalMoves.add(new Move(tileFrom, board.tiles[row+1][col-1]));
                                 }
                         }
@@ -74,19 +86,6 @@ public class Pawn extends Piece {
                         //First move can go 2 squares
                         if (row == 1 && board.tiles[row+2][col].isOccupied() == false) {
                                 legalMoves.add(new Move(tileFrom, board.tiles[row+2][col]));
-                        }
-
-                        //Promotion
-                        if (row == 6) {
-                                if (board.tiles[row+1][col].isOccupied() == false) {
-                                        legalMoves.add(new PromotionMove(tileFrom, board.tiles[row+1][col]));
-                                }
-                                if (col < 7 && board.tiles[row+1][col+1].isOccupied()) {
-                                        legalMoves.add(new PromotionMove(tileFrom, board.tiles[row+1][col+1]));
-                                }
-                                if (col > 0 && board.tiles[row+1][col-1].isOccupied()) {
-                                        legalMoves.add(new PromotionMove(tileFrom, board.tiles[row+1][col-1]));
-                                }
                         }
 
                         //En passant
@@ -104,15 +103,27 @@ public class Pawn extends Piece {
                                 }
                         }
                 } else { //ChessColor == black
-                        //Move forward and capture normally
-                        if (row > 1) {
-                                if (board.tiles[row-1][col].isOccupied() == false) {
+                        //Move forward and capture and promotion
+                        if (board.tiles[row-1][col].isOccupied() == false) {
+                                if (row == 1) {
+                                        legalMoves.add(new PromotionMove(tileFrom, board.tiles[row-1][col]));
+                                } else {
                                         legalMoves.add(new Move(tileFrom, board.tiles[row-1][col]));
                                 }
-                                if (col < 7 && board.tiles[row-1][col+1].isOccupied()) {
+                        }
+
+                        if (col < 7 && board.tiles[row-1][col+1].isOccupied() && board.tiles[row-1][col+1].getPiece().color == ChessColor.white) {
+                                if (row == 1) {
+                                        legalMoves.add(new PromotionMove(tileFrom, board.tiles[row-1][col+1]));
+                                } else {
                                         legalMoves.add(new Move(tileFrom, board.tiles[row-1][col+1]));
                                 }
-                                if (col > 0 && board.tiles[row-1][col-1].isOccupied()) {
+                        }
+
+                        if (col > 0 && board.tiles[row-1][col-1].isOccupied() && board.tiles[row-1][col-1].getPiece().color == ChessColor.white) {
+                                if (row == 1) {
+                                        legalMoves.add(new PromotionMove(tileFrom, board.tiles[row-1][col-1]));
+                                } else {
                                         legalMoves.add(new Move(tileFrom, board.tiles[row-1][col-1]));
                                 }
                         }
@@ -120,19 +131,6 @@ public class Pawn extends Piece {
                         //First move can go 2 squares
                         if (row == 6 && board.tiles[row-2][col].isOccupied() == false) {
                                 legalMoves.add(new Move(tileFrom, board.tiles[row-2][col]));
-                        }
-
-                        //Promotion
-                        if (row == 1) {
-                                if (board.tiles[row-1][col].isOccupied() == false) {
-                                        legalMoves.add(new PromotionMove(tileFrom, board.tiles[row-1][col]));
-                                }
-                                if (col < 7 && board.tiles[row-1][col+1].isOccupied()) {
-                                        legalMoves.add(new PromotionMove(tileFrom, board.tiles[row-1][col+1]));
-                                }
-                                if (col > 0 && board.tiles[row-1][col-1].isOccupied()) {
-                                        legalMoves.add(new PromotionMove(tileFrom, board.tiles[row-1][col-1]));
-                                }
                         }
 
                         //En passant
