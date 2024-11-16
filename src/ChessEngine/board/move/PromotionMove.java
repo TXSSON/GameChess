@@ -39,13 +39,13 @@ public class PromotionMove extends Move {
                 Piece newPiece;
                 switch (piecePromoteTo) {
                         case "Rook":
-                                newPiece = new Queen(tileTo.row, tileTo.col, tileFrom.getPiece().color);
+                                newPiece = new Rook(tileTo.row, tileTo.col, tileFrom.getPiece().color);
                                 break;
                         case "Knight":
-                                newPiece = new Queen(tileTo.row, tileTo.col, tileFrom.getPiece().color);
+                                newPiece = new Knight(tileTo.row, tileTo.col, tileFrom.getPiece().color);
                                 break;
                         case "Bishop":
-                                newPiece = new Queen(tileTo.row, tileTo.col, tileFrom.getPiece().color);
+                                newPiece = new Bishop(tileTo.row, tileTo.col, tileFrom.getPiece().color);
                                 break;
                         default: //Auto-queen
                                 newPiece = new Queen(tileTo.row, tileTo.col, tileFrom.getPiece().color);
