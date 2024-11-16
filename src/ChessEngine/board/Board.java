@@ -74,8 +74,8 @@ public class Board {
                 tiles[7][0].setPiece(new Rook(7, 0, ChessColor.black));
                 tiles[7][1].setPiece(new Knight(7, 1, ChessColor.black));
                 tiles[7][2].setPiece(new Bishop(7, 2, ChessColor.black));
-                tiles[7][3].setPiece(new King(7, 3, ChessColor.black));
-                tiles[7][4].setPiece(new Queen(7, 4, ChessColor.black));
+                tiles[7][3].setPiece(new Queen(7, 3, ChessColor.black));
+                tiles[7][4].setPiece(new King(7, 4, ChessColor.black));
                 tiles[7][5].setPiece(new Bishop(7, 5, ChessColor.black));
                 tiles[7][6].setPiece(new Knight(7, 6, ChessColor.black));
                 tiles[7][7].setPiece(new Rook(7, 7, ChessColor.black));
