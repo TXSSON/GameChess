@@ -67,7 +67,7 @@ public class Pawn extends Piece {
                                 }
                         }
 
-                        if (col < 7 && board.tiles[row+1][col+1].isOccupied() && board.tiles[row+1][col+1].getPiece().color == ChessColor.white) {
+                        if (col < 7 && board.tiles[row+1][col+1].isOccupied() && board.tiles[row+1][col+1].getPiece().color == ChessColor.black) {
                                 if (row == 6) {
                                         legalMoves.add(new PromotionMove(tileFrom, board.tiles[row+1][col+1]));
                                 } else {
@@ -75,7 +75,7 @@ public class Pawn extends Piece {
                                 }
                         }
 
-                        if (col > 0 && board.tiles[row+1][col-1].isOccupied() && board.tiles[row+1][col-1].getPiece().color == ChessColor.white) {
+                        if (col > 0 && board.tiles[row+1][col-1].isOccupied() && board.tiles[row+1][col-1].getPiece().color == ChessColor.black) {
                                 if (row == 6) {
                                         legalMoves.add(new PromotionMove(tileFrom, board.tiles[row+1][col-1]));
                                 } else {
@@ -84,7 +84,7 @@ public class Pawn extends Piece {
                         }
 
                         //First move can go 2 squares
-                        if (row == 1 && board.tiles[row+2][col].isOccupied() == false) {
+                        if (row == 1 && board.tiles[row+1][col].isOccupied() == false && board.tiles[row+2][col].isOccupied() == false) {
                                 legalMoves.add(new Move(tileFrom, board.tiles[row+2][col]));
                         }
 
@@ -129,7 +129,7 @@ public class Pawn extends Piece {
                         }
 
                         //First move can go 2 squares
-                        if (row == 6 && board.tiles[row-2][col].isOccupied() == false) {
+                        if (row == 6 && board.tiles[row-2][col].isOccupied() == false && board.tiles[row-2][col].isOccupied() == false) {
                                 legalMoves.add(new Move(tileFrom, board.tiles[row-2][col]));
                         }
 
