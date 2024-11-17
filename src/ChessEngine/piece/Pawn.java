@@ -129,7 +129,7 @@ public class Pawn extends Piece {
                         }
 
                         //First move can go 2 squares
-                        if (row == 6 && board.tiles[row-2][col].isOccupied() == false && board.tiles[row-2][col].isOccupied() == false) {
+                        if (row == 6 && board.tiles[row-1][col].isOccupied() == false && board.tiles[row-2][col].isOccupied() == false) {
                                 legalMoves.add(new Move(tileFrom, board.tiles[row-2][col]));
                         }
 
