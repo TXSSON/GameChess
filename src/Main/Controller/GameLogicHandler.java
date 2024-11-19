@@ -28,7 +28,7 @@ public class GameLogicHandler {
 			((EnPassantMove) move).make(mainController.gameplay);
 		} else if (move instanceof PromotionMove) {
 			((PromotionMove) move).make(mainController.gameplay);
-			mainController.initPromotionFrame();
+//			mainController.initPromotionFrame();
 		} else {
 			move.make(mainController.gameplay);
 		}

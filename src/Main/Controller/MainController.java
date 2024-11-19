@@ -61,8 +61,8 @@ public class MainController {
         pnlSideBar = PnlSideBar.getSideBarInstance();
         sideBarController = new SideBarController(pnlSideBar, this);
         
-        pnlPromotion = PnlPromotion.getPnlPromotionInstance();
-        promotionController = new PromotionController(pnlPromotion, this);
+//        pnlPromotion = PnlPromotion.getPnlPromotionInstance();
+//        promotionController = new PromotionController(pnlPromotion, this);
         
         
         // Tiến hành hiển thị các màn hình

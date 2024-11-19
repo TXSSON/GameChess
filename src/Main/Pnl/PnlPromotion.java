@@ -14,18 +14,14 @@ import Main.Utils.ButtonWithIcon;
 public class PnlPromotion extends JPanel {
 
 	private volatile static PnlPromotion pnlPromotionInstance;
-	private volatile JButton btnRook = new ButtonWithIcon("", GameFrame.height / 8, GameFrame.height / 8);
-	private volatile JButton btnKnight = new ButtonWithIcon("", GameFrame.height / 8, GameFrame.height / 8);
-	private volatile JButton btnBishop = new ButtonWithIcon("", GameFrame.height / 8, GameFrame.height / 8);
-	private volatile JButton btnQueen = new ButtonWithIcon("", GameFrame.height / 8, GameFrame.height / 8);
-
+	private volatile JButton btnRook;
+	private volatile JButton btnKnight;
+	private volatile JButton btnBishop;
+	private volatile JButton btnQueen;
+	
 	private PnlPromotion() {
 		this.setPreferredSize(new Dimension(GameFrame.height / 2, GameFrame.height / 8));
 		this.setLayout(new GridLayout(1, 4));
-		this.add(btnRook);
-		this.add(btnKnight);
-		this.add(btnBishop);
-		this.add(btnQueen);
 	}
 
 	public static PnlPromotion getPnlPromotionInstance() {
