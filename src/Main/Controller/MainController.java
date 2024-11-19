@@ -8,9 +8,11 @@ import ChessEngine.board.Tile;
 import ChessEngine.piece.Piece;
 import Main.Frame.GameFrame;
 import Main.Frame.GameOptionsFrame;
+import Main.Frame.PromotionFrame;
 import Main.Pnl.PnlBoardChess;
 import Main.Pnl.PnlGameOptions;
 import Main.Pnl.PnlHome;
+import Main.Pnl.PnlPromotion;
 import Main.Pnl.PnlTutorial;
 import Main.Pnl.PnlSideBar;
 import Main.Utils.ColorOption;
@@ -22,14 +24,17 @@ public class MainController {
     private GameOptionsController gameOptionsController;
     private SideBarController sideBarController;
     private BoardChessController boardChessController;
+    private PromotionController promotionController;
     
     private GameFrame gameFrame;
     public GameOptionsFrame gameOptionsFrame;
+    public PromotionFrame promotionFrame;
     
     public PnlHome pnlHome;
     public PnlGameOptions pnlGameOptions;
     public PnlSideBar pnlSideBar;
     public PnlTutorial pnlTutorial;
+    private PnlPromotion pnlPromotion;
     
 	public ColorOption selectedColor;
 	public PieceOption selectedPiece;
@@ -56,9 +61,13 @@ public class MainController {
         pnlSideBar = PnlSideBar.getSideBarInstance();
         sideBarController = new SideBarController(pnlSideBar, this);
         
-
+        pnlPromotion = PnlPromotion.getPnlPromotionInstance();
+        promotionController = new PromotionController(pnlPromotion, this);
+        
+        
         // Tiến hành hiển thị các màn hình
         initGameFrame();
+        
     }
     private void initGameFrame() {
     	gameFrame = new GameFrame();
@@ -66,6 +75,13 @@ public class MainController {
     	gameFrame.setPnlSideBar(pnlSideBar);
     	gameFrame.setVisible(true);
     }
+    
+    public void initPromotionFrame() {
+    	promotionFrame = new PromotionFrame();
+    	promotionFrame.setPnlPromotion(pnlPromotion);
+    	promotionFrame.setVisible(true);
+    }
+    
     public void initGameOptionsFrame() {
     	gameOptionsFrame = GameOptionsFrame.getgameOptionsFrameInstance(pnlGameOptions);
     }

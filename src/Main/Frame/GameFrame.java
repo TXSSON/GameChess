@@ -24,7 +24,6 @@ public class GameFrame extends JFrame {
 		this.setTitle("Game Chess"); // Đặt tên cho cửa sổ
 		this.setLayout(new BorderLayout());
 		this.setLocationRelativeTo(null); // Căn giữa màn hình
-        this.pack();
 	}
 	
 	public void setPnlHome(PnlHome pnlHome) {
