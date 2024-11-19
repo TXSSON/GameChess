@@ -15,7 +15,7 @@ public class Move {
 
         public void make(Gameplay game) {
                 Board newBoard = new Board(game.board);
-                this.make(newBoard);
+                make(newBoard);
                 game.gameStates.push(newBoard);
         }
 
@@ -37,7 +37,8 @@ public class Move {
                 //Change the state of the king and rook if needed
                 if (piece instanceof King) {
                         ((King)piece).hasMoved = true;
-                } else if (piece instanceof Rook) {
+                }
+                if (piece instanceof Rook) {
                         ((Rook)piece).hasMoved = true;
                 } 
         }
@@ -46,8 +47,18 @@ public class Move {
                 //Make a clone board and simulate the move
                 Board simulationBoard = new Board(board);
                 Tile simulationTileFrom = simulationBoard.tiles[tileFrom.row][tileFrom.col];
-                Move simulationMove = new Move(simulationTileFrom, simulationBoard.tiles[tileTo.row][tileTo.col]);
                 ChessColor thisPieceColor = simulationTileFrom.getPiece().color;
+
+                Move simulationMove;
+                if (this instanceof CastlingMove) {
+                        simulationMove = new CastlingMove(simulationTileFrom, simulationBoard.tiles[tileTo.row][tileTo.col]);
+                } else if (this instanceof EnPassantMove) {
+                        simulationMove = new EnPassantMove(simulationTileFrom, simulationBoard.tiles[tileTo.row][tileTo.col]);
+                } else if (this instanceof PromotionMove) {
+                        simulationMove = new PromotionMove(simulationTileFrom, simulationBoard.tiles[tileTo.row][tileTo.col]);
+                } else {
+                        simulationMove = new Move(simulationTileFrom, simulationBoard.tiles[tileTo.row][tileTo.col]);
+                }
                 simulationMove.make(simulationBoard);
 
                 //Find the king in the simulation board
