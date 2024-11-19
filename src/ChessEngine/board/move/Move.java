@@ -49,16 +49,7 @@ public class Move {
                 Tile simulationTileFrom = simulationBoard.tiles[tileFrom.row][tileFrom.col];
                 ChessColor thisPieceColor = simulationTileFrom.getPiece().color;
 
-                Move simulationMove;
-                if (this instanceof CastlingMove) {
-                        simulationMove = new CastlingMove(simulationTileFrom, simulationBoard.tiles[tileTo.row][tileTo.col]);
-                } else if (this instanceof EnPassantMove) {
-                        simulationMove = new EnPassantMove(simulationTileFrom, simulationBoard.tiles[tileTo.row][tileTo.col]);
-                } else if (this instanceof PromotionMove) {
-                        simulationMove = new PromotionMove(simulationTileFrom, simulationBoard.tiles[tileTo.row][tileTo.col]);
-                } else {
-                        simulationMove = new Move(simulationTileFrom, simulationBoard.tiles[tileTo.row][tileTo.col]);
-                }
+                Move simulationMove = new Move(simulationTileFrom, simulationBoard.tiles[tileTo.row][tileTo.col]);
                 simulationMove.make(simulationBoard);
 
                 //Find the king in the simulation board

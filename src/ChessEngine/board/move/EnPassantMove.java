@@ -1,6 +1,11 @@
 package ChessEngine.board.move;
 
+import java.util.ArrayList;
+
+import ChessEngine.ChessColor;
 import ChessEngine.board.*;
+import ChessEngine.piece.King;
+import ChessEngine.piece.Piece;
 
 public class EnPassantMove extends Move{
         public EnPassantMove(Tile tileFrom, Tile tileTo) {
@@ -21,5 +26,33 @@ public class EnPassantMove extends Move{
 
                 tileTo.setPiece(tileFrom.getPiece());
                 tileFrom.clearTile();
+        }
+
+        @Override
+        public boolean isInCheckedAfterMove(Board board) {
+                //Make a clone board and simulate the move
+                Board simulationBoard = new Board(board);
+                Tile simulationTileFrom = simulationBoard.tiles[tileFrom.row][tileFrom.col];
+                ChessColor thisPieceColor = simulationTileFrom.getPiece().color;
+
+                EnPassantMove simulationMove = new EnPassantMove(simulationTileFrom, simulationBoard.tiles[tileTo.row][tileTo.col]);
+                simulationMove.make(simulationBoard);
+
+                //Find the king in the simulation board
+                ArrayList<Piece> friendlyPieces;
+                if (thisPieceColor== ChessColor.white) {
+                        friendlyPieces = simulationBoard.whitePieces;
+                } else {
+                        friendlyPieces = simulationBoard.blackPieces;
+                }
+                for (Piece piece : friendlyPieces) {
+                        if (piece instanceof King) {
+                                if (((King)piece).isChecked(simulationBoard)) {
+                                        return true;
+                                }
+                        }
+                }
+
+                return false;
         }
 }
