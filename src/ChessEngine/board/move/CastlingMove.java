@@ -15,21 +15,25 @@ public class CastlingMove extends Move {
 
                 //Castling king-side
                 if (tileTo.col == 6) {
-                        Tile tiles[][] = board.tiles;
-                        Piece castlingRook = tiles[row][7].getPiece();
+                        Piece castlingRook = board.tiles[row][7].getPiece();
+                        if (castlingRook == null) {
+                                System.out.println("castlingRook null");
+                        }
 
-                        tiles[row][5].setPiece(castlingRook);
-                        tiles[row][7].clearTile();
+                        board.tiles[row][5].setPiece(castlingRook);
+                        if (board.tiles[row][5].isOccupied() == false) {
+                                System.out.println("Rook move fail");
+                        }
+                        board.tiles[row][7].clearTile();
                         ((Rook)castlingRook).hasMoved = true;
                 }
 
                 //Castling queen-side
                 if (tileTo.col == 2) {
-                        Tile tiles[][] = board.tiles;
-                        Piece castlingRook = tiles[row][0].getPiece();
+                        Piece castlingRook = board.tiles[row][0].getPiece();
 
-                        tiles[row][3].setPiece(castlingRook);
-                        tiles[row][0].clearTile();
+                        board.tiles[row][3].setPiece(castlingRook);
+                        board.tiles[row][0].clearTile();
                         ((Rook)castlingRook).hasMoved = true;
                 }
 
