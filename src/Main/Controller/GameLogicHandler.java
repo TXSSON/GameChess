@@ -3,7 +3,10 @@ package Main.Controller;
 import java.util.Stack;
 
 import ChessEngine.ChessEnding;
+import ChessEngine.board.move.CastlingMove;
+import ChessEngine.board.move.EnPassantMove;
 import ChessEngine.board.move.Move;
+import ChessEngine.board.move.PromotionMove;
 import ChessEngine.piece.King;
 
 public class GameLogicHandler {
@@ -19,7 +22,17 @@ public class GameLogicHandler {
 		isTurnWhite = !isTurnWhite;
 	}
 	public void executeMove(Move move, MainController mainController) {
-		move.make(mainController.gameplay);
+		if (move instanceof CastlingMove) {
+			((CastlingMove) move).make(mainController.gameplay);
+		} else if (move instanceof EnPassantMove) {
+			((EnPassantMove) move).make(mainController.gameplay);
+		} else if (move instanceof PromotionMove) {
+			((PromotionMove) move).make(mainController.gameplay);
+			mainController.initPromotionFrame();
+		} else {
+			move.make(mainController.gameplay);
+		}
+		
 //		moveHistory.push(move);
 	}
 	public boolean isGameOver(MainController mainController) {

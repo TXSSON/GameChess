@@ -14,6 +14,10 @@ public class ButtonWithIcon extends JButton {
 	private int width;
 	private int height;
 	
+	public ButtonWithIcon() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public ButtonWithIcon(String iconPath, int width, int height) {
 		// TODO Auto-generated constructor stub
 		this.iconPath = iconPath;
