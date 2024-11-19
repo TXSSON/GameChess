@@ -26,7 +26,8 @@ public class ButtonWithIcon extends JButton {
 		initButtonWithIcon();
 	}
 	
-    // Phương thức khởi tạo nút với hình ảnh
+
+	// Phương thức khởi tạo nút với hình ảnh
     private void initButtonWithIcon() {
         BufferedImage image = null;
         try {
