@@ -59,11 +59,9 @@ public class PnlBoardChess extends JPanel {
 	}
 
 	public void updateUIAfterMove(Tile selectedTile, Tile targetTile,Piece selectedPiece) {
-		deletePieceToPanel(selectedTile);
 		deleteHighlightTiles();
+		deletePieceToPanel(selectedTile);
 		addPieceToPanel(selectedPiece.getImagePath(), targetTile.row, targetTile.col);
-		
-		
 	}
 	
 	public void addPieceToPanel(String imagePath, int row, int col) {
@@ -90,8 +88,6 @@ public class PnlBoardChess extends JPanel {
 
 	public void deletePieceToPanel(Tile tile) {
 		squares[tile.row][tile.col].removeAll();
-		squares[tile.row][tile.col].revalidate();
-		squares[tile.row][tile.col].repaint();
 	}
 
 	public void addHighlightTiles(List<Move> availableMoves) {

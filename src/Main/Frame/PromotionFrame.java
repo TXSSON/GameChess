@@ -4,22 +4,22 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
-import Main.Pnl.PnlPromotion;
+import Main.Pnl.PnlPromote;
 
 public class PromotionFrame extends JFrame{
-	private PnlPromotion pnlPromotion;
+	private PnlPromote pnlPromotion;
 	
 	public PromotionFrame() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Đóng cửa sổ
-		this.setSize(GameFrame.width / 2, GameFrame.height / 4); // Khởi tạo kích thước
+		this.setSize(GameFrame.height / 2, GameFrame.height / 8); // Khởi tạo kích thước
 		this.setResizable(false); // Cấm điều chỉnh kích thước của cửa sổ
-		this.setTitle("Promotion"); // Đặt tên cho cửa sổ
+		this.setTitle("Promote"); // Đặt tên cho cửa sổ
 		this.setLayout(new BorderLayout());
 		this.setLocationRelativeTo(null); // Căn giữa màn hình
-        this.pack();
+		this.pack();    
 	}
 	
-	public void setPnlPromotion(PnlPromotion pnlPromotion) {
+	public void setPnlPromotion(PnlPromote pnlPromotion) {
 		this.pnlPromotion = pnlPromotion;
 		this.add(pnlPromotion, BorderLayout.CENTER);
 		this.pack();

@@ -12,7 +12,7 @@ import Main.Frame.PromotionFrame;
 import Main.Pnl.PnlBoardChess;
 import Main.Pnl.PnlGameOptions;
 import Main.Pnl.PnlHome;
-import Main.Pnl.PnlPromotion;
+import Main.Pnl.PnlPromote;
 import Main.Pnl.PnlTutorial;
 import Main.Pnl.PnlSideBar;
 import Main.Utils.ColorOption;
@@ -24,7 +24,7 @@ public class MainController {
     private GameOptionsController gameOptionsController;
     private SideBarController sideBarController;
     private BoardChessController boardChessController;
-    private PromotionController promotionController;
+    private PromoteController promotionController;
     
     private GameFrame gameFrame;
     public GameOptionsFrame gameOptionsFrame;
@@ -34,7 +34,7 @@ public class MainController {
     public PnlGameOptions pnlGameOptions;
     public PnlSideBar pnlSideBar;
     public PnlTutorial pnlTutorial;
-    private PnlPromotion pnlPromotion;
+    public PnlPromote pnlPromotion;
     
 	public ColorOption selectedColor;
 	public PieceOption selectedPiece;
@@ -61,8 +61,8 @@ public class MainController {
         pnlSideBar = PnlSideBar.getSideBarInstance();
         sideBarController = new SideBarController(pnlSideBar, this);
         
-//        pnlPromotion = PnlPromotion.getPnlPromotionInstance();
-//        promotionController = new PromotionController(pnlPromotion, this);
+        pnlPromotion = PnlPromote.getPnlPromotionInstance();
+        promotionController = new PromoteController(pnlPromotion, this);
         
         
         // Tiến hành hiển thị các màn hình

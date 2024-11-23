@@ -18,7 +18,7 @@ public class BoardChessController {
 	private final MoveValidator moveValidator = new MoveValidator();
 	private final GameLogicHandler gameLogicHandler = new GameLogicHandler();
 
-	private Piece selectedPiece;
+	public Piece selectedPiece;
 	private Tile selectedTile;
 	private List<Move> availableMoves;
 

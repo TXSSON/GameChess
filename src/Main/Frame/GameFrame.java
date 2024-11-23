@@ -13,9 +13,6 @@ import Main.Pnl.PnlSideBar;
 
 public class GameFrame extends JFrame {
 	
-	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	int screenWidth = screenSize.width;
-	int screenHeight = screenSize.height;
 
 	public static int height = 1200;
 	public static int width = height * 4 / 3;
@@ -26,13 +23,8 @@ public class GameFrame extends JFrame {
 	public PnlHome pnlHome;
 
 	public GameFrame() {
-		// Đảm bảo cửa sổ không vượt quá kích thước màn hình
-		if (height > screenHeight) {
-			height = screenHeight / (1980 / 1200 );
-			width = height * 4 / 3;
-		}
+
 		
-		System.out.println("screenWidth" + screenWidth + ", " + "screenHeight" +  screenHeight);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Đóng cửa sổ
 		this.setSize(width, height); // Khởi tạo kích thước
