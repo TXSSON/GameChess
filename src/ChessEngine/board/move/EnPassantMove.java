@@ -4,12 +4,22 @@ import java.util.ArrayList;
 
 import ChessEngine.ChessColor;
 import ChessEngine.board.*;
-import ChessEngine.piece.King;
-import ChessEngine.piece.Piece;
+import ChessEngine.piece.*;
 
 public class EnPassantMove extends Move{
         public EnPassantMove(Tile tileFrom, Tile tileTo) {
                 super(tileFrom, tileTo);
+        }
+
+        public EnPassantMove(EnPassantMove move) {
+                super(move);
+        }
+
+        @Override
+        public void make(Gameplay game) {
+                Board newBoard = new Board(game.board);
+                make(newBoard);
+                game.gameStates.push(newBoard);
         }
 
         @Override
@@ -35,7 +45,7 @@ public class EnPassantMove extends Move{
                 Tile simulationTileFrom = simulationBoard.tiles[tileFrom.row][tileFrom.col];
                 ChessColor thisPieceColor = simulationTileFrom.getPiece().color;
 
-                EnPassantMove simulationMove = new EnPassantMove(simulationTileFrom, simulationBoard.tiles[tileTo.row][tileTo.col]);
+                EnPassantMove simulationMove = new EnPassantMove(this);
                 simulationMove.make(simulationBoard);
 
                 //Find the king in the simulation board

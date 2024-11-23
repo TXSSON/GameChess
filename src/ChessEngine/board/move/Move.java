@@ -5,12 +5,17 @@ import ChessEngine.ChessColor;
 import ChessEngine.board.*;
 import ChessEngine.piece.*;
 
-public class Move {
+public abstract class Move {
         public final Tile tileFrom, tileTo;
         
         public Move(Tile tileFrom, Tile tileTo) {
                 this.tileFrom = tileFrom;
                 this.tileTo = tileTo;
+        }
+
+        public Move(Move move) {
+                this.tileFrom = move.tileFrom;
+                this.tileTo = move.tileTo;
         }
 
         public void make(Gameplay game) {
@@ -49,7 +54,7 @@ public class Move {
                 Tile simulationTileFrom = simulationBoard.tiles[tileFrom.row][tileFrom.col];
                 ChessColor thisPieceColor = simulationTileFrom.getPiece().color;
 
-                Move simulationMove = new Move(simulationTileFrom, simulationBoard.tiles[tileTo.row][tileTo.col]);
+                Move simulationMove = new Move(this);
                 simulationMove.make(simulationBoard);
 
                 //Find the king in the simulation board

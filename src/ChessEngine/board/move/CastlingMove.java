@@ -11,6 +11,17 @@ public class CastlingMove extends Move {
                 super(tileFrom, tileTo);
         }
 
+        public CastlingMove(CastlingMove move) {
+                super(move);
+        }
+
+        @Override
+        public void make(Gameplay game) {
+                Board newBoard = new Board(game.board);
+                make(newBoard);
+                game.gameStates.push(newBoard);
+        }
+
         @Override
         protected void make(Board board) {
                 Piece piece = tileFrom.getPiece();
@@ -55,7 +66,7 @@ public class CastlingMove extends Move {
                 Tile simulationTileFrom = simulationBoard.tiles[tileFrom.row][tileFrom.col];
                 ChessColor thisPieceColor = simulationTileFrom.getPiece().color;
 
-                CastlingMove simulationMove = new CastlingMove(simulationTileFrom, simulationBoard.tiles[tileTo.row][tileTo.col]);
+                CastlingMove simulationMove = new CastlingMove(this);
                 simulationMove.make(simulationBoard);
 
                 //Find the king in the simulation board

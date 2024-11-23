@@ -14,8 +14,20 @@ public class PromotionMove extends Move {
                 this.piecePromoteTo = "Queen"; //Default auto queen
         }
 
+        public PromotionMove(PromotionMove move) {
+                super(move);
+                this.piecePromoteTo = move.piecePromoteTo;
+        }
+
         public void setPieceToPromote(String piece) {
                 piecePromoteTo = piece;
+        }
+
+        @Override
+        public void make(Gameplay game) {
+                Board newBoard = new Board(game.board);
+                make(newBoard);
+                game.gameStates.push(newBoard);
         }
 
         @Override
@@ -68,7 +80,7 @@ public class PromotionMove extends Move {
                 Tile simulationTileFrom = simulationBoard.tiles[tileFrom.row][tileFrom.col];
                 ChessColor thisPieceColor = simulationTileFrom.getPiece().color;
 
-                PromotionMove simulationMove = new PromotionMove(simulationTileFrom, simulationBoard.tiles[tileTo.row][tileTo.col]);
+                PromotionMove simulationMove = new PromotionMove(this);
                 simulationMove.make(simulationBoard);
 
                 //Find the king in the simulation board
