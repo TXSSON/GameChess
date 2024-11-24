@@ -1,6 +1,6 @@
 package Main.Utils;
 
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -24,17 +24,30 @@ public class ButtonWithIcon extends JButton {
 	
 
 	// Phương thức khởi tạo nút với hình ảnh
-    private void initButtonWithIcon() {
-        BufferedImage image = null;
-        try {
-            image = ImageIO.read(new File(this.iconPath));
-        } catch (Exception e) {
-            System.out.println("Lỗi mở ảnh: " + e.getMessage());
-        }
-        ImageIcon icon = new ImageIcon(image);
-        this.setIcon(icon);
-        this.setPreferredSize(new Dimension(this.width, this.height));
-    }
+	private void initButtonWithIcon() {
+		BufferedImage image = null;
+		try {
+			image = ImageIO.read(new File(this.iconPath));
+
+			if (image != null) {
+				Image scaledImage = image.getScaledInstance(this.width, this.height, Image.SCALE_SMOOTH);
+				ImageIcon icon = new ImageIcon(scaledImage);
+
+				this.setIcon(icon);
+			} else {
+				System.out.println("Ảnh không tồn tại hoặc không đọc được!");
+			}
+		} catch (Exception e) {
+			System.out.println("Lỗi mở ảnh: " + e.getMessage());
+		}
+
+		this.setPreferredSize(new Dimension(this.width, this.height));
+
+		this.setFocusPainted(false);
+		this.setBorderPainted(false);
+		this.setContentAreaFilled(false);
+	}
+
 
 	public String getIconPath() {
 		return iconPath;

@@ -1,8 +1,6 @@
 package Main.Pnl;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
@@ -10,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import Main.Frame.GameFrame;
+import Main.Utils.BackgroundPanel;
 import Main.Utils.ButtonWithIcon;
 
 public class PnlSideBar extends JPanel {
@@ -21,24 +20,20 @@ public class PnlSideBar extends JPanel {
 
     // Constructor private để ngăn không cho tạo đối tượng bên ngoài lớp
     private PnlSideBar() {
-        this.setBackground(Color.yellow);
         this.setPreferredSize(new Dimension(GameFrame.width / 4, GameFrame.height));
         this.setLayout(new BorderLayout());
         
-       btnBack = new ButtonWithIcon("src/Main/Resources/Icons/left-arrow-1.png", GameFrame.width / 8, 100);
-       JPanel pnlButtonBack = new JPanel();
-       pnlButtonBack.add(btnBack);
-       pnlButtonBack.setBackground(Color.YELLOW);
-        // Panel cho các nút chức năng khác
-//       JPanel pnlControls = new JPanel();
-//       btnSound = initButtonWithIcon("src/Main/Resources/Icons/left-arrow-1.png", 100, 50);
-//       btnSettings = initButtonWithIcon("src/Main/Resources/Icons/left-arrow-1.png", 100, 50);
-//
-//       pnlControls.add(btnSound);
-//        pnlControls.add(btnSettings);
-//
-        this.add(pnlButtonBack, BorderLayout.NORTH);
-//        this.add(pnlControls, BorderLayout.CENTER);
+        btnBack = new ButtonWithIcon("src/Main/Resources/Icons/left-arrow-1.png", GameFrame.width / 8, 100);
+        JPanel pnlInner = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        pnlInner.setOpaque(false);
+        pnlInner.add(btnBack);
+
+        JPanel pnlButtonBack = new BackgroundPanel("src/Main/Resources/Icons/bgrSideBar.jpg");
+        pnlButtonBack.setLayout(new BorderLayout());
+        pnlButtonBack.setPreferredSize(new Dimension(GameFrame.width / 4, GameFrame.height));
+        pnlButtonBack.add(pnlInner, BorderLayout.CENTER);
+
+        this.add(pnlButtonBack, BorderLayout.CENTER);
     }
 
     // Phương thức Singleton để lấy instance duy nhất của PnlSideBar

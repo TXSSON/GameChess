@@ -3,6 +3,7 @@ package Main.Pnl;
 import javax.swing.*;
 
 import Main.Frame.GameFrame;
+import Main.Utils.BackgroundPanel;
 import Main.Utils.ButtonWithIcon;
 
 import java.awt.*;
@@ -11,9 +12,9 @@ import java.awt.event.ActionListener;
 
 public class PnlHome extends JPanel {
 
-	public JButton BtnNewGame;
-	public JButton tutorialGameButton;
-	public JButton exitButton;
+	public ButtonWithIcon BtnNewGame;
+	public ButtonWithIcon tutorialGameButton;
+	public ButtonWithIcon exitButton;
 
 	public CardLayout cardLayout;
 	public JPanel cardPanel;
@@ -40,16 +41,17 @@ public class PnlHome extends JPanel {
 
 	private JPanel createMenuPanel() {
 		JPanel menu = new JPanel();
-		menu.setBackground(Color.BLUE);
+
+		menu.setOpaque(false);
 		menu.setLayout(new GridLayout(3, 1, 0, 0));
 
 		// Sử dụng các nút đã khai báo
-		BtnNewGame = new JButton("BtnNewGame");
-		tutorialGameButton = new JButton("Tutorial Game");
-		exitButton = new JButton("Exit");
+		BtnNewGame = new ButtonWithIcon("src/Main/Resources/Icons/play.png", GameFrame.height * 6 / 10,GameFrame.height * 5 / 24);
+		tutorialGameButton = new ButtonWithIcon("src/Main/Resources/Icons/tutorial.png", GameFrame.height * 6 / 10,GameFrame.height * 5 / 24);
+		exitButton = new ButtonWithIcon("src/Main/Resources/Icons/exit.png", GameFrame.height * 6 / 10,GameFrame.height * 5 / 24);;
 
 		Dimension buttonSize = new Dimension(GameFrame.height * 6 / 10 ,  GameFrame.height * 5 / 24 );
-//		BtnNewGame.setPreferredSize(buttonSize);
+		BtnNewGame.setPreferredSize(buttonSize);
 		tutorialGameButton.setPreferredSize(buttonSize);
 		exitButton.setPreferredSize(buttonSize);
 
@@ -57,7 +59,7 @@ public class PnlHome extends JPanel {
 		menu.add(tutorialGameButton);
 		menu.add(exitButton);
 
-		JPanel centeredMenu = new JPanel();
+		JPanel centeredMenu = new BackgroundPanel("src/Main/Resources/Icons/bgr.jpg");
 		centeredMenu.setLayout(new GridBagLayout());
 		centeredMenu.add(menu);
 
