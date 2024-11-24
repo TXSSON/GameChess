@@ -25,7 +25,7 @@ public class PnlSideBar extends JPanel {
         this.setPreferredSize(new Dimension(GameFrame.width / 4, GameFrame.height));
         this.setLayout(new BorderLayout());
         
-       btnBack = new ButtonWithIcon("src/Main/Resources/Icons/left-arrow-1.png", 200, 100);
+       btnBack = new ButtonWithIcon("src/Main/Resources/Icons/left-arrow-1.png", GameFrame.width / 8, 100);
        JPanel pnlButtonBack = new JPanel();
        pnlButtonBack.add(btnBack);
        pnlButtonBack.setBackground(Color.YELLOW);

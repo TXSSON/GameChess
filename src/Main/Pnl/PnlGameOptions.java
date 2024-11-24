@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import ChessEngine.ChessColor;
+import Main.Frame.GameFrame;
 import Main.Utils.ColorOption;
 import Main.Utils.PieceOption;
 
@@ -67,7 +68,7 @@ public class PnlGameOptions extends JPanel{
 
 		// Thêm các nút vào frame
 		this.add(pnlButtons, BorderLayout.SOUTH);
-		this.setPreferredSize(new Dimension(700, 450));
+		this.setPreferredSize(new Dimension(600 , 450));
 	}
 	
 	public static PnlGameOptions getPnlGameOptionsInstance() {

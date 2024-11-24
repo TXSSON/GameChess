@@ -48,7 +48,7 @@ public class PnlHome extends JPanel {
 		tutorialGameButton = new JButton("Tutorial Game");
 		exitButton = new JButton("Exit");
 
-		Dimension buttonSize = new Dimension(700, 250);
+		Dimension buttonSize = new Dimension(GameFrame.height * 6 / 10 ,  GameFrame.height * 5 / 24 );
 //		BtnNewGame.setPreferredSize(buttonSize);
 		tutorialGameButton.setPreferredSize(buttonSize);
 		exitButton.setPreferredSize(buttonSize);

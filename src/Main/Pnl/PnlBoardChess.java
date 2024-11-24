@@ -67,7 +67,7 @@ public class PnlBoardChess extends JPanel {
 	public void addPieceToPanel(String imagePath, int row, int col) {
 		try {
 			BufferedImage originalImage = ImageIO.read(new File(imagePath));
-			int sizeIcon = 150;
+			int sizeIcon = GameFrame.height / 8;
 			Image scaledImage = originalImage.getScaledInstance(sizeIcon, sizeIcon, Image.SCALE_SMOOTH);
 
 			ImageIcon icon = new ImageIcon(scaledImage);
