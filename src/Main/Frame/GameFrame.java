@@ -12,9 +12,7 @@ import Main.Pnl.PnlHome;
 import Main.Pnl.PnlSideBar;
 
 public class GameFrame extends JFrame {
-	
-	 
-	
+
 	public static int height = setSizeFrame().height;
 	public static int width = setSizeFrame().width;
 	
