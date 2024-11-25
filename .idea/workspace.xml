@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f4f0e9d8-a2e0-4470-9e10-93b2116bbcd0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Main/Resources/Icons/bgr.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main/Resources/Icons/bgrSideBar.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main/Resources/Icons/exit.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main/Resources/Icons/play.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main/Resources/Icons/tutorial.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Pnl/PnlHome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Pnl/PnlHome.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Pnl/PnlSideBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Pnl/PnlSideBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Utils/ButtonWithIcon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Utils/ButtonWithIcon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/BoardChessController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/BoardChessController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlBoardChess.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlBoardChess.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Controller/BoardChessController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Controller/BoardChessController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Pnl/PnlBoardChess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Pnl/PnlBoardChess.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +70,7 @@
     "Application.RunGame.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "final",
+    "git-widget-placeholder": "MinhDang",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Project/lib",
     "node.js.detected.package.eslint": "true",
@@ -81,7 +78,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Facets",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
@@ -106,17 +103,6 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="GameChess" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="GameChess" />
-      <option name="filePath" />
-      <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
@@ -143,7 +129,10 @@
       <workItem from="1732458813845" duration="103000" />
       <workItem from="1732458943103" duration="22000" />
       <workItem from="1732459481438" duration="150000" />
-      <workItem from="1732460541502" duration="6164000" />
+      <workItem from="1732460541502" duration="6449000" />
+      <workItem from="1732492725527" duration="2001000" />
+      <workItem from="1732494941609" duration="202000" />
+      <workItem from="1732495496282" duration="503000" />
     </task>
     <servers />
   </component>
