@@ -48,9 +48,9 @@ public class GameFrame extends JFrame {
 		if (screenSize.height >= 1200) {
 			screenSize.height = 1200;
 		} else if (screenSize.height >= 800) {
-			screenSize.height = 800;
+			screenSize.height = 720;
 		} else {
-			screenSize.height = 600;
+			screenSize.height = 640;
 		} 
 		screenSize.width = screenSize.height * 4 / 3;
 		System.out.print("Kích thước bàn cờ là: ");

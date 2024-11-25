@@ -35,7 +35,7 @@ public class PnlBoardChess extends JPanel {
 		this.setLayout(new GridLayout(8, 8)); // Bàn cờ 8x8
 		this.setPreferredSize(new Dimension(GameFrame.width * 3 / 4, GameFrame.height)); // Chia diện tích hợp lý
 
-		boolean isWhite = true; // Bắt đầu từ ô trắng
+		boolean isWhite = false; // Bắt đầu từ ô trắng
 
 		Color color1 = Color.decode(selectedColor.getHexCode().split(",")[0].trim()); // Màu 1
 		Color color2 = Color.decode(selectedColor.getHexCode().split(",")[1].trim()); // Màu 2
@@ -75,6 +75,8 @@ public class PnlBoardChess extends JPanel {
 			JLabel pieceLabel = new JLabel(icon);
 			pieceLabel.setBackground(Color.BLACK);
 
+			//TODO
+			col = 7 - col;
 			squares[row][col].removeAll();
 
 			// Thêm JLabel vào ô
@@ -87,14 +89,14 @@ public class PnlBoardChess extends JPanel {
 	}
 
 	public void deletePieceToPanel(Tile tile) {
-		squares[tile.row][tile.col].removeAll();
+		squares[tile.row][7 - tile.col].removeAll();
 	}
 
 	public void addHighlightTiles(List<Move> availableMoves) {
 		for (Move move : availableMoves) {
 			int row = move.tileTo.row;
 			int col = move.tileTo.col;
-			((PnlTile) squares[row][col]).setHighlight(true); // Thêm highlight
+			((PnlTile) squares[row][7 - col]).setHighlight(true); // Thêm highlight
 		}
 	}
 	

@@ -42,7 +42,8 @@ public class BoardChessController {
 		int row = y / mainController.gameplay.board.SQUARE_SIZE;
 		int col = x / mainController.gameplay.board.SQUARE_SIZE;
 
-		Tile clickedTile = mainController.gameplay.board.tiles[row][col];
+		//TODO
+		Tile clickedTile = mainController.gameplay.board.tiles[row][7 - col];
 
 		if (selectedPiece == null
 				|| (clickedTile.getPiece() != null && clickedTile.getPiece().color.equals(selectedPiece.color))) {
