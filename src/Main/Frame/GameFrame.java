@@ -43,8 +43,8 @@ public class GameFrame extends JFrame {
 	
 	public static Dimension setSizeFrame() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		System.out.print("Kích thước màn hình là: ");
-		System.out.println( screenSize.width + " " + screenSize.height );
+		//System.out.print("Kích thước màn hình là: ");
+		//System.out.println( screenSize.width + " " + screenSize.height );
 		if (screenSize.height >= 1200) {
 			screenSize.height = 1200;
 		} else if (screenSize.height >= 800) {
@@ -53,8 +53,8 @@ public class GameFrame extends JFrame {
 			screenSize.height = 640;
 		} 
 		screenSize.width = screenSize.height * 4 / 3;
-		System.out.print("Kích thước bàn cờ là: ");
-		System.out.println(screenSize.width + " " + screenSize.height );
+		//System.out.print("Kích thước bàn cờ là: ");
+		//System.out.println(screenSize.width + " " + screenSize.height );
 		return screenSize;
 	}
 	

@@ -35,7 +35,6 @@ public class King extends Piece {
 	@Override
 	public ArrayList<Move> calculateLegalMoves(Gameplay game) {
 		Board board = game.board;
-		System.out.println("King position: " + this.row + this.col);
 		ArrayList<Move> legalMoves = new ArrayList<>();
 		final Tile tileFrom = board.tiles[this.row][this.col];
 		Tile tiles[][] = board.tiles;
