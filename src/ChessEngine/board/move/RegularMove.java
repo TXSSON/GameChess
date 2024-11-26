@@ -1,60 +1,47 @@
 package ChessEngine.board.move;
 
-import java.util.ArrayList;
-
+import java.util.*;
 import ChessEngine.ChessColor;
 import ChessEngine.board.*;
 import ChessEngine.piece.*;
 
-public class CastlingMove extends Move {
-        public CastlingMove(Tile tileFrom, Tile tileTo) {
+public class RegularMove extends Move { 
+        public RegularMove(Tile tileFrom, Tile tileTo) {
                 super(tileFrom, tileTo);
         }
 
-        public CastlingMove(CastlingMove move) {
+        public RegularMove(RegularMove move) {
                 super(move);
         }
 
         @Override
-        public CastlingMove clone() {
-                return new CastlingMove(this);
+        public RegularMove clone() {
+                return new RegularMove(this);
         }
 
         @Override
         public void make(Board board) {
                 Piece piece = tileFrom.getPiece();
-                int row = piece.row;
-
-                //Castling king-side
-                if (tileTo.col == 6) {
-                        Piece castlingRook = board.tiles[row][7].getPiece();
-                        if (castlingRook == null) {
-                                System.out.println("castlingRook null");
+                //Remove the piece at tileTo
+                if (tileTo.isOccupied()) {
+                        if (tileTo.getPiece().color == ChessColor.white) {
+                                board.whitePieces.remove(tileTo.getPiece());
+                        } else {
+                                board.blackPieces.remove(tileTo.getPiece());
                         }
-
-                        board.tiles[row][5].setPiece(castlingRook);
-                        if (board.tiles[row][5].isOccupied() == false) {
-                                System.out.println("Rook move fail");
-                        }
-                        board.tiles[row][7].clearTile();
-                        ((Rook)castlingRook).hasMoved = true;
-                }
-
-                //Castling queen-side
-                if (tileTo.col == 2) {
-                        Piece castlingRook = board.tiles[row][0].getPiece();
-
-                        board.tiles[row][3].setPiece(castlingRook);
-                        board.tiles[row][0].clearTile();
-                        ((Rook)castlingRook).hasMoved = true;
                 }
 
                 //Finally move the piece
                 tileTo.setPiece(piece);
                 tileFrom.clearTile();
 
-                //Change the king's state
-                ((King)piece).hasMoved = true;
+                //Change the state of the king and rook if needed
+                if (piece instanceof King) {
+                        ((King)piece).hasMoved = true;
+                }
+                if (piece instanceof Rook) {
+                        ((Rook)piece).hasMoved = true;
+                } 
         }
 
         @Override
@@ -64,7 +51,7 @@ public class CastlingMove extends Move {
                 Tile simulationTileFrom = simulationBoard.tiles[tileFrom.row][tileFrom.col];
                 ChessColor thisPieceColor = simulationTileFrom.getPiece().color;
 
-                CastlingMove simulationMove = new CastlingMove(simulationTileFrom, simulationBoard.tiles[tileTo.row][tileTo.col]);
+                RegularMove simulationMove = new RegularMove(simulationTileFrom, simulationBoard.tiles[tileTo.row][tileTo.col]);
                 simulationMove.make(simulationBoard);
 
                 //Find the king in the simulation board
@@ -84,4 +71,5 @@ public class CastlingMove extends Move {
 
                 return false;
         }
+
 }

@@ -14,12 +14,22 @@ public class PromotionMove extends Move {
                 this.piecePromoteTo = "Queen"; //Default auto queen
         }
 
-        public  void setPieceToPromote(String piece) {
+        public PromotionMove(PromotionMove move) {
+                super(move);
+                this.piecePromoteTo = move.piecePromoteTo;
+        }
+
+        @Override
+        public PromotionMove clone() {
+                return new PromotionMove(this);
+        }
+
+        public void setPieceToPromote(String piece) {
                 piecePromoteTo = piece;
         }
 
         @Override
-        protected void make(Board board) {
+        public void make(Board board) {
                 //Remove the piece on tileTo
                 if (tileTo.isOccupied()) {
                         if (tileTo.getPiece().color == ChessColor.white) {
@@ -27,14 +37,6 @@ public class PromotionMove extends Move {
                         } else {
                                 board.blackPieces.remove(tileTo.getPiece());
                         }
-                }
-
-                //Remove the pawn on tileFrom
-                tileFrom.clearTile();
-                if (tileFrom.getPiece().color == ChessColor.white) {
-                        board.whitePieces.remove(tileFrom.getPiece());
-                } else {
-                        board.blackPieces.remove(tileFrom.getPiece());
                 }
 
                 //Put the new piece on tileTo
@@ -53,12 +55,21 @@ public class PromotionMove extends Move {
                                 newPiece = new Queen(tileTo.row, tileTo.col, tileFrom.getPiece().color);
                                 break;
                 }
+
                 tileTo.setPiece(newPiece);
                 if (newPiece.color == ChessColor.white) {
                         board.whitePieces.add(newPiece);
                 } else {
                         board.blackPieces.add(newPiece);
                 }
+
+                //Remove the pawn on tileFrom
+                if (tileFrom.getPiece().color == ChessColor.white) {
+                        board.whitePieces.remove(tileFrom.getPiece());
+                } else {
+                        board.blackPieces.remove(tileFrom.getPiece());
+                }
+                tileFrom.clearTile();
         }
 
         @Override

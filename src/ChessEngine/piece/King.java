@@ -52,14 +52,14 @@ public class King extends Piece {
 			Tile tileTo = tiles[rowTo][colTo];
 			if (tileTo.isOccupied()) {
 				if (tileTo.getPiece().color != this.color) {
-					Move newMove = new Move(tileFrom, tileTo);
+					RegularMove newMove = new RegularMove(tileFrom, tileTo);
 					if (newMove.isInCheckedAfterMove(board) == false) {
 						legalMoves.add(newMove);
 					}
 				}
 				continue;
 			}
-			Move newMove = new Move(tileFrom, tileTo);
+			Move newMove = new RegularMove(tileFrom, tileTo);
 			if (newMove.isInCheckedAfterMove(board) == false) {
 				legalMoves.add(newMove);
 			}

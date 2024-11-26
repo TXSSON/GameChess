@@ -36,28 +36,24 @@ public class Knight extends Piece {
                 final int pieceRow = tileFrom.row, pieceCol = tileFrom.col;
                 //Calculate possible moves
                 for (int[] direction: possibleDirections) {
-                	System.out.println("Hướng con mã: " + direction[0] + ", " + direction[1] );
-                                int rowTo = pieceRow + direction[0], colTo = pieceCol + direction[1];
-                                System.out.println("hàng và cột đang xét: " +rowTo + ", " + colTo);
-                                if (rowTo < 0 || rowTo >= 8 || colTo < 0 || colTo >= 8) {
-                                        continue;
-                                }
-
-                                Tile tileTo = board.tiles[rowTo][colTo];
-                                if (tileTo.isOccupied()) {
-                                        if (tileTo.getPiece().color != this.color) {
-                                                Move newMove = new Move(tileFrom, tileTo);
-                                                if (newMove.isInCheckedAfterMove(board) == false) {
-                                                        legalMoves.add(newMove);
-                                                }
+                        int rowTo = pieceRow + direction[0], colTo = pieceCol + direction[1];
+                        if (rowTo < 0 || rowTo >= 8 || colTo < 0 || colTo >= 8) {
+                                continue;
+                        }
+                        Tile tileTo = board.tiles[rowTo][colTo];
+                        if (tileTo.isOccupied()) {
+                                if (tileTo.getPiece().color != this.color) {
+                                        RegularMove newMove = new RegularMove(tileFrom, tileTo);
+                                        if (newMove.isInCheckedAfterMove(board) == false) {
+                                                legalMoves.add(newMove);
                                         }
-                                        continue;
                                 }
-
-                                Move newMove = new Move(tileFrom, tileTo);
-                                if (newMove.isInCheckedAfterMove(board) == false) {
-                                        legalMoves.add(newMove);
-                                }
+                                continue;
+                        }
+                        RegularMove newMove = new RegularMove(tileFrom, tileTo);
+                        if (newMove.isInCheckedAfterMove(board) == false) {
+                                legalMoves.add(newMove);
+                        }
                 }
                return legalMoves;
         }
