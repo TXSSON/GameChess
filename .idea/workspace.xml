@@ -5,11 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f4f0e9d8-a2e0-4470-9e10-93b2116bbcd0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Main/Resources/Icons/Ok.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main/Resources/Icons/bgroption.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main/Resources/Icons/cancel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main/Resources/Icons/demo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main/Resources/Icons/tutorials.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main/Resources/font/BungeeShade-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main/Resources/font/BungeeSpice-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main/Resources/font/HoltwoodOneSC-Regular.ttf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/board/Gameplay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/board/Gameplay.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/board/move/CastlingMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/board/move/CastlingMove.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/board/move/EnPassantMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/board/move/EnPassantMove.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/board/move/Move.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/board/move/Move.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/board/move/PromotionMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/board/move/PromotionMove.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/piece/Bishop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/piece/Bishop.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/piece/King.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/piece/King.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/piece/Knight.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/piece/Knight.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/piece/Pawn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/piece/Pawn.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/piece/Queen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/piece/Queen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/piece/Rook.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/piece/Rook.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/BoardChessController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/BoardChessController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/GameLogicHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/GameLogicHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/GameOptionsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/GameOptionsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Frame/GameFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Frame/GameFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Frame/GameOptionsFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Frame/GameOptionsFrame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlBoardChess.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlBoardChess.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Controller/BoardChessController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Controller/BoardChessController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Pnl/PnlBoardChess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Pnl/PnlBoardChess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlGameOptions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlGameOptions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlTutorial.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlTutorial.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Frame/GameOptionsFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Frame/GameOptionsFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Pnl/PnlGameOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Pnl/PnlGameOptions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Pnl/PnlTutorial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Pnl/PnlTutorial.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,30 +90,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Application.RunGame.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "MinhDang",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Project/lib",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Facets",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RunGame.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;MinhDang&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Project/lib&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\LENOVO\IdeaProjects\GameChess\src\Main\Resources\Icons" />
+      <recent name="C:\Users\LENOVO\IdeaProjects\GameChess\src\Main\Resources" />
+      <recent name="C:\Users\LENOVO\IdeaProjects\GameChess\src\Main\Resources\font" />
     </key>
   </component>
   <component name="RunManager">
@@ -133,6 +161,7 @@
       <workItem from="1732492725527" duration="2001000" />
       <workItem from="1732494941609" duration="202000" />
       <workItem from="1732495496282" duration="503000" />
+      <workItem from="1732618048789" duration="7788000" />
     </task>
     <servers />
   </component>

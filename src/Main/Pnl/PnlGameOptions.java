@@ -1,53 +1,82 @@
 package Main.Pnl;
-
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.io.*;
+import java.awt.*;
+import javax.swing.*;
 import java.awt.GridLayout;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import ChessEngine.ChessColor;
-import Main.Frame.GameFrame;
+import Main.Utils.BackgroundPanel;
+import Main.Utils.ButtonWithIcon;
 import Main.Utils.ColorOption;
 import Main.Utils.PieceOption;
 
-public class PnlGameOptions extends JPanel{
-	public JButton btnOk;
-	public JButton btnCancel;
+import ChessEngine.ChessColor;
+
+public class PnlGameOptions extends JPanel {
+	public ButtonWithIcon btnOk;
+	public ButtonWithIcon btnCancel;
 	public JComboBox<ColorOption> cbBoardColor;
 	public JComboBox<PieceOption> cbChoosePiece;
 	public JTextField txtPlayTime;
-	
+
 	private static volatile PnlGameOptions pnlGameOptions;
-	
+
 	private PnlGameOptions() {
-		// TODO Auto-generated constructor stub
-		// Tạo panel để chứa các tùy chọn
-		this.setLayout(new BorderLayout());
-		
-		JPanel pnlOptions = new JPanel(new GridLayout(3, 2));
+		Font bungeeShadeFont = null;
+		try {
+			File fontFile = new File("src/Main/Resources/font/HoltwoodOneSC-Regular.ttf"); // Đường dẫn đến font
+			bungeeShadeFont = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(25f);
+			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			ge.registerFont(bungeeShadeFont); // Đăng ký font vào hệ thống
+		} catch (IOException | FontFormatException e) {
+			e.printStackTrace();
+			bungeeShadeFont = new Font("Arial", Font.BOLD, 16);
+		}
+
+		// Sử dụng BackgroundPanel làm nền
+		BackgroundPanel backgroundPanel = new BackgroundPanel("src/Main/Resources/Icons/demo.jpg");
+		backgroundPanel.setLayout(new BorderLayout());
+
+		// Panel chứa các thành phần UI
+		JPanel pnlOptions = new JPanel(new GridLayout(3, 2, 10, 10));
+		pnlOptions.setOpaque(false); // Trong suốt để thấy hình nền
+
+		Font labelFont = new Font("Arial", Font.PLAIN, 16);
+		Font inputFont = new Font("Arial", Font.PLAIN, 20);
 
 		// Tùy chọn màu bàn cờ
-		JLabel lblBoardColor = new JLabel("Board Color:");
-		cbBoardColor = new JComboBox<>(new ColorOption[] { new ColorOption("Xanh lá cây", "#739552,#EBECD0"),
-				new ColorOption("Nâu", "#B88762,#EDD6B0"), new ColorOption("Đỏ", "#BB5746,#F5DBC3") });
+		JLabel lblBoardColor = new JLabel("BOARD COLOR:");
+		lblBoardColor.setFont(labelFont);
+		lblBoardColor.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBoardColor.setForeground(Color.ORANGE);
+		lblBoardColor.setFont(bungeeShadeFont);
+		cbBoardColor = new JComboBox<>(new ColorOption[] {
+				new ColorOption("Xanh lá cây", "#739552,#EBECD0"),
+				new ColorOption("Nâu", "#B88762,#EDD6B0"),
+				new ColorOption("Đỏ", "#BB5746,#F5DBC3")
+		});
+		cbBoardColor.setFont(inputFont);
 
 		// Tùy chọn chọn quân cờ
-		JLabel lblChoosePiece = new JLabel("Choose Piece:");
+		JLabel lblChoosePiece = new JLabel("CHOOSE PIECE:");
+		lblChoosePiece.setFont(labelFont);
+		lblChoosePiece.setHorizontalAlignment(SwingConstants.CENTER);
+		lblChoosePiece.setForeground(Color.ORANGE);
+		lblChoosePiece.setFont(bungeeShadeFont);
 		cbChoosePiece = new JComboBox<>(new PieceOption[] {
-			    new PieceOption("Black", ChessColor.black)
-			});
-
+				new PieceOption("Black", ChessColor.black)
+		});
+		cbChoosePiece.setFont(inputFont);
 
 		// Tùy chọn thời gian chơi
-		JLabel lblPlayTime = new JLabel("Play Time (min):");
+		JLabel lblPlayTime = new JLabel("PLAY TIME:");
+		lblPlayTime.setFont(labelFont);
+		lblPlayTime.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPlayTime.setForeground(Color.ORANGE);
+		lblPlayTime.setFont(bungeeShadeFont);
 		txtPlayTime = new JTextField();
+		txtPlayTime.setFont(inputFont);
 
-		// Thêm các thành phần vào panel
+		// Thêm các thành phần vào pnlOptions
 		pnlOptions.add(lblBoardColor);
 		pnlOptions.add(cbBoardColor);
 		pnlOptions.add(lblChoosePiece);
@@ -55,22 +84,24 @@ public class PnlGameOptions extends JPanel{
 		pnlOptions.add(lblPlayTime);
 		pnlOptions.add(txtPlayTime);
 
-		// Thêm panel vào JFrame
-		this.add(pnlOptions, BorderLayout.CENTER);
-
-		// Tạo nút OK và Cancel
+		// Panel chứa các nút OK và Cancel
 		JPanel pnlButtons = new JPanel();
-		btnOk = new JButton("OK");
-		btnCancel = new JButton("Cancel");
-
+		pnlButtons.setOpaque(false); // Trong suốt
+		btnOk = new ButtonWithIcon("src/Main/Resources/Icons/Ok.png", 80, 40);
+		btnCancel = new ButtonWithIcon("src/Main/Resources/Icons/cancel.png", 80, 40);
 		pnlButtons.add(btnOk);
 		pnlButtons.add(btnCancel);
 
-		// Thêm các nút vào frame
-		this.add(pnlButtons, BorderLayout.SOUTH);
-		this.setPreferredSize(new Dimension(600 , 450));
+		// Thêm các thành phần vào BackgroundPanel
+		backgroundPanel.add(pnlOptions, BorderLayout.CENTER);
+		backgroundPanel.add(pnlButtons, BorderLayout.SOUTH);
+
+		// Thêm BackgroundPanel vào PnlGameOptions
+		this.setLayout(new BorderLayout());
+		this.add(backgroundPanel, BorderLayout.CENTER);
+		this.setPreferredSize(new Dimension(600, 450));
 	}
-	
+
 	public static PnlGameOptions getPnlGameOptionsInstance() {
 		if (pnlGameOptions == null) {
 			synchronized (PnlGameOptions.class) {

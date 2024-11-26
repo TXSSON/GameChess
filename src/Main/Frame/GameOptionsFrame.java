@@ -6,7 +6,6 @@ import ChessEngine.ChessColor;
 import Main.Pnl.PnlGameOptions;
 import Main.Utils.ColorOption;
 import Main.Utils.PieceOption;
-
 import java.awt.*;
 import java.util.AbstractMap.SimpleEntry;
 

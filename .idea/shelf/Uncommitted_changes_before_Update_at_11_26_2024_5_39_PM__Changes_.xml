@@ -1,0 +1,26 @@
+<changelist name="Uncommitted_changes_before_Update_at_11_26_2024_5_39_PM_[Changes]" date="1732617593598" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_26_2024_5_39_PM_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 11/26/2024 5:39 PM [Changes]" />
+  <binary>
+    <option name="AFTER_PATH" value="src/Main/Resources/Icons/bgroption.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_26_2024_5_39_PM_[Changes]/bgroption.png" />
+  </binary>
+  <binary>
+    <option name="AFTER_PATH" value="src/Main/Resources/Icons/Ok.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_26_2024_5_39_PM_[Changes]/Ok.png" />
+  </binary>
+  <binary>
+    <option name="AFTER_PATH" value="src/Main/Resources/Icons/cancel.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_26_2024_5_39_PM_[Changes]/cancel.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/GameChess/Main/Pnl/PnlGameOptions.class" />
+    <option name="AFTER_PATH" value="out/production/GameChess/Main/Pnl/PnlGameOptions.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_26_2024_5_39_PM_[Changes]/PnlGameOptions.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/GameChess/Main/Controller/GameOptionsController.class" />
+    <option name="AFTER_PATH" value="out/production/GameChess/Main/Controller/GameOptionsController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_26_2024_5_39_PM_[Changes]/GameOptionsController.class" />
+  </binary>
+</changelist>
