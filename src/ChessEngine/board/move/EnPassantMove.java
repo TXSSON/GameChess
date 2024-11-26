@@ -12,8 +12,17 @@ public class EnPassantMove extends Move{
                 super(tileFrom, tileTo);
         }
 
+        public EnPassantMove(EnPassantMove move) {
+                super(move);
+        }
+
         @Override
-        protected void make(Board board) {
+        public EnPassantMove clone() {
+                return new EnPassantMove(this);
+        }
+
+        @Override
+        public void make(Board board) {
                 //White pawn
                 if (tileFrom.row == 4) {
                         board.blackPieces.remove(board.tiles[4][tileTo.col].getPiece());
