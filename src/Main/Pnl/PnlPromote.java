@@ -27,8 +27,8 @@ public class PnlPromote extends JPanel {
 		btnQueen.setSize(GameFrame.height / 8, GameFrame.height / 8);
 		
 		this.add(btnRook);
-		this.add(btnKnight);
 		this.add(btnBishop);
+		this.add(btnKnight);
 		this.add(btnQueen);
 	}
 
@@ -46,13 +46,13 @@ public class PnlPromote extends JPanel {
 	public void setBtnPiece(ChessColor chessColor) {
 		if (chessColor == ChessColor.white) {
 			((ButtonWithIcon) btnRook).setIconPath("src/Main/Resources/piece-image2/wr.png");
-			((ButtonWithIcon) btnBishop).setIconPath("src/Main/Resources/piece-image2/wn.png");
-			((ButtonWithIcon) btnKnight).setIconPath("src/Main/Resources/piece-image2/wb.png");
+			((ButtonWithIcon) btnBishop).setIconPath("src/Main/Resources/piece-image2/wb.png");
+			((ButtonWithIcon) btnKnight).setIconPath("src/Main/Resources/piece-image2/wn.png");
 			((ButtonWithIcon) btnQueen).setIconPath("src/Main/Resources/piece-image2/wq.png");
 		} else {
 			((ButtonWithIcon) btnRook).setIconPath("src/Main/Resources/piece-image2/br.png");
-			((ButtonWithIcon) btnBishop).setIconPath("src/Main/Resources/piece-image2/bn.png");
-			((ButtonWithIcon) btnKnight).setIconPath("src/Main/Resources/piece-image2/bb.png");
+			((ButtonWithIcon) btnBishop).setIconPath("src/Main/Resources/piece-image2/bb.png");
+			((ButtonWithIcon) btnKnight).setIconPath("src/Main/Resources/piece-image2/bn.png");
 			((ButtonWithIcon) btnQueen).setIconPath("src/Main/Resources/piece-image2/bq.png");
 		}	
 		this.revalidate();
