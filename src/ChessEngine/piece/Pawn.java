@@ -29,10 +29,10 @@ public class Pawn extends Piece {
         private boolean canBeEnPassant(Move prevMove) {
                 Piece pieceMoved = prevMove.tileTo.getPiece();
 
-                if (pieceMoved instanceof Pawn) {
-                        if (pieceMoved.color == ChessColor.white && prevMove.tileFrom.row == 1 && prevMove.tileTo.row == 3) {
+                if (pieceMoved.equals(this)) {
+                        if (color == ChessColor.white && prevMove.tileFrom.row == 1 && prevMove.tileTo.row == 3) {
                                 return true;
-                        } else if (pieceMoved.color == ChessColor.black && prevMove.tileFrom.row == 6 && prevMove.tileTo.row == 4) {
+                        } else if (color == ChessColor.black && prevMove.tileFrom.row == 6 && prevMove.tileTo.row == 4) {
                                 return true;
                         }
                 }

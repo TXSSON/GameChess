@@ -205,6 +205,7 @@ public class King extends Piece {
 						colBetween += direction[1];
 
 						if (rowBetween == piece.row) {
+							System.out.println("checked by queen");
 							return true;
 						}
 
@@ -224,6 +225,7 @@ public class King extends Piece {
 						colBetween += direction[1];
 
 						if (rowBetween == piece.row) {
+							System.out.println("checked by queen");
 							return true;
 						}
 

@@ -56,7 +56,7 @@ public class RegularMove extends Move {
 
                 //Find the king in the simulation board
                 ArrayList<Piece> friendlyPieces;
-                if (thisPieceColor== ChessColor.white) {
+                if (thisPieceColor == ChessColor.white) {
                         friendlyPieces = simulationBoard.whitePieces;
                 } else {
                         friendlyPieces = simulationBoard.blackPieces;
