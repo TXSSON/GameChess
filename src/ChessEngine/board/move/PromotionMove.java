@@ -39,14 +39,6 @@ public class PromotionMove extends Move {
                         }
                 }
 
-                //Remove the pawn on tileFrom
-                tileFrom.clearTile();
-                if (tileFrom.getPiece().color == ChessColor.white) {
-                        board.whitePieces.remove(tileFrom.getPiece());
-                } else {
-                        board.blackPieces.remove(tileFrom.getPiece());
-                }
-
                 //Put the new piece on tileTo
                 Piece newPiece;
                 switch (piecePromoteTo) {
@@ -63,12 +55,21 @@ public class PromotionMove extends Move {
                                 newPiece = new Queen(tileTo.row, tileTo.col, tileFrom.getPiece().color);
                                 break;
                 }
+
                 tileTo.setPiece(newPiece);
                 if (newPiece.color == ChessColor.white) {
                         board.whitePieces.add(newPiece);
                 } else {
                         board.blackPieces.add(newPiece);
                 }
+
+                //Remove the pawn on tileFrom
+                if (tileFrom.getPiece().color == ChessColor.white) {
+                        board.whitePieces.remove(tileFrom.getPiece());
+                } else {
+                        board.blackPieces.remove(tileFrom.getPiece());
+                }
+                tileFrom.clearTile();
         }
 
         @Override

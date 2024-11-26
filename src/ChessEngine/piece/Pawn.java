@@ -138,15 +138,7 @@ public class Pawn extends Piece {
                         }
                 }
 
-                for (Move move : legalMoves) {
-                        if (move instanceof EnPassantMove && ((EnPassantMove)move).isInCheckedAfterMove(board)) {
-                                legalMoves.remove(move);
-                        } else if (move instanceof PromotionMove && ((PromotionMove)move).isInCheckedAfterMove(board)) {
-                                legalMoves.remove(move);
-                        } else if (move.isInCheckedAfterMove(board)) {
-                                legalMoves.remove(move);
-                        }
-                }
+                legalMoves.removeIf(move -> move.isInCheckedAfterMove(board));
 
                return legalMoves;
         }
