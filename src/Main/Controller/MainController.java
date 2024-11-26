@@ -28,16 +28,16 @@ public class MainController {
     
     private GameFrame gameFrame;
     public GameOptionsFrame gameOptionsFrame;
-    public PromotionFrame promotionFrame;
+    public static PromotionFrame promotionFrame;
     
     public PnlHome pnlHome;
     public PnlGameOptions pnlGameOptions;
     public PnlSideBar pnlSideBar;
     public PnlTutorial pnlTutorial;
-    public PnlPromote pnlPromotion;
+    public static PnlPromote pnlPromotion;
     
 	public ColorOption selectedColor;
-	public PieceOption selectedPiece;
+	public static PieceOption selectedPiece;
 	public String playTime;
 	public PnlBoardChess pnlBoardChess;
 	
@@ -76,7 +76,7 @@ public class MainController {
     	gameFrame.setVisible(true);
     }
     
-    public void initPromotionFrame() {
+    public static void  initPromotionFrame() {
     	promotionFrame = new PromotionFrame();
     	promotionFrame.setPnlPromotion(pnlPromotion);
     	promotionFrame.setVisible(true);
@@ -119,7 +119,6 @@ public class MainController {
             Piece piece = tile.getPiece(); // Lấy quân cờ ở ô đó
             if (piece != null) {
                 String path = piece.getImagePath();
-                System.out.println("Adding piece at (" + row + ", " + col + "): " + path);
                 try {
                 pnlBoardChess.addPieceToPanel(path, row, col); // Thêm quân cờ vào panel
                 }
@@ -127,7 +126,6 @@ public class MainController {
                 	ex.printStackTrace();
                 }
                 } else {
-                System.out.println("No piece at (" + row + ", " + col + ")");
             }
         } catch (Exception ex) {
             ex.printStackTrace(); // Ghi lại ngoại lệ

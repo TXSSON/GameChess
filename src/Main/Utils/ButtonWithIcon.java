@@ -8,6 +8,8 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import Main.Frame.GameFrame;
+
 public class ButtonWithIcon extends JButton {
 	
 	private String iconPath;

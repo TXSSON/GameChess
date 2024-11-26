@@ -29,6 +29,7 @@ public class Queen extends Piece {
         @Override public ArrayList<Move> calculateLegalMoves(Gameplay game) {
                 Board board = game.board;
                 ArrayList<Move> legalMoves = new ArrayList<>();
+                System.out.println("queen position: " + this.row + this.col);
                 Tile tileFrom = board.tiles[this.row][this.col];
                 final int[][] possibleDirections = {{1, 0}, {-1, 0}, {0, 1}, {0, -1},
                                                         {1, 1}, {-1, 1}, {1, -1}, {-1, -1}};

@@ -13,10 +13,10 @@ import Main.Utils.ButtonWithIcon;
 public class PnlPromote extends JPanel {
 
 	private volatile static PnlPromote pnlPromotionInstance;
-	public volatile JButton btnRook = new ButtonWithIcon("src/Main/Resources/piece-image2/wr.png", GameFrame.height / 4, GameFrame.height / 8);
-	public volatile JButton btnKnight = new ButtonWithIcon("src/Main/Resources/piece-image2/wn.png", GameFrame.height / 4, GameFrame.height / 8);
-	public volatile JButton btnBishop = new ButtonWithIcon("src/Main/Resources/piece-image2/wb.png", GameFrame.height / 4, GameFrame.height / 8);
-	public volatile JButton btnQueen = new ButtonWithIcon("src/Main/Resources/piece-image2/wq.png", GameFrame.height / 4, GameFrame.height / 8);
+	public volatile JButton btnRook = new ButtonWithIcon("src/Main/Resources/piece-image2/wr.png", GameFrame.height / 8, GameFrame.height / 8);
+	public volatile JButton btnKnight = new ButtonWithIcon("src/Main/Resources/piece-image2/wn.png", GameFrame.height / 8, GameFrame.height / 8);
+	public volatile JButton btnBishop = new ButtonWithIcon("src/Main/Resources/piece-image2/wb.png", GameFrame.height / 8, GameFrame.height / 8);
+	public volatile JButton btnQueen = new ButtonWithIcon("src/Main/Resources/piece-image2/wq.png", GameFrame.height / 8, GameFrame.height / 8);
 	
 	private PnlPromote() {
 		this.setLayout(new GridLayout(1, 4));  // 1 hàng, 4 cột

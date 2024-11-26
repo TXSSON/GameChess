@@ -16,10 +16,17 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
+import ChessEngine.ChessColor;
 import ChessEngine.board.Tile;
 import ChessEngine.board.move.Move;
+import ChessEngine.piece.King;
+import ChessEngine.piece.Pawn;
 import ChessEngine.piece.Piece;
+import ChessEngine.piece.Rook;
+import Main.Controller.MainController;
+import Main.Controller.PromoteController;
 import Main.Frame.GameFrame;
 import Main.Utils.ColorOption;
 
@@ -27,7 +34,10 @@ public class PnlBoardChess extends JPanel {
 	private JPanel[][] squares = new JPanel[8][8]; // Lưu trữ các ô của bàn cờ
 	private Color colorselectedTile = Color.decode("#F1F280");
 	private List<Move> availableMoves;
-
+	private String pathImage = "";
+	Thread promotionThread;
+	public static volatile boolean isPromoted = false;
+	
 	public PnlBoardChess() {
 	}
 
@@ -35,7 +45,7 @@ public class PnlBoardChess extends JPanel {
 		this.setLayout(new GridLayout(8, 8)); // Bàn cờ 8x8
 		this.setPreferredSize(new Dimension(GameFrame.width * 3 / 4, GameFrame.height)); // Chia diện tích hợp lý
 
-		boolean isWhite = true; // Bắt đầu từ ô trắng
+		boolean isWhite = false; // Bắt đầu từ ô trắng
 
 		Color color1 = Color.decode(selectedColor.getHexCode().split(",")[0].trim()); // Màu 1
 		Color color2 = Color.decode(selectedColor.getHexCode().split(",")[1].trim()); // Màu 2
@@ -57,12 +67,88 @@ public class PnlBoardChess extends JPanel {
 			isWhite = !isWhite; // Chuyển đổi màu khi sang hàng tiếp theo
 		}
 	}
-
-	public void updateUIAfterMove(Tile selectedTile, Tile targetTile,Piece selectedPiece) {
+	public void updateUIAfterRegularMove(Tile selectedTile, Tile targetTile,Piece selectedPiece) {
 		deleteHighlightTiles();
-		deletePieceToPanel(selectedTile);
+		deletePieceToPanel(selectedTile.row, selectedTile.col);
 		addPieceToPanel(selectedPiece.getImagePath(), targetTile.row, targetTile.col);
 	}
+
+	public void updateUIAfterCastlingMove(Tile selectedTile, Tile targetTile,Piece selectedPiece) {
+		updateUIAfterRegularMove(selectedTile, targetTile, selectedPiece);
+			if (selectedPiece.color.equals(ChessColor.white)) {
+				pathImage = "src/Main/Resources/piece-image2/wr.png";
+			} else {
+				pathImage = "src/Main/Resources/piece-image2/br.png";
+			}
+			// nhập thành gần
+			if (targetTile.col == 6) {
+				deletePieceToPanel(targetTile.row,7);
+				addPieceToPanel(pathImage, targetTile.row, 5);
+			} else {
+//				nhập thành xa
+				deletePieceToPanel(targetTile.row, 0);
+				addPieceToPanel(pathImage, targetTile.row, 3);
+			} 
+	} 
+	
+	public void updateUIAfterEnPassantMove(Tile selectedTile, Tile targetTile,Piece selectedPiece) {
+		updateUIAfterRegularMove(selectedTile, targetTile, selectedPiece);
+		if(selectedTile.row == 4) {
+			deletePieceToPanel(4, targetTile.col );
+		} else {
+			deletePieceToPanel(3, targetTile.col );
+		}
+	}
+	
+	public void updateUIAfterPromotionMove(Tile selectedTile, Tile targetTile, Piece selectedPiece) {
+	    updateUIAfterRegularMove(selectedTile, targetTile, selectedPiece);
+
+	    // Hiển thị giao diện Promotion trong EDT
+	    SwingUtilities.invokeLater(() -> {
+	        MainController.initPromotionFrame();
+	    });
+
+	    // Khởi chạy luồng phụ để chờ lựa chọn phong quân
+	    new Thread(() -> {
+	        synchronized (this) {
+	            while (!isPromoted) {
+	                try {
+	                    Thread.sleep(100); // Đợi cho đến khi người chơi chọn quân
+	                } catch (InterruptedException e) {
+	                    e.printStackTrace();
+	                }
+	            }
+
+	            // Sau khi chọn quân, cập nhật giao diện
+	            SwingUtilities.invokeLater(() -> {
+	                updatePromotionPiece(targetTile, selectedPiece.color);
+	            });
+	        }
+	    }).start();
+	}
+
+	// Cập nhật giao diện sau khi phong quân
+	private void updatePromotionPiece(Tile targetTile, ChessColor color) {
+	    switch (PromoteController.pieceName) {
+	        case "Bishop":
+	            pathImage = color.equals(ChessColor.white) ? "src/Main/Resources/piece-image2/wb.png" : "src/Main/Resources/piece-image2/bb.png";
+	            break;
+	        case "Knight":
+	            pathImage = color.equals(ChessColor.white) ? "src/Main/Resources/piece-image2/wn.png" : "src/Main/Resources/piece-image2/bn.png";
+	            break;
+	        case "Rook":
+	            pathImage = color.equals(ChessColor.white) ? "src/Main/Resources/piece-image2/wr.png" : "src/Main/Resources/piece-image2/br.png";
+	            break;
+	        default: // Queen
+	            pathImage = color.equals(ChessColor.white) ? "src/Main/Resources/piece-image2/wq.png" : "src/Main/Resources/piece-image2/bq.png";
+	            break;
+	    }
+
+	    // Cập nhật lại giao diện bàn cờ
+	    deletePieceToPanel(targetTile.row, targetTile.col);
+	    addPieceToPanel(pathImage, targetTile.row, targetTile.col);
+	}
+
 	
 	public void addPieceToPanel(String imagePath, int row, int col) {
 		try {
@@ -75,6 +161,8 @@ public class PnlBoardChess extends JPanel {
 			JLabel pieceLabel = new JLabel(icon);
 			pieceLabel.setBackground(Color.BLACK);
 
+			//TODO
+			col = 7 - col;
 			squares[row][col].removeAll();
 
 			// Thêm JLabel vào ô
@@ -86,15 +174,15 @@ public class PnlBoardChess extends JPanel {
 		}
 	}
 
-	public void deletePieceToPanel(Tile tile) {
-		squares[tile.row][tile.col].removeAll();
+	public void deletePieceToPanel(int row, int col) {
+		squares[row][7 - col].removeAll();
 	}
 
 	public void addHighlightTiles(List<Move> availableMoves) {
 		for (Move move : availableMoves) {
 			int row = move.tileTo.row;
 			int col = move.tileTo.col;
-			((PnlTile) squares[row][col]).setHighlight(true); // Thêm highlight
+			((PnlTile) squares[row][7 - col]).setHighlight(true); // Thêm highlight
 		}
 	}
 	

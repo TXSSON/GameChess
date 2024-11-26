@@ -35,7 +35,7 @@ public class King extends Piece {
 	@Override
 	public ArrayList<Move> calculateLegalMoves(Gameplay game) {
 		Board board = game.board;
-
+		System.out.println("King position: " + this.row + this.col);
 		ArrayList<Move> legalMoves = new ArrayList<>();
 		final Tile tileFrom = board.tiles[this.row][this.col];
 		Tile tiles[][] = board.tiles;
@@ -215,14 +215,15 @@ public class King extends Piece {
 				}
 
 				// By diagonal
-				if (deltaRow == deltaCol || deltaCol == -deltaCol) {
+				if (deltaRow == deltaCol || deltaRow == -deltaCol) {
+					// Check if there is a piece between them
 					int absDelta = (deltaRow == 0) ? abs(deltaCol) : abs(deltaRow);
 					int[] direction = { deltaRow / absDelta, deltaCol / absDelta };
+
 					int rowBetween = this.row, colBetween = this.col;
 					while (true) {
 						rowBetween += direction[0];
 						colBetween += direction[1];
-
 						if (rowBetween == piece.row) {
 							return true;
 						}

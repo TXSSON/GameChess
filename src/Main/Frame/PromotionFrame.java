@@ -11,7 +11,7 @@ public class PromotionFrame extends JFrame{
 	
 	public PromotionFrame() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Đóng cửa sổ
-		this.setSize(GameFrame.height / 2, GameFrame.height / 8); // Khởi tạo kích thước
+		this.setSize(600, 150); // Khởi tạo kích thước
 		this.setResizable(false); // Cấm điều chỉnh kích thước của cửa sổ
 		this.setTitle("Promote"); // Đặt tên cho cửa sổ
 		this.setLayout(new BorderLayout());

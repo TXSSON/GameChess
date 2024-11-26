@@ -2,9 +2,13 @@ package Main.Controller;
 
 import ChessEngine.ChessColor;
 import ChessEngine.board.Tile;
+import ChessEngine.board.move.CastlingMove;
+import ChessEngine.board.move.EnPassantMove;
 import ChessEngine.board.move.Move;
+import ChessEngine.board.move.PromotionMove;
 import ChessEngine.piece.Piece;
 import Main.Pnl.PnlBoardChess;
+import Main.Utils.PlayerSound;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
@@ -21,6 +25,8 @@ public class BoardChessController {
 	public Piece selectedPiece;
 	private Tile selectedTile;
 	private List<Move> availableMoves;
+	private PlayerSound playerSound = PlayerSound.getInstacePlaySound();
+	private String fileSoundPathMove = "src/Main/Resources/sound/move.mp3";
 
 	public BoardChessController(PnlBoardChess pnlBoardChess, MainController mainController) {
 		this.pnlBoardChess = pnlBoardChess;
@@ -42,7 +48,8 @@ public class BoardChessController {
 		int row = y / mainController.gameplay.board.SQUARE_SIZE;
 		int col = x / mainController.gameplay.board.SQUARE_SIZE;
 
-		Tile clickedTile = mainController.gameplay.board.tiles[row][col];
+		//TODO
+		Tile clickedTile = mainController.gameplay.board.tiles[row][7 - col];
 
 		if (selectedPiece == null
 				|| (clickedTile.getPiece() != null && clickedTile.getPiece().color.equals(selectedPiece.color))) {
@@ -78,12 +85,21 @@ public class BoardChessController {
 		if (moveValidator.isValidMove(selectedPiece, targetTile, availableMoves)) {
 			for (Move move : availableMoves) {
 				if (move.tileTo.equals(targetTile)) {
-
 					SwingUtilities.invokeLater(() -> {
-						pnlBoardChess.updateUIAfterMove(selectedTile, targetTile, selectedPiece);
+						
+						if (move instanceof CastlingMove) {
+							pnlBoardChess.updateUIAfterCastlingMove(selectedTile, targetTile, selectedPiece);
+						} else if (move instanceof EnPassantMove) {
+							pnlBoardChess.updateUIAfterEnPassantMove(selectedTile, targetTile, selectedPiece);
+						} else if (move instanceof PromotionMove ) {
+							pnlBoardChess.updateUIAfterPromotionMove(selectedTile, targetTile, selectedPiece);
+							((PromotionMove) move).setPieceToPromote(PromoteController.pieceName);
+						} else {
+							pnlBoardChess.updateUIAfterRegularMove(selectedTile, targetTile, selectedPiece);	
+						}
+						playerSound.useSound(fileSoundPathMove);
 						gameLogicHandler.executeMove(move, mainController);
 						resetSelection();
-
 						if (gameLogicHandler.isGameOver(mainController)) {
 							System.out.println("Trò chơi kết thúc.");
 							return;

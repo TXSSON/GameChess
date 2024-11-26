@@ -12,7 +12,6 @@ import Main.Utils.PlayerSound;
 
 public class GameLogicHandler {
 	private boolean isTurnWhite = true;
-	private final Stack<Move> moveHistory = new Stack<>();
 	private  King opponentKing;
 	ChessEnding ending;
 	public  static Thread promotionThread;
