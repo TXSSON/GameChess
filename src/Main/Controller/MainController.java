@@ -2,6 +2,7 @@ package Main.Controller;
 
 import java.awt.BorderLayout;
 
+import ChessEngine.ChessColor;
 import ChessEngine.board.Board;
 import ChessEngine.board.Gameplay;
 import ChessEngine.board.Tile;

@@ -6,6 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="f4f0e9d8-a2e0-4470-9e10-93b2116bbcd0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/board/move/PromotionMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/board/move/PromotionMove.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/BoardChessController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/BoardChessController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/GameLogicHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/GameLogicHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlBoardChess.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlBoardChess.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlGameOptions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlGameOptions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/bgroption.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/bgroption.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/demo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Pnl/PnlGameOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Pnl/PnlGameOptions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Resources/Icons/bgroption.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Resources/Icons/bgroption.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Resources/Icons/demo.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +142,7 @@
       <workItem from="1732494941609" duration="202000" />
       <workItem from="1732495496282" duration="503000" />
       <workItem from="1732618048789" duration="7788000" />
-      <workItem from="1732631624258" duration="456000" />
+      <workItem from="1732631624258" duration="2729000" />
     </task>
     <servers />
   </component>

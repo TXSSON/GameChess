@@ -104,9 +104,11 @@ public class PnlBoardChess extends JPanel {
 	
 	public void updateUIAfterPromotionMove(Tile selectedTile, Tile targetTile, Piece selectedPiece, MainController mainController, Move move, GameLogicHandler gameLogicHandler) {
 	    updateUIAfterRegularMove(selectedTile, targetTile, selectedPiece);
-
+	    
+	    
 	    // Hiển thị giao diện Promotion trong EDT
 	    SwingUtilities.invokeLater(() -> {
+	    	MainController.pnlPromotion.setBtnPiece(selectedPiece.color);
 	        MainController.initPromotionFrame();
 	    });
 
@@ -142,6 +144,7 @@ public class PnlBoardChess extends JPanel {
 	     	    addPieceToPanel(pathImage, targetTile.row, targetTile.col);
 	     		PromotionMove.setPieceToPromote(PromoteController.pieceName);
 	     		gameLogicHandler.executeMove(move, mainController);
+	     		isPromoted = false;
 	            });
 	        }
 	    }).start();
@@ -158,7 +161,7 @@ public class PnlBoardChess extends JPanel {
 
 			JLabel pieceLabel = new JLabel(icon);
 			pieceLabel.setBackground(Color.BLACK);
-
+			
 			//TODO
 			col = 7 - col;
 			squares[row][col].removeAll();

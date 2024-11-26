@@ -23,7 +23,7 @@ public class PnlGameOptions extends JPanel {
 	private PnlGameOptions() {
 		Font bungeeShadeFont = null;
 		try {
-			File fontFile = new File("src/Main/Resources/font/HoltwoodOneSC-Regular.ttf"); // Đường dẫn đến font
+			File fontFile = new File("src/Main/Resources/font/BungeeSpice-Regular.ttf"); // Đường dẫn đến font
 			bungeeShadeFont = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(25f);
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			ge.registerFont(bungeeShadeFont); // Đăng ký font vào hệ thống
@@ -33,7 +33,7 @@ public class PnlGameOptions extends JPanel {
 		}
 
 		// Sử dụng BackgroundPanel làm nền
-		BackgroundPanel backgroundPanel = new BackgroundPanel("src/Main/Resources/Icons/demo.jpg");
+		BackgroundPanel backgroundPanel = new BackgroundPanel("src/Main/Resources/Icons/bgroption.jpg");
 		backgroundPanel.setLayout(new BorderLayout());
 
 		// Panel chứa các thành phần UI
@@ -47,7 +47,7 @@ public class PnlGameOptions extends JPanel {
 		JLabel lblBoardColor = new JLabel("BOARD COLOR:");
 		lblBoardColor.setFont(labelFont);
 		lblBoardColor.setHorizontalAlignment(SwingConstants.CENTER);
-		lblBoardColor.setForeground(Color.ORANGE);
+		lblBoardColor.setForeground(Color.BLACK);
 		lblBoardColor.setFont(bungeeShadeFont);
 		cbBoardColor = new JComboBox<>(new ColorOption[] {
 				new ColorOption("Xanh lá cây", "#739552,#EBECD0"),
@@ -60,7 +60,7 @@ public class PnlGameOptions extends JPanel {
 		JLabel lblChoosePiece = new JLabel("CHOOSE PIECE:");
 		lblChoosePiece.setFont(labelFont);
 		lblChoosePiece.setHorizontalAlignment(SwingConstants.CENTER);
-		lblChoosePiece.setForeground(Color.ORANGE);
+		lblChoosePiece.setForeground(Color.BLACK);
 		lblChoosePiece.setFont(bungeeShadeFont);
 		cbChoosePiece = new JComboBox<>(new PieceOption[] {
 				new PieceOption("Black", ChessColor.black)
@@ -71,7 +71,7 @@ public class PnlGameOptions extends JPanel {
 		JLabel lblPlayTime = new JLabel("PLAY TIME:");
 		lblPlayTime.setFont(labelFont);
 		lblPlayTime.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPlayTime.setForeground(Color.ORANGE);
+		lblPlayTime.setForeground(Color.BLACK);
 		lblPlayTime.setFont(bungeeShadeFont);
 		txtPlayTime = new JTextField();
 		txtPlayTime.setFont(inputFont);
