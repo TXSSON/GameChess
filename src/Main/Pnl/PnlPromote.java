@@ -13,7 +13,7 @@ import Main.Utils.ButtonWithIcon;
 public class PnlPromote extends JPanel {
 
 	private volatile static PnlPromote pnlPromotionInstance;
-	public volatile JButton btnRook = new ButtonWithIcon("src/Main/Resources/piece-image2/wr.png", GameFrame.height / 8, GameFrame.height / 8);
+	public volatile JButton btnRook = new ButtonWithIcon("src/Main/Resources/piece-image2/br.png", GameFrame.height / 8, GameFrame.height / 8);
 	public volatile JButton btnKnight = new ButtonWithIcon("src/Main/Resources/piece-image2/wn.png", GameFrame.height / 8, GameFrame.height / 8);
 	public volatile JButton btnBishop = new ButtonWithIcon("src/Main/Resources/piece-image2/wb.png", GameFrame.height / 8, GameFrame.height / 8);
 	public volatile JButton btnQueen = new ButtonWithIcon("src/Main/Resources/piece-image2/wq.png", GameFrame.height / 8, GameFrame.height / 8);
@@ -55,6 +55,9 @@ public class PnlPromote extends JPanel {
 			((ButtonWithIcon) btnKnight).setIconPath("src/Main/Resources/piece-image2/bb.png");
 			((ButtonWithIcon) btnQueen).setIconPath("src/Main/Resources/piece-image2/bq.png");
 		}	
+		this.revalidate();
+		this.repaint();
+		
 	}
 	
 
