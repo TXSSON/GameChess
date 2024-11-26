@@ -26,34 +26,23 @@ public class Pawn extends Piece {
                 return new Pawn(this);
         }
 
-        private boolean canBeEnPassant(Stack<Board> gameStates) {
-                final Board presentBoard = new Board(gameStates.pop());
-                final Board previousBoard = new Board(gameStates.pop());
+        private boolean canBeEnPassant(Move prevMove) {
+                Piece pieceMoved = prevMove.tileTo.getPiece();
 
-                if (color == ChessColor.white && row == 3) {
-                        if (presentBoard.tiles[1][this.col].isOccupied() == false) {
-                                if (previousBoard.tiles[1][this.col].isOccupied() && previousBoard.tiles[1][this.col].getPiece() instanceof Pawn) {
-                                        return true;
-                                }
+                if (pieceMoved instanceof Pawn) {
+                        if (pieceMoved.color == ChessColor.white && prevMove.tileFrom.row == 1 && prevMove.tileTo.row == 3) {
+                                return true;
+                        } else if (pieceMoved.color == ChessColor.black && prevMove.tileFrom.row == 6 && prevMove.tileTo.row == 4) {
+                                return true;
                         }
                 }
 
-                if (color == ChessColor.black && row == 4) {
-                        if (presentBoard.tiles[6][this.col].isOccupied() == false) {
-                                if (previousBoard.tiles[6][this.col].isOccupied() && previousBoard.tiles[6][this.col].getPiece() instanceof Pawn) {
-                                        return true;
-                                }
-                        }
-                }
-
-                gameStates.push(previousBoard);
-                gameStates.push(presentBoard);
                 return false;
         }
 
         @Override public ArrayList<Move> calculateLegalMoves(Gameplay game) {
                 Board board = game.board;
-                Stack<Board> gameStates = game.gameStates;
+                Move prevMove = game.getPrevMove();
                 ArrayList<Move> legalMoves = new ArrayList<>();
                 final Tile tileFrom = board.tiles[this.row][this.col];
                 
@@ -63,7 +52,7 @@ public class Pawn extends Piece {
                                 if (row == 6) {
                                         legalMoves.add(new PromotionMove(tileFrom, board.tiles[row+1][col]));
                                 } else {
-                                        legalMoves.add(new Move(tileFrom, board.tiles[row+1][col]));
+                                        legalMoves.add(new RegularMove(tileFrom, board.tiles[row+1][col]));
                                 }
                         }
 
@@ -71,7 +60,7 @@ public class Pawn extends Piece {
                                 if (row == 6) {
                                         legalMoves.add(new PromotionMove(tileFrom, board.tiles[row+1][col+1]));
                                 } else {
-                                        legalMoves.add(new Move(tileFrom, board.tiles[row+1][col+1]));
+                                        legalMoves.add(new RegularMove(tileFrom, board.tiles[row+1][col+1]));
                                 }
                         }
 
@@ -79,25 +68,25 @@ public class Pawn extends Piece {
                                 if (row == 6) {
                                         legalMoves.add(new PromotionMove(tileFrom, board.tiles[row+1][col-1]));
                                 } else {
-                                        legalMoves.add(new Move(tileFrom, board.tiles[row+1][col-1]));
+                                        legalMoves.add(new RegularMove(tileFrom, board.tiles[row+1][col-1]));
                                 }
                         }
 
                         //First move can go 2 squares
                         if (row == 1 && board.tiles[row+1][col].isOccupied() == false && board.tiles[row+2][col].isOccupied() == false) {
-                                legalMoves.add(new Move(tileFrom, board.tiles[row+2][col]));
+                                legalMoves.add(new RegularMove(tileFrom, board.tiles[row+2][col]));
                         }
 
                         //En passant
                         if (row == 4) {
                                 if (col < 7 && board.tiles[4][col+1].isOccupied() && board.tiles[4][col+1].getPiece() instanceof Pawn) {
-                                        if (((Pawn)board.tiles[4][col+1].getPiece()).canBeEnPassant(gameStates)) {
+                                        if (((Pawn)board.tiles[4][col+1].getPiece()).canBeEnPassant(prevMove)) {
                                                 legalMoves.add(new EnPassantMove(tileFrom, board.tiles[5][col+1]));
                                         }
                                 }
 
                                 if (col > 0 && board.tiles[4][col-1].isOccupied() && board.tiles[4][col-1].getPiece() instanceof Pawn) {
-                                        if (((Pawn)board.tiles[4][col-1].getPiece()).canBeEnPassant(gameStates)) {
+                                        if (((Pawn)board.tiles[4][col-1].getPiece()).canBeEnPassant(prevMove)) {
                                                 legalMoves.add(new EnPassantMove(tileFrom, board.tiles[5][col-1]));
                                         }
                                 }
@@ -108,7 +97,7 @@ public class Pawn extends Piece {
                                 if (row == 1) {
                                         legalMoves.add(new PromotionMove(tileFrom, board.tiles[row-1][col]));
                                 } else {
-                                        legalMoves.add(new Move(tileFrom, board.tiles[row-1][col]));
+                                        legalMoves.add(new RegularMove(tileFrom, board.tiles[row-1][col]));
                                 }
                         }
 
@@ -116,7 +105,7 @@ public class Pawn extends Piece {
                                 if (row == 1) {
                                         legalMoves.add(new PromotionMove(tileFrom, board.tiles[row-1][col+1]));
                                 } else {
-                                        legalMoves.add(new Move(tileFrom, board.tiles[row-1][col+1]));
+                                        legalMoves.add(new RegularMove(tileFrom, board.tiles[row-1][col+1]));
                                 }
                         }
 
@@ -124,25 +113,25 @@ public class Pawn extends Piece {
                                 if (row == 1) {
                                         legalMoves.add(new PromotionMove(tileFrom, board.tiles[row-1][col-1]));
                                 } else {
-                                        legalMoves.add(new Move(tileFrom, board.tiles[row-1][col-1]));
+                                        legalMoves.add(new RegularMove(tileFrom, board.tiles[row-1][col-1]));
                                 }
                         }
 
                         //First move can go 2 squares
                         if (row == 6 && board.tiles[row-1][col].isOccupied() == false && board.tiles[row-2][col].isOccupied() == false) {
-                                legalMoves.add(new Move(tileFrom, board.tiles[row-2][col]));
+                                legalMoves.add(new RegularMove(tileFrom, board.tiles[row-2][col]));
                         }
 
                         //En passant
                         if (row == 3) {
                                 if (col < 7 && board.tiles[3][col+1].isOccupied() && board.tiles[3][col+1].getPiece() instanceof Pawn) {
-                                        if (((Pawn)board.tiles[3][col+1].getPiece()).canBeEnPassant(gameStates)) {
+                                        if (((Pawn)board.tiles[3][col+1].getPiece()).canBeEnPassant(prevMove)) {
                                                 legalMoves.add(new EnPassantMove(tileFrom, board.tiles[2][col+1]));
                                         }
                                 }
 
                                 if (col > 0 && board.tiles[3][col-1].isOccupied() && board.tiles[3][col-1].getPiece() instanceof Pawn) {
-                                        if (((Pawn)board.tiles[3][col-1].getPiece()).canBeEnPassant(gameStates)) {
+                                        if (((Pawn)board.tiles[3][col-1].getPiece()).canBeEnPassant(prevMove)) {
                                                 legalMoves.add(new EnPassantMove(tileFrom, board.tiles[2][col-1]));
                                         }
                                 }

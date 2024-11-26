@@ -14,12 +14,22 @@ public class PromotionMove extends Move {
                 this.piecePromoteTo = "Queen"; //Default auto queen
         }
 
-        public  void setPieceToPromote(String piece) {
+        public PromotionMove(PromotionMove move) {
+                super(move);
+                this.piecePromoteTo = move.piecePromoteTo;
+        }
+
+        @Override
+        public PromotionMove clone() {
+                return new PromotionMove(this);
+        }
+
+        public void setPieceToPromote(String piece) {
                 piecePromoteTo = piece;
         }
 
         @Override
-        protected void make(Board board) {
+        public void make(Board board) {
                 //Remove the piece on tileTo
                 if (tileTo.isOccupied()) {
                         if (tileTo.getPiece().color == ChessColor.white) {

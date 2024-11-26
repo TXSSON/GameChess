@@ -46,7 +46,7 @@ public class Knight extends Piece {
                                 Tile tileTo = board.tiles[rowTo][colTo];
                                 if (tileTo.isOccupied()) {
                                         if (tileTo.getPiece().color != this.color) {
-                                                Move newMove = new Move(tileFrom, tileTo);
+                                                RegularMove newMove = new RegularMove(tileFrom, tileTo);
                                                 if (newMove.isInCheckedAfterMove(board) == false) {
                                                         legalMoves.add(newMove);
                                                 }
@@ -54,7 +54,7 @@ public class Knight extends Piece {
                                         continue;
                                 }
 
-                                Move newMove = new Move(tileFrom, tileTo);
+                                RegularMove newMove = new RegularMove(tileFrom, tileTo);
                                 if (newMove.isInCheckedAfterMove(board) == false) {
                                         legalMoves.add(newMove);
                                 }

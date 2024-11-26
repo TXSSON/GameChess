@@ -1,15 +1,22 @@
 package ChessEngine.board;
 
-import java.util.*;
-
 import ChessEngine.ChessColor;
+import ChessEngine.board.move.*;
 
 public class Gameplay {
         public Board board;
-        public Stack<Board> gameStates = new Stack<>();
+        private Move prevMove;
 
-        //TODO: Implement gameplay
         public Gameplay(int SQUARE_SIZE, ChessColor side) {
                 this.board = new Board(SQUARE_SIZE, side);
+        }
+
+        public Move getPrevMove() {
+                return prevMove;
+        }
+
+        public void movePiece(Move move) {
+                move.make(board);
+                prevMove = move.clone();
         }
 }
