@@ -2,7 +2,10 @@ package Main.Controller;
 
 import ChessEngine.ChessColor;
 import ChessEngine.board.Tile;
+import ChessEngine.board.move.CastlingMove;
+import ChessEngine.board.move.EnPassantMove;
 import ChessEngine.board.move.Move;
+import ChessEngine.board.move.PromotionMove;
 import ChessEngine.piece.Piece;
 import Main.Pnl.PnlBoardChess;
 import Main.Utils.PlayerSound;
@@ -82,9 +85,17 @@ public class BoardChessController {
 		if (moveValidator.isValidMove(selectedPiece, targetTile, availableMoves)) {
 			for (Move move : availableMoves) {
 				if (move.tileTo.equals(targetTile)) {
-
 					SwingUtilities.invokeLater(() -> {
-						pnlBoardChess.updateUIAfterMove(selectedTile, targetTile, selectedPiece);
+						
+						if (move instanceof CastlingMove) {
+							pnlBoardChess.updateUIAfterCastlingMove(selectedTile, targetTile, selectedPiece);
+						} else if (move instanceof EnPassantMove) {
+							pnlBoardChess.updateUIAfterEnPassantMove(selectedTile, targetTile, selectedPiece);
+						} else if (move instanceof PromotionMove ) {
+							pnlBoardChess.updateUIAfterPromotionMove(selectedTile, targetTile, selectedPiece);
+						} else {
+							pnlBoardChess.updateUIAfterRegularMove(selectedTile, targetTile, selectedPiece);
+						}
 						playerSound.useSound(fileSoundPathMove);
 						gameLogicHandler.executeMove(move, mainController);
 						resetSelection();

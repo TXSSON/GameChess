@@ -21,6 +21,7 @@ import ChessEngine.ChessColor;
 import ChessEngine.board.Tile;
 import ChessEngine.board.move.Move;
 import ChessEngine.piece.King;
+import ChessEngine.piece.Pawn;
 import ChessEngine.piece.Piece;
 import ChessEngine.piece.Rook;
 import Main.Frame.GameFrame;
@@ -30,7 +31,7 @@ public class PnlBoardChess extends JPanel {
 	private JPanel[][] squares = new JPanel[8][8]; // Lưu trữ các ô của bàn cờ
 	private Color colorselectedTile = Color.decode("#F1F280");
 	private List<Move> availableMoves;
-	String pathRookImage = "";
+	String pathImage = "";
 	public PnlBoardChess() {
 	}
 
@@ -60,25 +61,39 @@ public class PnlBoardChess extends JPanel {
 			isWhite = !isWhite; // Chuyển đổi màu khi sang hàng tiếp theo
 		}
 	}
-
-	public void updateUIAfterMove(Tile selectedTile, Tile targetTile,Piece selectedPiece) {
+	public void updateUIAfterRegularMove(Tile selectedTile, Tile targetTile,Piece selectedPiece) {
 		deleteHighlightTiles();
 		deletePieceToPanel(selectedTile.row, selectedTile.col);
 		addPieceToPanel(selectedPiece.getImagePath(), targetTile.row, targetTile.col);
-		if (selectedPiece instanceof King && Math.abs(targetTile.col - selectedTile.col) >= 2) {
+	}
+
+	public void updateUIAfterCastlingMove(Tile selectedTile, Tile targetTile,Piece selectedPiece) {
+		updateUIAfterRegularMove(selectedTile, targetTile, selectedPiece);
 			if (selectedPiece.color.equals(ChessColor.white)) {
-				pathRookImage = "src/Main/Resources/piece-image2/wr.png";
+				pathImage = "src/Main/Resources/piece-image2/wr.png";
 			} else {
-				pathRookImage = "src/Main/Resources/piece-image2/br.png";
+				pathImage = "src/Main/Resources/piece-image2/br.png";
 			}
 			if (targetTile.col == 6) {
 				deletePieceToPanel(targetTile.row,7);
-				addPieceToPanel(pathRookImage, targetTile.row, 5);
+				addPieceToPanel(pathImage, targetTile.row, 5);
 			} else {
 				deletePieceToPanel(targetTile.row, 0);
-				addPieceToPanel(pathRookImage, targetTile.row, 3);
-			}
+				addPieceToPanel(pathImage, targetTile.row, 3);
+			} 
+	} 
+	
+	public void updateUIAfterEnPassantMove(Tile selectedTile, Tile targetTile,Piece selectedPiece) {
+		updateUIAfterRegularMove(selectedTile, targetTile, selectedPiece);
+		if(selectedTile.row == 4) {
+			deletePieceToPanel(4, targetTile.col );
+		} else {
+			deletePieceToPanel(3, targetTile.col );
 		}
+	}
+	public void updateUIAfterPromotionMove(Tile selectedTile, Tile targetTile,Piece selectedPiece) {
+		updateUIAfterRegularMove(selectedTile, targetTile, selectedPiece);
+
 	}
 	
 	public void addPieceToPanel(String imagePath, int row, int col) {
