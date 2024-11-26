@@ -58,7 +58,6 @@ public class ButtonWithIcon extends JButton {
 	public void setIconPath(String iconPath) {
 		this.iconPath = iconPath;
 		initButtonWithIcon();
-
 	}
 
 	public int getWidth() {

@@ -57,7 +57,6 @@ public class PnlPromote extends JPanel {
 		}	
 		this.revalidate();
 		this.repaint();
-		
 	}
 	
 
