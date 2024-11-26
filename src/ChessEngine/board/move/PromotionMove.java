@@ -18,19 +18,18 @@ public class PromotionMove extends Move {
                 super(move);
                 this.piecePromoteTo = move.piecePromoteTo;
         }
-        public void setPieceToPromote(String piece) {
+
+        @Override
+        public PromotionMove clone() {
+                return new PromotionMove(this);
+        }
+
+        public static void setPieceToPromote(String piece) {
                 piecePromoteTo = piece;
         }
 
         @Override
-        public void make(Gameplay game) {
-                Board newBoard = new Board(game.board);
-                make(newBoard);
-                game.gameStates.push(newBoard);
-        }
-
-        @Override
-        protected void make(Board board) {
+        public void make(Board board) {
                 //Remove the piece on tileTo
                 if (tileTo.isOccupied()) {
                         if (tileTo.getPiece().color == ChessColor.white) {
@@ -80,7 +79,7 @@ public class PromotionMove extends Move {
                 Tile simulationTileFrom = simulationBoard.tiles[tileFrom.row][tileFrom.col];
                 ChessColor thisPieceColor = simulationTileFrom.getPiece().color;
 
-                PromotionMove simulationMove = new PromotionMove(this);
+                PromotionMove simulationMove = new PromotionMove(simulationTileFrom, simulationBoard.tiles[tileTo.row][tileTo.col]);
                 simulationMove.make(simulationBoard);
 
                 //Find the king in the simulation board

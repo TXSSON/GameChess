@@ -16,13 +16,6 @@ public class CastlingMove extends Move {
         }
 
         @Override
-        public void make(Gameplay game) {
-                Board newBoard = new Board(game.board);
-                make(newBoard);
-                game.gameStates.push(newBoard);
-        }
-
-        @Override
         public CastlingMove clone() {
                 return new CastlingMove(this);
         }
@@ -71,7 +64,7 @@ public class CastlingMove extends Move {
                 Tile simulationTileFrom = simulationBoard.tiles[tileFrom.row][tileFrom.col];
                 ChessColor thisPieceColor = simulationTileFrom.getPiece().color;
 
-                CastlingMove simulationMove = new CastlingMove(this);
+                CastlingMove simulationMove = new CastlingMove(simulationTileFrom, simulationBoard.tiles[tileTo.row][tileTo.col]);
                 simulationMove.make(simulationBoard);
 
                 //Find the king in the simulation board
