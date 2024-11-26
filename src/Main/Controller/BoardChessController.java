@@ -93,8 +93,9 @@ public class BoardChessController {
 							pnlBoardChess.updateUIAfterEnPassantMove(selectedTile, targetTile, selectedPiece);
 						} else if (move instanceof PromotionMove ) {
 							pnlBoardChess.updateUIAfterPromotionMove(selectedTile, targetTile, selectedPiece);
+							((PromotionMove) move).setPieceToPromote(PromoteController.pieceName);
 						} else {
-							pnlBoardChess.updateUIAfterRegularMove(selectedTile, targetTile, selectedPiece);
+							pnlBoardChess.updateUIAfterRegularMove(selectedTile, targetTile, selectedPiece);	
 						}
 						playerSound.useSound(fileSoundPathMove);
 						gameLogicHandler.executeMove(move, mainController);

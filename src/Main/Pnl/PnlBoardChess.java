@@ -16,6 +16,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import ChessEngine.ChessColor;
 import ChessEngine.board.Tile;
@@ -24,6 +25,8 @@ import ChessEngine.piece.King;
 import ChessEngine.piece.Pawn;
 import ChessEngine.piece.Piece;
 import ChessEngine.piece.Rook;
+import Main.Controller.MainController;
+import Main.Controller.PromoteController;
 import Main.Frame.GameFrame;
 import Main.Utils.ColorOption;
 
@@ -31,7 +34,10 @@ public class PnlBoardChess extends JPanel {
 	private JPanel[][] squares = new JPanel[8][8]; // Lưu trữ các ô của bàn cờ
 	private Color colorselectedTile = Color.decode("#F1F280");
 	private List<Move> availableMoves;
-	String pathImage = "";
+	private String pathImage = "";
+	Thread promotionThread;
+	public static volatile boolean isPromoted = false;
+	
 	public PnlBoardChess() {
 	}
 
@@ -74,10 +80,12 @@ public class PnlBoardChess extends JPanel {
 			} else {
 				pathImage = "src/Main/Resources/piece-image2/br.png";
 			}
+			// nhập thành gần
 			if (targetTile.col == 6) {
 				deletePieceToPanel(targetTile.row,7);
 				addPieceToPanel(pathImage, targetTile.row, 5);
 			} else {
+//				nhập thành xa
 				deletePieceToPanel(targetTile.row, 0);
 				addPieceToPanel(pathImage, targetTile.row, 3);
 			} 
@@ -91,10 +99,56 @@ public class PnlBoardChess extends JPanel {
 			deletePieceToPanel(3, targetTile.col );
 		}
 	}
-	public void updateUIAfterPromotionMove(Tile selectedTile, Tile targetTile,Piece selectedPiece) {
-		updateUIAfterRegularMove(selectedTile, targetTile, selectedPiece);
+	
+	public void updateUIAfterPromotionMove(Tile selectedTile, Tile targetTile, Piece selectedPiece) {
+	    updateUIAfterRegularMove(selectedTile, targetTile, selectedPiece);
 
+	    // Hiển thị giao diện Promotion trong EDT
+	    SwingUtilities.invokeLater(() -> {
+	        MainController.initPromotionFrame();
+	    });
+
+	    // Khởi chạy luồng phụ để chờ lựa chọn phong quân
+	    new Thread(() -> {
+	        synchronized (this) {
+	            while (!isPromoted) {
+	                try {
+	                    Thread.sleep(100); // Đợi cho đến khi người chơi chọn quân
+	                } catch (InterruptedException e) {
+	                    e.printStackTrace();
+	                }
+	            }
+
+	            // Sau khi chọn quân, cập nhật giao diện
+	            SwingUtilities.invokeLater(() -> {
+	                updatePromotionPiece(targetTile, selectedPiece.color);
+	            });
+	        }
+	    }).start();
 	}
+
+	// Cập nhật giao diện sau khi phong quân
+	private void updatePromotionPiece(Tile targetTile, ChessColor color) {
+	    switch (PromoteController.pieceName) {
+	        case "Bishop":
+	            pathImage = color.equals(ChessColor.white) ? "src/Main/Resources/piece-image2/wb.png" : "src/Main/Resources/piece-image2/bb.png";
+	            break;
+	        case "Knight":
+	            pathImage = color.equals(ChessColor.white) ? "src/Main/Resources/piece-image2/wn.png" : "src/Main/Resources/piece-image2/bn.png";
+	            break;
+	        case "Rook":
+	            pathImage = color.equals(ChessColor.white) ? "src/Main/Resources/piece-image2/wr.png" : "src/Main/Resources/piece-image2/br.png";
+	            break;
+	        default: // Queen
+	            pathImage = color.equals(ChessColor.white) ? "src/Main/Resources/piece-image2/wq.png" : "src/Main/Resources/piece-image2/bq.png";
+	            break;
+	    }
+
+	    // Cập nhật lại giao diện bàn cờ
+	    deletePieceToPanel(targetTile.row, targetTile.col);
+	    addPieceToPanel(pathImage, targetTile.row, targetTile.col);
+	}
+
 	
 	public void addPieceToPanel(String imagePath, int row, int col) {
 		try {
