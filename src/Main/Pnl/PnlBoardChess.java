@@ -21,10 +21,12 @@ import javax.swing.SwingUtilities;
 import ChessEngine.ChessColor;
 import ChessEngine.board.Tile;
 import ChessEngine.board.move.Move;
+import ChessEngine.board.move.PromotionMove;
 import ChessEngine.piece.King;
 import ChessEngine.piece.Pawn;
 import ChessEngine.piece.Piece;
 import ChessEngine.piece.Rook;
+import Main.Controller.GameLogicHandler;
 import Main.Controller.MainController;
 import Main.Controller.PromoteController;
 import Main.Frame.GameFrame;
@@ -100,7 +102,7 @@ public class PnlBoardChess extends JPanel {
 		}
 	}
 	
-	public void updateUIAfterPromotionMove(Tile selectedTile, Tile targetTile, Piece selectedPiece) {
+	public void updateUIAfterPromotionMove(Tile selectedTile, Tile targetTile, Piece selectedPiece, MainController mainController, Move move, GameLogicHandler gameLogicHandler) {
 	    updateUIAfterRegularMove(selectedTile, targetTile, selectedPiece);
 
 	    // Hiển thị giao diện Promotion trong EDT
@@ -118,35 +120,31 @@ public class PnlBoardChess extends JPanel {
 	                    e.printStackTrace();
 	                }
 	            }
-
 	            // Sau khi chọn quân, cập nhật giao diện
 	            SwingUtilities.invokeLater(() -> {
-	                updatePromotionPiece(targetTile, selectedPiece.color);
+	            	 switch (PromoteController.pieceName) {
+	     	        case "Bishop":
+	     	            pathImage = selectedPiece.color.equals(ChessColor.white) ? "src/Main/Resources/piece-image2/wb.png" : "src/Main/Resources/piece-image2/bb.png";
+	     	            break;
+	     	        case "Knight":
+	     	            pathImage = selectedPiece.color.equals(ChessColor.white) ? "src/Main/Resources/piece-image2/wn.png" : "src/Main/Resources/piece-image2/bn.png";
+	     	            break;
+	     	        case "Rook":
+	     	            pathImage = selectedPiece.color.equals(ChessColor.white) ? "src/Main/Resources/piece-image2/wr.png" : "src/Main/Resources/piece-image2/br.png";
+	     	            break;
+	     	        default: // Queen
+	     	            pathImage = selectedPiece.color.equals(ChessColor.white) ? "src/Main/Resources/piece-image2/wq.png" : "src/Main/Resources/piece-image2/bq.png";
+	     	            break;
+	     	    }
+	     	    
+	     	    // Cập nhật lại giao diện bàn cờ
+	     	    deletePieceToPanel(targetTile.row, targetTile.col);
+	     	    addPieceToPanel(pathImage, targetTile.row, targetTile.col);
+	     		PromotionMove.setPieceToPromote(PromoteController.pieceName);
+	     		gameLogicHandler.executeMove(move, mainController);
 	            });
 	        }
 	    }).start();
-	}
-
-	// Cập nhật giao diện sau khi phong quân
-	private void updatePromotionPiece(Tile targetTile, ChessColor color) {
-	    switch (PromoteController.pieceName) {
-	        case "Bishop":
-	            pathImage = color.equals(ChessColor.white) ? "src/Main/Resources/piece-image2/wb.png" : "src/Main/Resources/piece-image2/bb.png";
-	            break;
-	        case "Knight":
-	            pathImage = color.equals(ChessColor.white) ? "src/Main/Resources/piece-image2/wn.png" : "src/Main/Resources/piece-image2/bn.png";
-	            break;
-	        case "Rook":
-	            pathImage = color.equals(ChessColor.white) ? "src/Main/Resources/piece-image2/wr.png" : "src/Main/Resources/piece-image2/br.png";
-	            break;
-	        default: // Queen
-	            pathImage = color.equals(ChessColor.white) ? "src/Main/Resources/piece-image2/wq.png" : "src/Main/Resources/piece-image2/bq.png";
-	            break;
-	    }
-
-	    // Cập nhật lại giao diện bàn cờ
-	    deletePieceToPanel(targetTile.row, targetTile.col);
-	    addPieceToPanel(pathImage, targetTile.row, targetTile.col);
 	}
 
 	
