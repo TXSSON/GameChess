@@ -7,7 +7,7 @@ import ChessEngine.board.*;
 import ChessEngine.piece.*;
 
 public class PromotionMove extends Move {
-        private  String piecePromoteTo; //"Queen", "Rook", "Knight", "Bishop"
+        private static String piecePromoteTo; //"Queen", "Rook", "Knight", "Bishop"
 
         public PromotionMove(Tile tileFrom, Tile tileTo) {
                 super(tileFrom, tileTo);
@@ -24,7 +24,7 @@ public class PromotionMove extends Move {
                 return new PromotionMove(this);
         }
 
-        public void setPieceToPromote(String piece) {
+        public static void setPieceToPromote(String piece) {
                 piecePromoteTo = piece;
         }
 

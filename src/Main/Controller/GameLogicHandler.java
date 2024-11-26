@@ -23,9 +23,7 @@ public class GameLogicHandler {
 		isTurnWhite = !isTurnWhite;
 	}
 	public void executeMove(Move move, MainController mainController) {
-		
 		mainController.gameplay.movePiece(move);
-		
 	}
 	public boolean isGameOver(MainController mainController) {
 		opponentKing = isTurnWhite ? (King) mainController.gameplay.board.blackPieces.get(0) :(King) mainController.gameplay.board.whitePieces.get(0);

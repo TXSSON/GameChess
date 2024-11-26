@@ -89,16 +89,22 @@ public class BoardChessController {
 						
 						if (move instanceof CastlingMove) {
 							pnlBoardChess.updateUIAfterCastlingMove(selectedTile, targetTile, selectedPiece);
+							playerSound.useSound(fileSoundPathMove);
+							gameLogicHandler.executeMove(move, mainController);
 						} else if (move instanceof EnPassantMove) {
 							pnlBoardChess.updateUIAfterEnPassantMove(selectedTile, targetTile, selectedPiece);
+							playerSound.useSound(fileSoundPathMove);
+							gameLogicHandler.executeMove(move, mainController);
 						} else if (move instanceof PromotionMove ) {
-							pnlBoardChess.updateUIAfterPromotionMove(selectedTile, targetTile, selectedPiece);
-							((PromotionMove) move).setPieceToPromote(PromoteController.pieceName);
+							pnlBoardChess.updateUIAfterPromotionMove(selectedTile, targetTile, selectedPiece, mainController, move, gameLogicHandler);
+							playerSound.useSound(fileSoundPathMove);
+
 						} else {
 							pnlBoardChess.updateUIAfterRegularMove(selectedTile, targetTile, selectedPiece);	
+							playerSound.useSound(fileSoundPathMove);
+							gameLogicHandler.executeMove(move, mainController);
 						}
-						playerSound.useSound(fileSoundPathMove);
-						gameLogicHandler.executeMove(move, mainController);
+						
 						resetSelection();
 						if (gameLogicHandler.isGameOver(mainController)) {
 							System.out.println("Trò chơi kết thúc.");
