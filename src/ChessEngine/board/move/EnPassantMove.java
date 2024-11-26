@@ -26,11 +26,13 @@ public class EnPassantMove extends Move{
                 //White pawn
                 if (tileFrom.row == 4) {
                         board.blackPieces.remove(board.tiles[4][tileTo.col].getPiece());
+                        board.tiles[4][tileTo.col].clearTile();
                 }
 
                 //Black pawn
                 if (tileFrom.row == 3) {
                         board.whitePieces.remove(board.tiles[3][tileTo.col].getPiece());
+                        board.tiles[3][tileTo.col].clearTile();
                 }
 
                 tileTo.setPiece(tileFrom.getPiece());
