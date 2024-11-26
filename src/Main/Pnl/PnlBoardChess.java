@@ -17,9 +17,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import ChessEngine.ChessColor;
 import ChessEngine.board.Tile;
 import ChessEngine.board.move.Move;
+import ChessEngine.piece.King;
 import ChessEngine.piece.Piece;
+import ChessEngine.piece.Rook;
 import Main.Frame.GameFrame;
 import Main.Utils.ColorOption;
 
@@ -27,7 +30,7 @@ public class PnlBoardChess extends JPanel {
 	private JPanel[][] squares = new JPanel[8][8]; // Lưu trữ các ô của bàn cờ
 	private Color colorselectedTile = Color.decode("#F1F280");
 	private List<Move> availableMoves;
-
+	String pathRookImage = "";
 	public PnlBoardChess() {
 	}
 
@@ -60,8 +63,22 @@ public class PnlBoardChess extends JPanel {
 
 	public void updateUIAfterMove(Tile selectedTile, Tile targetTile,Piece selectedPiece) {
 		deleteHighlightTiles();
-		deletePieceToPanel(selectedTile);
+		deletePieceToPanel(selectedTile.row, selectedTile.col);
 		addPieceToPanel(selectedPiece.getImagePath(), targetTile.row, targetTile.col);
+		if (selectedPiece instanceof King && Math.abs(targetTile.col - selectedTile.col) >= 2) {
+			if (selectedPiece.color.equals(ChessColor.white)) {
+				pathRookImage = "src/Main/Resources/piece-image2/wr.png";
+			} else {
+				pathRookImage = "src/Main/Resources/piece-image2/br.png";
+			}
+			if (targetTile.col == 6) {
+				deletePieceToPanel(targetTile.row,7);
+				addPieceToPanel(pathRookImage, targetTile.row, 5);
+			} else {
+				deletePieceToPanel(targetTile.row, 0);
+				addPieceToPanel(pathRookImage, targetTile.row, 3);
+			}
+		}
 	}
 	
 	public void addPieceToPanel(String imagePath, int row, int col) {
@@ -88,8 +105,8 @@ public class PnlBoardChess extends JPanel {
 		}
 	}
 
-	public void deletePieceToPanel(Tile tile) {
-		squares[tile.row][7 - tile.col].removeAll();
+	public void deletePieceToPanel(int row, int col) {
+		squares[row][7 - col].removeAll();
 	}
 
 	public void addHighlightTiles(List<Move> availableMoves) {

@@ -5,6 +5,7 @@ import ChessEngine.board.Tile;
 import ChessEngine.board.move.Move;
 import ChessEngine.piece.Piece;
 import Main.Pnl.PnlBoardChess;
+import Main.Utils.PlayerSound;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
@@ -21,6 +22,8 @@ public class BoardChessController {
 	public Piece selectedPiece;
 	private Tile selectedTile;
 	private List<Move> availableMoves;
+	private PlayerSound playerSound = PlayerSound.getInstacePlaySound();
+	private String fileSoundPathMove = "src/Main/Resources/sound/move.mp3";
 
 	public BoardChessController(PnlBoardChess pnlBoardChess, MainController mainController) {
 		this.pnlBoardChess = pnlBoardChess;
@@ -82,9 +85,9 @@ public class BoardChessController {
 
 					SwingUtilities.invokeLater(() -> {
 						pnlBoardChess.updateUIAfterMove(selectedTile, targetTile, selectedPiece);
+						playerSound.useSound(fileSoundPathMove);
 						gameLogicHandler.executeMove(move, mainController);
 						resetSelection();
-
 						if (gameLogicHandler.isGameOver(mainController)) {
 							System.out.println("Trò chơi kết thúc.");
 							return;
