@@ -7,6 +7,7 @@ import ChessEngine.board.move.EnPassantMove;
 import ChessEngine.board.move.Move;
 import ChessEngine.board.move.PromotionMove;
 import ChessEngine.piece.Piece;
+import Main.Frame.VictoryFrame;
 import Main.Pnl.PnlBoardChess;
 import Main.Utils.PlayerSound;
 
@@ -18,7 +19,7 @@ import java.util.List;
 public class BoardChessController {
 	private final PnlBoardChess pnlBoardChess;
 	private final MainController mainController;
-
+	
 	private final MoveValidator moveValidator = new MoveValidator();
 	private final GameLogicHandler gameLogicHandler = new GameLogicHandler();
 
@@ -108,7 +109,13 @@ public class BoardChessController {
 						resetSelection();
 						if (gameLogicHandler.isGameOver(mainController)) {
 							System.out.println("Trò chơi kết thúc.");
-							return;
+							if (gameLogicHandler.isTurnWhite) {
+								VictoryFrame.initVictoryFrame("Quân Trắng");
+							} else {
+								VictoryFrame.initVictoryFrame("Quân Đen");
+
+							}
+							
 						}
 						gameLogicHandler.toggleTurn();
 					});

@@ -27,7 +27,7 @@ public class MainController {
     private BoardChessController boardChessController;
     private PromoteController promotionController;
     
-    private GameFrame gameFrame;
+    public GameFrame gameFrame;
     public GameOptionsFrame gameOptionsFrame;
     public static PromotionFrame promotionFrame;
     
@@ -36,6 +36,7 @@ public class MainController {
     public PnlSideBar pnlSideBar;
     public PnlTutorial pnlTutorial;
     public static PnlPromote pnlPromotion;
+
     
 	public ColorOption selectedColor;
 	public static PieceOption selectedPiece;
@@ -64,6 +65,8 @@ public class MainController {
         
         pnlPromotion = PnlPromote.getPnlPromotionInstance();
         promotionController = new PromoteController(pnlPromotion, this);
+        
+
         
         
         // Tiến hành hiển thị các màn hình

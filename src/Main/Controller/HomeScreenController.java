@@ -19,8 +19,11 @@ public class HomeScreenController {
 			if (!mainController.playingChess) {
 				mainController.initGameOptionsFrame();
 				mainController.gameOptionsFrame.setVisible(true);
+
 			} else {
 				mainController.pnlHome.cardLayout.show(mainController.pnlHome.cardPanel, "pnlBoardChess");
+				mainController.pnlSideBar.cardLayout.show(mainController.pnlSideBar.pnlNorthInner, "pnlBtnBack");
+
 			}
 		});
 
@@ -29,6 +32,8 @@ public class HomeScreenController {
 			mainController.initTutorial();
 			}
 			mainController.pnlHome.cardLayout.show(mainController.pnlHome.cardPanel, "pnlTutorial");
+			mainController.pnlSideBar.cardLayout.show(mainController.pnlSideBar.pnlNorthInner, "pnlBtnBack");
+
 		});
 
 		pnlHome.exitButton.addActionListener(e -> {

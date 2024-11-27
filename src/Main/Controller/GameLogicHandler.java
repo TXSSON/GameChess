@@ -11,7 +11,7 @@ import ChessEngine.piece.King;
 import Main.Utils.PlayerSound;
 
 public class GameLogicHandler {
-	private boolean isTurnWhite = true;
+	public boolean isTurnWhite = true;
 	private  King opponentKing;
 	ChessEnding ending;
 	public  static Thread promotionThread;
@@ -40,6 +40,9 @@ public class GameLogicHandler {
 		}
 		return false;
 	}
+	
+	
+	
 
 }
 

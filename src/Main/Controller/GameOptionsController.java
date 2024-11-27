@@ -38,7 +38,8 @@ public class GameOptionsController {
 				
 				mainController.gameOptionsFrame.dispose();
 				mainController.pnlHome.cardLayout.show(mainController.pnlHome.cardPanel, "pnlBoardChess");
-			
+				mainController.pnlSideBar.cardLayout.show(mainController.pnlSideBar.pnlNorthInner, "pnlBtnBack");
+
 				
 		});
 	}
