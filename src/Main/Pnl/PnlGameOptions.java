@@ -3,7 +3,6 @@ import java.io.*;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.GridLayout;
-
 import Main.Utils.BackgroundPanel;
 import Main.Utils.ButtonWithIcon;
 import Main.Utils.ColorOption;
@@ -37,11 +36,11 @@ public class PnlGameOptions extends JPanel {
 		backgroundPanel.setLayout(new BorderLayout());
 
 		// Panel chứa các thành phần UI
-		JPanel pnlOptions = new JPanel(new GridLayout(3, 2, 10, 10));
+		JPanel pnlOptions = new JPanel(new GridLayout(3, 2, 5, 5));
 		pnlOptions.setOpaque(false); // Trong suốt để thấy hình nền
 
 		Font labelFont = new Font("Arial", Font.PLAIN, 16);
-		Font inputFont = new Font("Arial", Font.PLAIN, 20);
+		Font inputFont = new Font("Arial", Font.BOLD, 20);
 
 		// Tùy chọn màu bàn cờ
 		JLabel lblBoardColor = new JLabel("BOARD COLOR:");
@@ -55,6 +54,8 @@ public class PnlGameOptions extends JPanel {
 				new ColorOption("Đỏ", "#BB5746,#F5DBC3")
 		});
 		cbBoardColor.setFont(inputFont);
+		((JLabel) cbBoardColor.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
+
 
 		// Tùy chọn chọn quân cờ
 		JLabel lblChoosePiece = new JLabel("CHOOSE PIECE:");
@@ -66,6 +67,8 @@ public class PnlGameOptions extends JPanel {
 				new PieceOption("Black", ChessColor.black)
 		});
 		cbChoosePiece.setFont(inputFont);
+		cbChoosePiece.setPreferredSize(new Dimension(200, 30)); // Giảm kích thước
+		((JLabel) cbChoosePiece.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER); // Căn giữa text
 
 		// Tùy chọn thời gian chơi
 		JLabel lblPlayTime = new JLabel("PLAY TIME:");
@@ -75,6 +78,8 @@ public class PnlGameOptions extends JPanel {
 		lblPlayTime.setFont(bungeeShadeFont);
 		txtPlayTime = new JTextField();
 		txtPlayTime.setFont(inputFont);
+		txtPlayTime.setHorizontalAlignment(JTextField.CENTER); // Căn giữa chữ
+		txtPlayTime.setPreferredSize(new Dimension(200, 30)); // Giảm kích thước
 
 		// Thêm các thành phần vào pnlOptions
 		pnlOptions.add(lblBoardColor);

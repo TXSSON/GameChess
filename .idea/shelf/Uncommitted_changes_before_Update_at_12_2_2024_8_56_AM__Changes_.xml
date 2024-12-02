@@ -1,0 +1,119 @@
+<changelist name="Uncommitted_changes_before_Update_at_12_2_2024_8_56_AM_[Changes]" date="1733104580140" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_2_2024_8_56_AM_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 12/2/2024 8:56 AM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/GameChess/Main/Controller/BoardChessController$1.class" />
+    <option name="AFTER_PATH" value="out/production/GameChess/Main/Controller/BoardChessController$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_2_2024_8_56_AM_[Changes]/BoardChessController$1.class" />
+  </binary>
+  <binary>
+    <option name="AFTER_PATH" value="src/Main/Resources/Icons/bgrSideBar.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_2_2024_8_56_AM_[Changes]/bgrSideBar.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/GameChess/Main/Pnl/PnlPromote.class" />
+    <option name="AFTER_PATH" value="out/production/GameChess/Main/Pnl/PnlPromote.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_2_2024_8_56_AM_[Changes]/PnlPromote.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/GameChess/ChessEngine/piece/King.class" />
+    <option name="AFTER_PATH" value="out/production/GameChess/ChessEngine/piece/King.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_2_2024_8_56_AM_[Changes]/King.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/GameChess/Main/Controller/SideBarController.class" />
+    <option name="AFTER_PATH" value="out/production/GameChess/Main/Controller/SideBarController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_2_2024_8_56_AM_[Changes]/SideBarController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Main/Resources/Icons/left-arrow-2.png" />
+  </binary>
+  <binary>
+    <option name="AFTER_PATH" value="src/Main/Resources/Icons/bgr2.jpg" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_2_2024_8_56_AM_[Changes]/bgr2.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/GameChess/Main/Pnl/PnlBoardChess.class" />
+    <option name="AFTER_PATH" value="out/production/GameChess/Main/Pnl/PnlBoardChess.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_2_2024_8_56_AM_[Changes]/PnlBoardChess.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Main/Resources/Icons/left-arrow-1.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/GameChess/Main/Pnl/PnlGameOptions.class" />
+    <option name="AFTER_PATH" value="out/production/GameChess/Main/Pnl/PnlGameOptions.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_2_2024_8_56_AM_[Changes]/PnlGameOptions.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/GameChess/Main/Pnl/PnlSideBar.class" />
+    <option name="AFTER_PATH" value="out/production/GameChess/Main/Pnl/PnlSideBar.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_2_2024_8_56_AM_[Changes]/PnlSideBar.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/GameChess/Main/Resources/Icons/bgrSideBar.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/GameChess/Main/Frame/GameFrame.class" />
+    <option name="AFTER_PATH" value="out/production/GameChess/Main/Frame/GameFrame.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_2_2024_8_56_AM_[Changes]/GameFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/GameChess/Main/Resources/Icons/left-arrow-1.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/GameChess/Main/Resources/Icons/left-arrow-2.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/GameChess/Main/Controller/MainController.class" />
+    <option name="AFTER_PATH" value="out/production/GameChess/Main/Controller/MainController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_2_2024_8_56_AM_[Changes]/MainController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Main/Resources/Icons/arrow-left.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/GameChess/Main/Utils/ButtonWithIcon.class" />
+    <option name="AFTER_PATH" value="out/production/GameChess/Main/Utils/ButtonWithIcon.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_2_2024_8_56_AM_[Changes]/ButtonWithIcon.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/GameChess/Main/Resources/Icons/arrow-left.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/GameChess/Main/Utils/PlayerSound.class" />
+    <option name="AFTER_PATH" value="out/production/GameChess/Main/Utils/PlayerSound.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_2_2024_8_56_AM_[Changes]/PlayerSound.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/GameChess/Main/Controller/BoardChessController.class" />
+    <option name="AFTER_PATH" value="out/production/GameChess/Main/Controller/BoardChessController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_2_2024_8_56_AM_[Changes]/BoardChessController.class" />
+  </binary>
+  <binary>
+    <option name="AFTER_PATH" value="src/Main/Resources/Icons/undo.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_2_2024_8_56_AM_[Changes]/undo.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Main/Resources/Icons/bgrSideBar.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/GameChess/Main/Controller/HomeScreenController.class" />
+    <option name="AFTER_PATH" value="out/production/GameChess/Main/Controller/HomeScreenController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_2_2024_8_56_AM_[Changes]/HomeScreenController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/GameChess/Main/Controller/GameLogicHandler.class" />
+    <option name="AFTER_PATH" value="out/production/GameChess/Main/Controller/GameLogicHandler.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_2_2024_8_56_AM_[Changes]/GameLogicHandler.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/GameChess/Main/Controller/GameOptionsController.class" />
+    <option name="AFTER_PATH" value="out/production/GameChess/Main/Controller/GameOptionsController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_2_2024_8_56_AM_[Changes]/GameOptionsController.class" />
+  </binary>
+  <binary>
+    <option name="AFTER_PATH" value="src/Main/Resources/Icons/down.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_2_2024_8_56_AM_[Changes]/down.png" />
+  </binary>
+</changelist>

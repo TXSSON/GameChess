@@ -1,0 +1,165 @@
+Index: src/Main/Pnl/PnlGameOptions.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Main.Pnl;\nimport java.io.*;\nimport java.awt.*;\nimport javax.swing.*;\nimport java.awt.GridLayout;\n\nimport Main.Utils.BackgroundPanel;\nimport Main.Utils.ButtonWithIcon;\nimport Main.Utils.ColorOption;\nimport Main.Utils.PieceOption;\n\nimport ChessEngine.ChessColor;\n\npublic class PnlGameOptions extends JPanel {\n\tpublic ButtonWithIcon btnOk;\n\tpublic ButtonWithIcon btnCancel;\n\tpublic JComboBox<ColorOption> cbBoardColor;\n\tpublic JComboBox<PieceOption> cbChoosePiece;\n\tpublic JTextField txtPlayTime;\n\n\tprivate static volatile PnlGameOptions pnlGameOptions;\n\n\tprivate PnlGameOptions() {\n\t\tFont bungeeShadeFont = null;\n\t\ttry {\n\t\t\tFile fontFile = new File(\"src/Main/Resources/font/BungeeSpice-Regular.ttf\"); // Đường dẫn đến font\n\t\t\tbungeeShadeFont = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(25f);\n\t\t\tGraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();\n\t\t\tge.registerFont(bungeeShadeFont); // Đăng ký font vào hệ thống\n\t\t} catch (IOException | FontFormatException e) {\n\t\t\te.printStackTrace();\n\t\t\tbungeeShadeFont = new Font(\"Arial\", Font.BOLD, 16);\n\t\t}\n\n\t\t// Sử dụng BackgroundPanel làm nền\n\t\tBackgroundPanel backgroundPanel = new BackgroundPanel(\"src/Main/Resources/Icons/bgroption.jpg\");\n\t\tbackgroundPanel.setLayout(new BorderLayout());\n\n\t\t// Panel chứa các thành phần UI\n\t\tJPanel pnlOptions = new JPanel(new GridLayout(3, 2, 10, 10));\n\t\tpnlOptions.setOpaque(false); // Trong suốt để thấy hình nền\n\n\t\tFont labelFont = new Font(\"Arial\", Font.PLAIN, 16);\n\t\tFont inputFont = new Font(\"Arial\", Font.PLAIN, 20);\n\n\t\t// Tùy chọn màu bàn cờ\n\t\tJLabel lblBoardColor = new JLabel(\"BOARD COLOR:\");\n\t\tlblBoardColor.setFont(labelFont);\n\t\tlblBoardColor.setHorizontalAlignment(SwingConstants.CENTER);\n\t\tlblBoardColor.setForeground(Color.BLACK);\n\t\tlblBoardColor.setFont(bungeeShadeFont);\n\t\tcbBoardColor = new JComboBox<>(new ColorOption[] {\n\t\t\t\tnew ColorOption(\"Xanh lá cây\", \"#739552,#EBECD0\"),\n\t\t\t\tnew ColorOption(\"Nâu\", \"#B88762,#EDD6B0\"),\n\t\t\t\tnew ColorOption(\"Đỏ\", \"#BB5746,#F5DBC3\")\n\t\t});\n\t\tcbBoardColor.setFont(inputFont);\n\n\t\t// Tùy chọn chọn quân cờ\n\t\tJLabel lblChoosePiece = new JLabel(\"CHOOSE PIECE:\");\n\t\tlblChoosePiece.setFont(labelFont);\n\t\tlblChoosePiece.setHorizontalAlignment(SwingConstants.CENTER);\n\t\tlblChoosePiece.setForeground(Color.BLACK);\n\t\tlblChoosePiece.setFont(bungeeShadeFont);\n\t\tcbChoosePiece = new JComboBox<>(new PieceOption[] {\n\t\t\t\tnew PieceOption(\"Black\", ChessColor.black)\n\t\t});\n\t\tcbChoosePiece.setFont(inputFont);\n\n\t\t// Tùy chọn thời gian chơi\n\t\tJLabel lblPlayTime = new JLabel(\"PLAY TIME:\");\n\t\tlblPlayTime.setFont(labelFont);\n\t\tlblPlayTime.setHorizontalAlignment(SwingConstants.CENTER);\n\t\tlblPlayTime.setForeground(Color.BLACK);\n\t\tlblPlayTime.setFont(bungeeShadeFont);\n\t\ttxtPlayTime = new JTextField();\n\t\ttxtPlayTime.setFont(inputFont);\n\n\t\t// Thêm các thành phần vào pnlOptions\n\t\tpnlOptions.add(lblBoardColor);\n\t\tpnlOptions.add(cbBoardColor);\n\t\tpnlOptions.add(lblChoosePiece);\n\t\tpnlOptions.add(cbChoosePiece);\n\t\tpnlOptions.add(lblPlayTime);\n\t\tpnlOptions.add(txtPlayTime);\n\n\t\t// Panel chứa các nút OK và Cancel\n\t\tJPanel pnlButtons = new JPanel();\n\t\tpnlButtons.setOpaque(false); // Trong suốt\n\t\tbtnOk = new ButtonWithIcon(\"src/Main/Resources/Icons/Ok.png\", 80, 40);\n\t\tbtnCancel = new ButtonWithIcon(\"src/Main/Resources/Icons/cancel.png\", 80, 40);\n\t\tpnlButtons.add(btnOk);\n\t\tpnlButtons.add(btnCancel);\n\n\t\t// Thêm các thành phần vào BackgroundPanel\n\t\tbackgroundPanel.add(pnlOptions, BorderLayout.CENTER);\n\t\tbackgroundPanel.add(pnlButtons, BorderLayout.SOUTH);\n\n\t\t// Thêm BackgroundPanel vào PnlGameOptions\n\t\tthis.setLayout(new BorderLayout());\n\t\tthis.add(backgroundPanel, BorderLayout.CENTER);\n\t\tthis.setPreferredSize(new Dimension(600, 450));\n\t}\n\n\tpublic static PnlGameOptions getPnlGameOptionsInstance() {\n\t\tif (pnlGameOptions == null) {\n\t\t\tsynchronized (PnlGameOptions.class) {\n\t\t\t\tif (pnlGameOptions == null) {\n\t\t\t\t\tpnlGameOptions = new PnlGameOptions();\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn pnlGameOptions;\n\t}\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Main/Pnl/PnlGameOptions.java b/src/Main/Pnl/PnlGameOptions.java
+--- a/src/Main/Pnl/PnlGameOptions.java	(revision 6ad5a90d4b1ffa4b4c0fa0a6421afa57c6359db4)
++++ b/src/Main/Pnl/PnlGameOptions.java	(date 1733065714408)
+@@ -3,7 +3,6 @@
+ import java.awt.*;
+ import javax.swing.*;
+ import java.awt.GridLayout;
+-
+ import Main.Utils.BackgroundPanel;
+ import Main.Utils.ButtonWithIcon;
+ import Main.Utils.ColorOption;
+@@ -37,11 +36,11 @@
+ 		backgroundPanel.setLayout(new BorderLayout());
+ 
+ 		// Panel chứa các thành phần UI
+-		JPanel pnlOptions = new JPanel(new GridLayout(3, 2, 10, 10));
++		JPanel pnlOptions = new JPanel(new GridLayout(3, 2, 5, 5));
+ 		pnlOptions.setOpaque(false); // Trong suốt để thấy hình nền
+ 
+ 		Font labelFont = new Font("Arial", Font.PLAIN, 16);
+-		Font inputFont = new Font("Arial", Font.PLAIN, 20);
++		Font inputFont = new Font("Arial", Font.BOLD, 20);
+ 
+ 		// Tùy chọn màu bàn cờ
+ 		JLabel lblBoardColor = new JLabel("BOARD COLOR:");
+@@ -55,6 +54,8 @@
+ 				new ColorOption("Đỏ", "#BB5746,#F5DBC3")
+ 		});
+ 		cbBoardColor.setFont(inputFont);
++		((JLabel) cbBoardColor.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
++
+ 
+ 		// Tùy chọn chọn quân cờ
+ 		JLabel lblChoosePiece = new JLabel("CHOOSE PIECE:");
+@@ -66,6 +67,8 @@
+ 				new PieceOption("Black", ChessColor.black)
+ 		});
+ 		cbChoosePiece.setFont(inputFont);
++		cbChoosePiece.setPreferredSize(new Dimension(200, 30)); // Giảm kích thước
++		((JLabel) cbChoosePiece.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER); // Căn giữa text
+ 
+ 		// Tùy chọn thời gian chơi
+ 		JLabel lblPlayTime = new JLabel("PLAY TIME:");
+@@ -75,6 +78,8 @@
+ 		lblPlayTime.setFont(bungeeShadeFont);
+ 		txtPlayTime = new JTextField();
+ 		txtPlayTime.setFont(inputFont);
++		txtPlayTime.setHorizontalAlignment(JTextField.CENTER); // Căn giữa chữ
++		txtPlayTime.setPreferredSize(new Dimension(200, 30)); // Giảm kích thước
+ 
+ 		// Thêm các thành phần vào pnlOptions
+ 		pnlOptions.add(lblBoardColor);
+@@ -112,4 +117,4 @@
+ 		}
+ 		return pnlGameOptions;
+ 	}
+-}
++}
+\ No newline at end of file
+Index: src/Main/Pnl/PnlSideBar.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Main.Pnl;\n\nimport java.awt.*;\nimport java.awt.image.BufferedImage;\nimport java.io.File;\nimport javax.imageio.ImageIO;\nimport javax.swing.ImageIcon;\nimport javax.swing.JButton;\nimport javax.swing.JPanel;\nimport Main.Frame.GameFrame;\nimport Main.Utils.BackgroundPanel;\nimport Main.Utils.ButtonWithIcon;\n\npublic class PnlSideBar extends JPanel {\n\n    public ButtonWithIcon btnBack, btnSound, btnNoSound;\n    public JPanel pnlBtnBack, pnlBtnSound, pnlNorthInner, pnlSouthInner, pnlEmpty;\n\n    // Thực hiện Singleton\n    private static volatile PnlSideBar pnlSideBarInstance;\n\n    public CardLayout cardLayout;\n    public CardLayout cardLayout2;\n\n    // Constructor private để ngăn không cho tạo đối tượng bên ngoài lớp\n    private PnlSideBar() {\n        this.setPreferredSize(new Dimension(GameFrame.width / 4, GameFrame.height));\n        this.setLayout(new BorderLayout());\n        \n        JPanel pnlButtonBack = new BackgroundPanel(\"src/Main/Resources/Icons/bgrSideBar.jpg\");\n        pnlButtonBack.setLayout(new BorderLayout()); \n        pnlButtonBack.setPreferredSize(new Dimension(GameFrame.width / 4, GameFrame.height));\n        \n        btnBack = new ButtonWithIcon(\"src/Main/Resources/Icons/left-arrow-1.png\", GameFrame.width / 8, 100);\n        cardLayout = new CardLayout();\n        cardLayout2 = new CardLayout();\n      \n        pnlNorthInner = new JPanel(cardLayout);\n        JPanel pnlEmpty = new JPanel();\n        pnlBtnBack = new JPanel();\n\n        pnlNorthInner.setOpaque(false);\t// Đặt panel không trong suốt\n        pnlEmpty.setOpaque(false);  // Đặt panel không trong suốt\n        pnlBtnBack.setOpaque(false); // Đặt panel không trong suốt\n        \n        pnlBtnBack.add(this.btnBack);\n        \n        pnlNorthInner.add(pnlEmpty, \"pnlEmpty\");\n        pnlNorthInner.add(pnlBtnBack, \"pnlBtnBack\");\n        \n        \n        pnlSouthInner = new JPanel();\n        pnlBtnSound = new JPanel(cardLayout2);\n        \n        btnSound = new ButtonWithIcon(\"src/Main/Resources/Icons/sound.png\", 128, 128);\n        btnNoSound = new ButtonWithIcon(\"src/Main/Resources/Icons/no-sound.png\", 128, 128);\n        \n        pnlSouthInner.setOpaque(false);\n        pnlBtnSound.setOpaque(false);\n        \n        pnlBtnSound.add(btnSound, \"btnSound\");\n        pnlBtnSound.add(btnNoSound, \"btnNoSound\");\n        pnlSouthInner.add(pnlBtnSound);\n        \n\n        pnlButtonBack.add(pnlNorthInner, BorderLayout.NORTH);\n        pnlButtonBack.add(pnlSouthInner, BorderLayout.SOUTH);\n        this.add(pnlButtonBack, BorderLayout.CENTER);\n        cardLayout.show(pnlNorthInner, \"pnlEmpty\");\n        cardLayout2.show(pnlBtnSound, \"btnSound\");\n        \n        \n    }\n\n    // Phương thức Singleton để lấy instance duy nhất của PnlSideBar\n    public static PnlSideBar getSideBarInstance() {\n        if (pnlSideBarInstance == null) {\n            synchronized (PnlSideBar.class) {\n                if (pnlSideBarInstance == null) {\n                    pnlSideBarInstance = new PnlSideBar();\n                }\n            }\n        }\n        return pnlSideBarInstance;\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Main/Pnl/PnlSideBar.java b/src/Main/Pnl/PnlSideBar.java
+--- a/src/Main/Pnl/PnlSideBar.java	(revision 6ad5a90d4b1ffa4b4c0fa0a6421afa57c6359db4)
++++ b/src/Main/Pnl/PnlSideBar.java	(date 1732960144234)
+@@ -27,11 +27,11 @@
+         this.setPreferredSize(new Dimension(GameFrame.width / 4, GameFrame.height));
+         this.setLayout(new BorderLayout());
+         
+-        JPanel pnlButtonBack = new BackgroundPanel("src/Main/Resources/Icons/bgrSideBar.jpg");
++        JPanel pnlButtonBack = new BackgroundPanel("src/Main/Resources/Icons/bgrSideBar.png");
+         pnlButtonBack.setLayout(new BorderLayout()); 
+         pnlButtonBack.setPreferredSize(new Dimension(GameFrame.width / 4, GameFrame.height));
+         
+-        btnBack = new ButtonWithIcon("src/Main/Resources/Icons/left-arrow-1.png", GameFrame.width / 8, 100);
++        btnBack = new ButtonWithIcon("src/Main/Resources/Icons/undo.png", GameFrame.width / 6, 100);
+         cardLayout = new CardLayout();
+         cardLayout2 = new CardLayout();
+       
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"f4f0e9d8-a2e0-4470-9e10-93b2116bbcd0\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/GameChess/ChessEngine/board/move/PromotionMove.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/GameChess/ChessEngine/board/move/PromotionMove.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/GameChess/Main/Controller/BoardChessController.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/GameChess/Main/Controller/BoardChessController.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/GameChess/Main/Controller/GameLogicHandler.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/GameChess/Main/Controller/GameLogicHandler.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlBoardChess.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlBoardChess.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlGameOptions.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlGameOptions.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/bgroption.jpg\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/bgroption.jpg\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/demo.jpg\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Main/Pnl/PnlGameOptions.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Main/Pnl/PnlGameOptions.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Main/Resources/Icons/bgroption.jpg\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Main/Resources/Icons/bgroption.jpg\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Main/Resources/Icons/demo.jpg\" beforeDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <favorite-branches>\r\n      <branch-storage>\r\n        <map>\r\n          <entry type=\"LOCAL\">\r\n            <value>\r\n              <list>\r\n                <branch-info repo=\"$PROJECT_DIR$\" source=\"final\" />\r\n              </list>\r\n            </value>\r\n          </entry>\r\n        </map>\r\n      </branch-storage>\r\n    </favorite-branches>\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;minhdanggg&quot;\n  }\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;https://github.com/TXSSON/GameChess.git&quot;,\n    &quot;accountId&quot;: &quot;7fda67f2-7989-4598-aff6-44b32a365dc6&quot;\n  }\n}</component>\r\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 0\n}</component>\r\n  <component name=\"ProjectId\" id=\"2pIg4Z6qouTL1XRqSvoleTYXqg3\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;Application.Main.executor&quot;: &quot;Run&quot;,\n    &quot;Application.RunGame.executor&quot;: &quot;Run&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\n    &quot;git-widget-placeholder&quot;: &quot;MinhDang&quot;,\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\n    &quot;last_opened_file_path&quot;: &quot;D:/Project/lib&quot;,\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\n    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,\n    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,\n    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,\n    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\n  }\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\LENOVO\\IdeaProjects\\GameChess\\src\\Main\\Resources\\Icons\" />\r\n      <recent name=\"C:\\Users\\LENOVO\\IdeaProjects\\GameChess\\src\\Main\\Resources\" />\r\n      <recent name=\"C:\\Users\\LENOVO\\IdeaProjects\\GameChess\\src\\Main\\Resources\\font\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"RunGame\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main.RunGame\" />\r\n      <module name=\"GameChess\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"Main.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.RunGame\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"f4f0e9d8-a2e0-4470-9e10-93b2116bbcd0\" name=\"Changes\" comment=\"\" />\r\n      <created>1732458812753</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1732458812753</updated>\r\n      <workItem from=\"1732458813845\" duration=\"103000\" />\r\n      <workItem from=\"1732458943103\" duration=\"22000\" />\r\n      <workItem from=\"1732459481438\" duration=\"150000\" />\r\n      <workItem from=\"1732460541502\" duration=\"6449000\" />\r\n      <workItem from=\"1732492725527\" duration=\"2001000\" />\r\n      <workItem from=\"1732494941609\" duration=\"202000\" />\r\n      <workItem from=\"1732495496282\" duration=\"503000\" />\r\n      <workItem from=\"1732618048789\" duration=\"7788000\" />\r\n      <workItem from=\"1732631624258\" duration=\"2729000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 6ad5a90d4b1ffa4b4c0fa0a6421afa57c6359db4)
++++ b/.idea/workspace.xml	(date 1733104107484)
+@@ -5,17 +5,36 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="f4f0e9d8-a2e0-4470-9e10-93b2116bbcd0" name="Changes" comment="">
++      <change afterPath="$PROJECT_DIR$/src/Main/Resources/Icons/bgr2.jpg" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/Main/Resources/Icons/bgrSideBar.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/Main/Resources/Icons/down.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/Main/Resources/Icons/undo.png" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/board/move/PromotionMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/board/move/PromotionMove.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/piece/King.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/piece/King.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/BoardChessController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/BoardChessController$1.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/BoardChessController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/BoardChessController.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/GameLogicHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/GameLogicHandler.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/GameOptionsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/GameOptionsController.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/HomeScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/HomeScreenController.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/MainController.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/SideBarController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/SideBarController.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Frame/GameFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Frame/GameFrame.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlBoardChess.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlBoardChess.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlGameOptions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlGameOptions.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/bgroption.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/bgroption.jpg" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/demo.jpg" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlPromote.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlPromote.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlSideBar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlSideBar.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/arrow-left.png" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/bgrSideBar.jpg" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/left-arrow-1.png" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/left-arrow-2.png" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Utils/ButtonWithIcon.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Utils/ButtonWithIcon.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Utils/PlayerSound.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Utils/PlayerSound.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Main/Pnl/PnlGameOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Pnl/PnlGameOptions.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Main/Resources/Icons/bgroption.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Resources/Icons/bgroption.jpg" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Main/Resources/Icons/demo.jpg" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Main/Pnl/PnlSideBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Pnl/PnlSideBar.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Main/Resources/Icons/arrow-left.png" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Main/Resources/Icons/bgrSideBar.jpg" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Main/Resources/Icons/left-arrow-1.png" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Main/Resources/Icons/left-arrow-2.png" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -76,7 +95,7 @@
+     &quot;Application.RunGame.executor&quot;: &quot;Run&quot;,
+     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;MinhDang&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+     &quot;last_opened_file_path&quot;: &quot;D:/Project/lib&quot;,
+     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+@@ -143,6 +162,13 @@
+       <workItem from="1732495496282" duration="503000" />
+       <workItem from="1732618048789" duration="7788000" />
+       <workItem from="1732631624258" duration="2729000" />
++      <workItem from="1732895611113" duration="5226000" />
++      <workItem from="1732944209882" duration="2076000" />
++      <workItem from="1732951650535" duration="7305000" />
++      <workItem from="1733045035856" duration="3637000" />
++      <workItem from="1733062017544" duration="2418000" />
++      <workItem from="1733102158800" duration="600000" />
++      <workItem from="1733103415034" duration="688000" />
+     </task>
+     <servers />
+   </component>

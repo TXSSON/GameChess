@@ -27,11 +27,11 @@ public class PnlSideBar extends JPanel {
         this.setPreferredSize(new Dimension(GameFrame.width / 4, GameFrame.height));
         this.setLayout(new BorderLayout());
         
-        JPanel pnlButtonBack = new BackgroundPanel("src/Main/Resources/Icons/bgrSideBar.jpg");
+        JPanel pnlButtonBack = new BackgroundPanel("src/Main/Resources/Icons/bgrSideBar.png");
         pnlButtonBack.setLayout(new BorderLayout()); 
         pnlButtonBack.setPreferredSize(new Dimension(GameFrame.width / 4, GameFrame.height));
         
-        btnBack = new ButtonWithIcon("src/Main/Resources/Icons/left-arrow-1.png", GameFrame.width / 8, 100);
+        btnBack = new ButtonWithIcon("src/Main/Resources/Icons/undo.png", GameFrame.width / 6, 100);
         cardLayout = new CardLayout();
         cardLayout2 = new CardLayout();
       
