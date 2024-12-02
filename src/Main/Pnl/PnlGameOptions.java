@@ -32,7 +32,7 @@ public class PnlGameOptions extends JPanel {
 		}
 
 		// Sử dụng BackgroundPanel làm nền
-		BackgroundPanel backgroundPanel = new BackgroundPanel("src/Main/Resources/Icons/bgroption.jpg");
+		BackgroundPanel backgroundPanel = new BackgroundPanel("src/Main/Resources/Icons/bgroption.png");
 		backgroundPanel.setLayout(new BorderLayout());
 
 		// Panel chứa các thành phần UI
