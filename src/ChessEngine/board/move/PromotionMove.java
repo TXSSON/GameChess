@@ -7,16 +7,14 @@ import ChessEngine.board.*;
 import ChessEngine.piece.*;
 
 public class PromotionMove extends Move {
-        private static String piecePromoteTo; //"Queen", "Rook", "Knight", "Bishop"
+        private static String piecePromoteTo = "Queen"; //"Queen", "Rook", "Knight", "Bishop"
 
         public PromotionMove(Tile tileFrom, Tile tileTo) {
                 super(tileFrom, tileTo);
-                this.piecePromoteTo = "Queen"; //Default auto queen
         }
 
         public PromotionMove(PromotionMove move) {
                 super(move);
-                this.piecePromoteTo = move.piecePromoteTo;
         }
 
         @Override

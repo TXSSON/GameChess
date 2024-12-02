@@ -148,7 +148,8 @@ public class King extends Piece {
 					while (true) {
 						rowBetween += direction[0];
 						colBetween += direction[1];
-						if (rowBetween == piece.row) {
+						
+						if (rowBetween == piece.row && colBetween == piece.col) {
 							return true;
 						}
 
@@ -180,7 +181,7 @@ public class King extends Piece {
 						rowBetween += direction[0];
 						colBetween += direction[1];
 
-						if (rowBetween == piece.row) {
+						if (rowBetween == piece.row && colBetween == piece.col) {
 							return true;
 						}
 
@@ -203,7 +204,7 @@ public class King extends Piece {
 						rowBetween += direction[0];
 						colBetween += direction[1];
 
-						if (rowBetween == piece.row) {
+						if (rowBetween == piece.row && colBetween == piece.col) {
 							return true;
 						}
 
@@ -223,7 +224,8 @@ public class King extends Piece {
 					while (true) {
 						rowBetween += direction[0];
 						colBetween += direction[1];
-						if (rowBetween == piece.row) {
+
+						if (rowBetween == piece.row && colBetween == piece.col) {
 							return true;
 						}
 
