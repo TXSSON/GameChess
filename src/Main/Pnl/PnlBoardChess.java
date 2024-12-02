@@ -26,6 +26,7 @@ import ChessEngine.piece.King;
 import ChessEngine.piece.Pawn;
 import ChessEngine.piece.Piece;
 import ChessEngine.piece.Rook;
+import Main.Controller.BoardChessController;
 import Main.Controller.GameLogicHandler;
 import Main.Controller.MainController;
 import Main.Controller.PromoteController;
@@ -71,8 +72,8 @@ public class PnlBoardChess extends JPanel {
 	}
 	public void updateUIAfterRegularMove(Tile selectedTile, Tile targetTile,Piece selectedPiece) {
 		deleteHighlightTiles();
-		deletePieceToPanel(selectedTile.row, selectedTile.col);
-		addPieceToPanel(selectedPiece.getImagePath(), targetTile.row, targetTile.col);
+			deletePieceToPanel( MainController.isPlayerBlack ? selectedTile.row : 7 - selectedTile.row, selectedTile.col);
+			addPieceToPanel(selectedPiece.getImagePath(),MainController.isPlayerBlack ? targetTile.row : 7 - targetTile.row, targetTile.col);
 	}
 
 	public void updateUIAfterCastlingMove(Tile selectedTile, Tile targetTile,Piece selectedPiece) {
@@ -84,21 +85,21 @@ public class PnlBoardChess extends JPanel {
 			}
 			// nhập thành gần
 			if (targetTile.col == 6) {
-				deletePieceToPanel(targetTile.row,7);
-				addPieceToPanel(pathImage, targetTile.row, 5);
+				deletePieceToPanel(MainController.isPlayerBlack ? targetTile.row : 7 - targetTile.row,7);
+				addPieceToPanel(pathImage, MainController.isPlayerBlack ? targetTile.row : 7 - targetTile.row, 5);
 			} else {
 //				nhập thành xa
-				deletePieceToPanel(targetTile.row, 0);
-				addPieceToPanel(pathImage, targetTile.row, 3);
+				deletePieceToPanel(MainController.isPlayerBlack ? targetTile.row : 7 - targetTile.row, 0);
+				addPieceToPanel(pathImage, MainController.isPlayerBlack ? targetTile.row : 7 - targetTile.row, 3);
 			} 
 	} 
 	
 	public void updateUIAfterEnPassantMove(Tile selectedTile, Tile targetTile,Piece selectedPiece) {
 		updateUIAfterRegularMove(selectedTile, targetTile, selectedPiece);
 		if(selectedTile.row == 4) {
-			deletePieceToPanel(4, targetTile.col );
+			deletePieceToPanel(MainController.isPlayerBlack ? 4 :  3 , targetTile.col );
 		} else {
-			deletePieceToPanel(3, targetTile.col );
+			deletePieceToPanel(MainController.isPlayerBlack ? 3 :  4, targetTile.col );
 		}
 	}
 	
@@ -140,8 +141,8 @@ public class PnlBoardChess extends JPanel {
 	     	    }
 	     	    
 	     	    // Cập nhật lại giao diện bàn cờ
-	     	    deletePieceToPanel(targetTile.row, targetTile.col);
-	     	    addPieceToPanel(pathImage, targetTile.row, targetTile.col);
+	     	    deletePieceToPanel(MainController.isPlayerBlack ? targetTile.row : 7- targetTile.row , targetTile.col);
+	     	    addPieceToPanel(pathImage, MainController.isPlayerBlack ? targetTile.row : 7- targetTile.row, targetTile.col);
 	     		PromotionMove.setPieceToPromote(PromoteController.pieceName);
 	     		gameLogicHandler.executeMove(move, mainController);
 	     		isPromoted = false;
@@ -180,10 +181,15 @@ public class PnlBoardChess extends JPanel {
 	}
 
 	public void addHighlightTiles(List<Move> availableMoves) {
+		int row, col;
 		for (Move move : availableMoves) {
-			int row = move.tileTo.row;
-			int col = move.tileTo.col;
-			((PnlTile) squares[row][7 - col]).setHighlight(true); // Thêm highlight
+			if(MainController.isPlayerBlack) {				
+				row = move.tileTo.row;
+			}else {
+				row = 7 - move.tileTo.row;
+			}
+			col = move.tileTo.col;
+			((PnlTile) squares[row][7-col]).setHighlight(true); // Thêm highlight
 		}
 	}
 	

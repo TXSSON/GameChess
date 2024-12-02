@@ -29,7 +29,6 @@ public class GameOptionsController {
 		
 				mainController.selectedColor = (ColorOption) pnlGameOptions.cbBoardColor.getSelectedItem();
 				mainController.selectedPiece = (PieceOption) pnlGameOptions.cbChoosePiece.getSelectedItem();
-				mainController.playTime = pnlGameOptions.txtPlayTime.getText();
 
 				mainController.gameplay = new Gameplay(GameFrame.height / 8, mainController.selectedPiece.getColor());
 

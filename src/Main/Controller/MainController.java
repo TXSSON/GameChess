@@ -48,6 +48,9 @@ public class MainController {
 	public Boolean playingChess = false;
 	public Boolean readedTutorial = false;
 	
+	public static Boolean isPlayerBlack = true;
+
+	
     
     public MainController() {
         // Khởi tạo các màn hình và controller riêng
@@ -102,6 +105,7 @@ public class MainController {
 	public void addPice() {
 	    // Thêm quân cờ vào bàn cờ
 	    if (selectedPiece.getName().equals("Black")) {
+	    	isPlayerBlack = true;
 	        for (int row = 0; row < Board.MAX_ROW; row++) {
 	            for (int col = 0; col < Board.MAX_COL; col++) {
 	                Tile tile = gameplay.board.tiles[row][col]; // Lấy ô tương ứng cho quân đen
@@ -109,6 +113,7 @@ public class MainController {
 	            }
 	        }
 	    } else {
+	    	isPlayerBlack = false;
 	        for (int row = 0; row < Board.MAX_ROW; row++) {
 	            for (int col = 0; col < Board.MAX_COL; col++) {
 	                Tile tile = gameplay.board.tiles[Board.MAX_ROW - row - 1][col]; // Lấy ô tương ứng cho quân đen

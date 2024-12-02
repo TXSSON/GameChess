@@ -28,6 +28,9 @@ public class BoardChessController {
 	private List<Move> availableMoves;
 	private PlayerSound playerSound = PlayerSound.getInstacePlaySound();
 	private String fileSoundPathMove = "src/Main/Resources/sound/move.mp3";
+	private Tile clickedTile;
+	
+	private int row, col;
 
 	public BoardChessController(PnlBoardChess pnlBoardChess, MainController mainController) {
 		this.pnlBoardChess = pnlBoardChess;
@@ -46,12 +49,18 @@ public class BoardChessController {
 	}
 
 	private void handleTileClick(int x, int y) {
-		int row = y / mainController.gameplay.board.SQUARE_SIZE;
-		int col = x / mainController.gameplay.board.SQUARE_SIZE;
+		if(MainController.isPlayerBlack) {
+			row = y / mainController.gameplay.board.SQUARE_SIZE;
+		} else {
+			row = 7 - y / mainController.gameplay.board.SQUARE_SIZE;
+		}
+		col = 7 - x / mainController.gameplay.board.SQUARE_SIZE;
 
 		//TODO
-		Tile clickedTile = mainController.gameplay.board.tiles[row][7 - col];
 
+		clickedTile = mainController.gameplay.board.tiles[row][col];
+		
+		
 		if (selectedPiece == null
 				|| (clickedTile.getPiece() != null && clickedTile.getPiece().color.equals(selectedPiece.color))) {
 			handlePieceSelection(clickedTile);
@@ -99,7 +108,6 @@ public class BoardChessController {
 						} else if (move instanceof PromotionMove ) {
 							pnlBoardChess.updateUIAfterPromotionMove(selectedTile, targetTile, selectedPiece, mainController, move, gameLogicHandler);
 							playerSound.useSound(fileSoundPathMove);
-
 						} else {
 							pnlBoardChess.updateUIAfterRegularMove(selectedTile, targetTile, selectedPiece);	
 							playerSound.useSound(fileSoundPathMove);
@@ -113,7 +121,6 @@ public class BoardChessController {
 								VictoryFrame.initVictoryFrame("Quân Trắng");
 							} else {
 								VictoryFrame.initVictoryFrame("Quân Đen");
-
 							}
 							
 						}

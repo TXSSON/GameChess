@@ -15,7 +15,7 @@ public class PnlGameOptions extends JPanel {
 	public ButtonWithIcon btnCancel;
 	public JComboBox<ColorOption> cbBoardColor;
 	public JComboBox<PieceOption> cbChoosePiece;
-	public JTextField txtPlayTime;
+	
 
 	private static volatile PnlGameOptions pnlGameOptions;
 
@@ -64,30 +64,22 @@ public class PnlGameOptions extends JPanel {
 		lblChoosePiece.setForeground(Color.BLACK);
 		lblChoosePiece.setFont(bungeeShadeFont);
 		cbChoosePiece = new JComboBox<>(new PieceOption[] {
+				new PieceOption("White", ChessColor.white),
 				new PieceOption("Black", ChessColor.black)
 		});
 		cbChoosePiece.setFont(inputFont);
 		cbChoosePiece.setPreferredSize(new Dimension(200, 30)); // Giảm kích thước
 		((JLabel) cbChoosePiece.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER); // Căn giữa text
 
-		// Tùy chọn thời gian chơi
-		JLabel lblPlayTime = new JLabel("PLAY TIME:");
-		lblPlayTime.setFont(labelFont);
-		lblPlayTime.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPlayTime.setForeground(Color.BLACK);
-		lblPlayTime.setFont(bungeeShadeFont);
-		txtPlayTime = new JTextField();
-		txtPlayTime.setFont(inputFont);
-		txtPlayTime.setHorizontalAlignment(JTextField.CENTER); // Căn giữa chữ
-		txtPlayTime.setPreferredSize(new Dimension(200, 30)); // Giảm kích thước
+
 
 		// Thêm các thành phần vào pnlOptions
 		pnlOptions.add(lblBoardColor);
 		pnlOptions.add(cbBoardColor);
 		pnlOptions.add(lblChoosePiece);
 		pnlOptions.add(cbChoosePiece);
-		pnlOptions.add(lblPlayTime);
-		pnlOptions.add(txtPlayTime);
+
+
 
 		// Panel chứa các nút OK và Cancel
 		JPanel pnlButtons = new JPanel();
