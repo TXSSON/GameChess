@@ -88,7 +88,7 @@ public class PnlBoardChess extends JPanel {
 				deletePieceToPanel(MainController.isPlayerBlack ? targetTile.row : 7 - targetTile.row,7);
 				addPieceToPanel(pathImage, MainController.isPlayerBlack ? targetTile.row : 7 - targetTile.row, 5);
 			} else {
-//				nhập thành xa
+			// nhập thành xa
 				deletePieceToPanel(MainController.isPlayerBlack ? targetTile.row : 7 - targetTile.row, 0);
 				addPieceToPanel(pathImage, MainController.isPlayerBlack ? targetTile.row : 7 - targetTile.row, 3);
 			} 
@@ -159,10 +159,11 @@ public class PnlBoardChess extends JPanel {
 			Image scaledImage = originalImage.getScaledInstance(sizeIcon, sizeIcon, Image.SCALE_SMOOTH);
 
 			ImageIcon icon = new ImageIcon(scaledImage);
-
+			
+			
 			JLabel pieceLabel = new JLabel(icon);
 			pieceLabel.setBackground(Color.BLACK);
-			
+
 			//TODO
 			col = 7 - col;
 			squares[row][col].removeAll();

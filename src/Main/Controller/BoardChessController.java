@@ -113,16 +113,15 @@ public class BoardChessController {
 							playerSound.useSound(fileSoundPathMove);
 							gameLogicHandler.executeMove(move, mainController);
 						}
-						
 						resetSelection();
 						if (gameLogicHandler.isGameOver(mainController)) {
 							System.out.println("Trò chơi kết thúc.");
 							if (gameLogicHandler.isTurnWhite) {
-								VictoryFrame.initVictoryFrame("Quân Trắng");
+								MainController.isPlayerBackWinner = false;
 							} else {
-								VictoryFrame.initVictoryFrame("Quân Đen");
+								MainController.isPlayerBackWinner = true;
 							}
-							
+							MainController.initVictoryFrame();
 						}
 						gameLogicHandler.toggleTurn();
 					});

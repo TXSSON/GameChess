@@ -10,11 +10,13 @@ import ChessEngine.piece.Piece;
 import Main.Frame.GameFrame;
 import Main.Frame.GameOptionsFrame;
 import Main.Frame.PromotionFrame;
+import Main.Frame.VictoryFrame;
 import Main.Pnl.PnlBoardChess;
 import Main.Pnl.PnlGameOptions;
 import Main.Pnl.PnlHome;
 import Main.Pnl.PnlPromote;
 import Main.Pnl.PnlTutorial;
+import Main.Pnl.PnlVictory;
 import Main.Pnl.PnlSideBar;
 import Main.Utils.ColorOption;
 import Main.Utils.PieceOption;
@@ -26,11 +28,14 @@ public class MainController {
     private SideBarController sideBarController;
     private BoardChessController boardChessController;
     private PromoteController promotionController;
+    private VictoryController victoryController;
     
     public GameFrame gameFrame;
     public GameOptionsFrame gameOptionsFrame;
     public static PromotionFrame promotionFrame;
+    public static VictoryFrame victoryFrame;
     
+    public static PnlVictory pnlVictory;
     public PnlHome pnlHome;
     public PnlGameOptions pnlGameOptions;
     public PnlSideBar pnlSideBar;
@@ -49,6 +54,7 @@ public class MainController {
 	public Boolean readedTutorial = false;
 	
 	public static Boolean isPlayerBlack = true;
+	public volatile static Boolean isPlayerBackWinner = true;
 
 	
     
@@ -69,8 +75,8 @@ public class MainController {
         pnlPromotion = PnlPromote.getPnlPromotionInstance();
         promotionController = new PromoteController(pnlPromotion, this);
         
-
-        
+    	pnlVictory = PnlVictory.getPnlVictoryInstance();
+        victoryController = new VictoryController(pnlVictory, this);
         
         // Tiến hành hiển thị các màn hình
         initGameFrame();
@@ -81,6 +87,14 @@ public class MainController {
     	gameFrame.setPnlHome(pnlHome);
     	gameFrame.setPnlSideBar(pnlSideBar);
     	gameFrame.setVisible(true);
+    }
+    
+    public static void initVictoryFrame() {
+    	victoryFrame = new VictoryFrame();
+    	pnlVictory.setNameWiner(isPlayerBackWinner ? "Quân đen" : "Quân trắng");
+    	victoryFrame.add(pnlVictory);
+    	victoryFrame.pack();
+    	victoryFrame.setVisible(true);
     }
     
     public static void  initPromotionFrame() {
@@ -95,7 +109,7 @@ public class MainController {
     public void initNewGame() {
     	playingChess = true;
     	pnlBoardChess.setPnlBoardChess(selectedColor);
-    	pnlHome.setPnlNewGame(pnlBoardChess);	
+    	pnlHome.setPnlNewGame(pnlBoardChess);
     }
     public void initTutorial() {
     	readedTutorial = true;

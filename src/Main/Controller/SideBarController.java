@@ -14,7 +14,6 @@ public class SideBarController {
 		this.mainController = mainController;
 		addEventHandlers();
 	}
-
 	public void addEventHandlers() {
 		pnlSideBar.btnBack.addActionListener(e ->{
 			mainController.pnlHome.cardLayout.show (mainController.pnlHome.cardPanel, "menu");
