@@ -5,36 +5,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f4f0e9d8-a2e0-4470-9e10-93b2116bbcd0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Main/Resources/Icons/bgr2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main/Resources/Icons/bgrSideBar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main/Resources/Icons/down.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main/Resources/Icons/undo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main/Resources/Icons/bgroption.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main/Resources/Icons/bgrvictory.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main/Resources/Icons/buttonEndGame.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_26_2024_5_47_PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_26_2024_9_38_PM__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/board/move/PromotionMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/board/move/PromotionMove.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/piece/King.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/piece/King.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/piece/Queen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/ChessEngine/piece/Queen.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/BoardChessController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/BoardChessController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/BoardChessController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/BoardChessController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/GameLogicHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/GameLogicHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/GameOptionsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/GameOptionsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/HomeScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/HomeScreenController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/MainController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/SideBarController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Controller/SideBarController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Frame/GameFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Frame/GameFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Frame/VictoryFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Frame/VictoryFrame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlBoardChess.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlBoardChess.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlGameOptions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlGameOptions.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlPromote.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlPromote.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlSideBar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Pnl/PnlSideBar.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/arrow-left.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/bgrSideBar.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/left-arrow-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/left-arrow-2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Utils/ButtonWithIcon.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Utils/ButtonWithIcon.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Utils/PlayerSound.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Utils/PlayerSound.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/bgr2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/bgrSideBar.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/bgrSideBar.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/bgroption.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/gear.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/silence.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/volume-off-indicator.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GameChess/Main/Resources/Icons/volume.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/Pnl/PnlGameOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Pnl/PnlGameOptions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Pnl/PnlSideBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Pnl/PnlSideBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Resources/Icons/arrow-left.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Resources/Icons/bgrSideBar.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Resources/Icons/left-arrow-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Resources/Icons/left-arrow-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Pnl/PnlVictory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Pnl/PnlVictory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Resources/Icons/bgr2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Resources/Icons/bgrSideBar.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Resources/Icons/bgrSideBar.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Resources/Icons/bgroption.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Resources/Icons/gear.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Resources/Icons/silence.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Resources/Icons/volume-off-indicator.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Resources/Icons/volume.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,27 +92,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.RunGame.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Project/lib&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Application.PnlVictory.executor": "Run",
+    "Application.RunGame.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "final",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Project/lib",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Facets",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\LENOVO\IdeaProjects\GameChess\src\Main\Resources\Icons" />
@@ -169,6 +173,8 @@
       <workItem from="1733062017544" duration="2418000" />
       <workItem from="1733102158800" duration="600000" />
       <workItem from="1733103415034" duration="688000" />
+      <workItem from="1733562008920" duration="10144000" />
+      <workItem from="1733586126636" duration="6204000" />
     </task>
     <servers />
   </component>
